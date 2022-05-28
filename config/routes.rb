@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get '/search', to: 'movies#search'
   get 'movies', to: 'movies#searchresults'
 
-  post '/movies', to: 'movies#create'
+  resources :movie_bookmarks, only: [ :index, :show, :create, :destroy ]
 end
