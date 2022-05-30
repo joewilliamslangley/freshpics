@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htm
+  get '/search', to: 'movies#search'
+  get 'movies', to: 'movies#search_results'
+
+  resources :movie_bookmarks, only: [ :index, :show, :create, :destroy ]
 end
