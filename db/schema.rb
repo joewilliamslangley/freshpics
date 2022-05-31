@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_28_115521) do
+ActiveRecord::Schema.define(version: 2022_05_31_173101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,28 @@ ActiveRecord::Schema.define(version: 2022_05_28_115521) do
     t.string "imdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.integer "year"
+    t.string "poster_url"
+    t.integer "runtime"
+    t.text "genres", default: [], array: true
+    t.integer "imdb_ratings"
+    t.integer "metacritic_rating"
+    t.text "plot"
+    t.text "director", default: [], array: true
+    t.text "stars", default: [], array: true
+    t.string "trailer_url"
+    t.boolean "english"
+    t.string "background_image_url"
+    t.string "netflix", default: "Unavailable"
+    t.string "prime", default: "Unavailable"
+    t.string "disney", default: "Unavailable"
+    t.string "mubi", default: "Unavailable"
+    t.string "now", default: "Unavailable"
+    t.string "all4", default: "Unavailable"
+    t.string "iplayer", default: "Unavailable"
+    t.string "britbox", default: "Unavailable"
+    t.string "apple", default: "Unavailable"
   end
 
   create_table "users", force: :cascade do |t|
