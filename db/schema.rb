@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_31_173101) do
+ActiveRecord::Schema.define(version: 2022_05_31_183814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_05_31_173101) do
     t.string "poster_url"
     t.integer "runtime"
     t.text "genres", default: [], array: true
-    t.integer "imdb_ratings"
+    t.integer "imdb_rating"
     t.integer "metacritic_rating"
     t.text "plot"
     t.text "director", default: [], array: true
