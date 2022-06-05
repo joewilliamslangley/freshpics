@@ -17,6 +17,8 @@ require "nokogiri"
 
 # # imdb_api_key = ENV['IMDB_API_KEY']
 
+# binding.pry
+
 # url = "https://imdb-api.com/API/AdvancedSearch/#{api_data[:key]}?title_type=feature&moviemeter=451,600&count=250"
 
 # serialized = URI.open(url).read
@@ -57,7 +59,7 @@ require "nokogiri"
 
 #   request = Net::HTTP::Get.new(url)
 #   request["X-RapidAPI-Host"] = 'streaming-availability.p.rapidapi.com'
-#   request["X-RapidAPI-Key"] = 'da14c8edd2msh6f445565845208ep1178f0jsnf3e97b0b51fe'
+#   request["X-RapidAPI-Key"] = ENV['MOTN_API']
 
 #   response = http.request(request)
 
@@ -65,6 +67,7 @@ require "nokogiri"
 # rescue JSON::ParserError
 #   "Error"
 # end
+
 
 # movies = Movie.last(5)
 # movies.each do |movie|
@@ -92,27 +95,26 @@ require "nokogiri"
 
 # Scrape from ReelGood
 
-movie = Movie.find(257)
+# movie = Movie.find(257)
 
-url = "https://reelgood.com/uk/movie/#{movie.title.downcase.gsub(" ", "-")}-#{movie.year}"
+# url = "https://reelgood.com/uk/movie/#{movie.title.downcase.gsub(" ", "-")}-#{movie.year}"
 
-puts url
+# puts url
 
-html = URI.open(url)
-reelgood = Nokogiri::HTML(html)
+# html = URI.open(url)
+# reelgood = Nokogiri::HTML(html)
 
-reelgood.css(".css-r5iejs").each do |card|
-  puts card.css('a').attribute("href")
-  movie.prime = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Prime Video"
-  # binding.pry
-  movie.netflix = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Netflix"
-  movie.disney = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Disney+"
-  movie.mubi = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Mubi"
-  movie.now = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on NowTV"
-  movie.all4 = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Channel 4"
-  movie.iplayer = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on BBC iPlayer"
-  movie.britbox = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on BritBox"
-  movie.apple = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Apple TV+"
-end
+# reelgood.css(".css-r5iejs").each do |card|
+#   puts card.css('a').attribute("href")
+#   movie.prime = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Prime Video"
+#   movie.netflix = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Netflix"
+#   movie.disney = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Disney+"
+#   movie.mubi = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Mubi"
+#   movie.now = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on NowTV"
+#   movie.all4 = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Channel 4"
+#   movie.iplayer = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on BBC iPlayer"
+#   movie.britbox = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on BritBox"
+#   movie.apple = card.css('a').attribute("href").value if card.attribute("title").value == "Stream on Apple TV+"
+# end
 
-movie.save!
+# movie.save!
