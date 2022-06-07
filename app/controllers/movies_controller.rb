@@ -4,6 +4,6 @@ class MoviesController < ApplicationController
   end
 
   def search_results
-
+    @movie = Movie.find(264)
   end
 end
