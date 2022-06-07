@@ -5,12 +5,14 @@
   </div>
 
   <div class="row">
-    <div class="movie-watchlist-cards">
+    <div class="watchlist-cards">
       <% @movies.each do |movie| %>
-        <div class="movie-watchlist-card">
-          <h4> <%= movie.title %> </h4>
-          <p> <%= "#{movie.runtime.to_s} mins / #{movie.genres.first.capitalize} / #{movie.year.to_s}" %> </p>
-          <%= image_tag(movie.poster_url, alt: "#{movie.title} cover art", width: 150) %>
+        <div class="watchlist-card  col-sm-6">
+          <div class="card-content">
+            <h4> <%= movie.title %> </h4>
+            <p> <%= "#{movie.runtime.to_s} mins / #{movie.genres.first.capitalize} / #{movie.year.to_s}" %> </p>
+          </div>
+          <%= image_tag(movie.poster_url, alt: "#{movie.title} cover art", width: 150, class: "watchlist-poster") %>
         </div>
       <% end %>
     </div>
