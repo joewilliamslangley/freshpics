@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_31_183814) do
+ActiveRecord::Schema.define(version: 2022_06_07_193442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,31 +26,31 @@ ActiveRecord::Schema.define(version: 2022_05_31_183814) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.string "imdb_id" #imdb-api
+    t.string "imdb_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title" #imdb-api
-    t.integer "year" #imdb-api
-    t.string "poster_url" #imdb-api
-    t.integer "runtime" #imdb-api
-    t.text "genres", default: [], array: true #imdb-api
-    t.integer "imdb_rating" #imdb-api
-    t.integer "metacritic_rating" #imdb-api
-    t.text "plot" #imdb-api (but tMDb/MOTW is better)
-    t.text "director", default: [], array: true #imdb-api (but tMDb/MOTW is more reliable)
-    t.text "stars", default: [], array: true #imdb-api (but tMDb/MOTW is more reliable and MOTW has larger list)
-    t.string "trailer_url" #MOTW - or specific tMDB search
-    t.boolean "english" #can search on MOTW - info on tMDb
-    t.string "background_image_url" #MOTW or tMDb
-    t.string "netflix", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "prime", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "disney", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "mubi", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "now", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "all4", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "iplayer", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "britbox", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "apple", default: "Unavailable" #MOTW - reliable on reelgood
+    t.string "title"
+    t.integer "year"
+    t.string "poster_url"
+    t.integer "runtime"
+    t.text "genres", default: [], array: true
+    t.integer "imdb_rating"
+    t.integer "metacritic_rating"
+    t.text "plot"
+    t.text "director", default: [], array: true
+    t.text "stars", default: [], array: true
+    t.string "trailer_url"
+    t.boolean "english"
+    t.string "background_image_url"
+    t.string "netflix", default: "Unavailable"
+    t.string "prime", default: "Unavailable"
+    t.string "disney", default: "Unavailable"
+    t.string "mubi", default: "Unavailable"
+    t.string "now", default: "Unavailable"
+    t.string "all4", default: "Unavailable"
+    t.string "iplayer", default: "Unavailable"
+    t.string "britbox", default: "Unavailable"
+    t.string "apple", default: "Unavailable"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,6 +62,13 @@ ActiveRecord::Schema.define(version: 2022_05_31_183814) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
+    t.boolean "netflix", default: false
+    t.boolean "prime", default: false
+    t.boolean "disney", default: false
+    t.boolean "mubi", default: false
+    t.boolean "now", default: false
+    t.boolean "britbox", default: false
+    t.boolean "apple", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
