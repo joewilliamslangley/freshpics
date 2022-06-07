@@ -1,13 +1,18 @@
-<h1><%= "#{@user.username.capitalize}'s Profile"%></h1>
+<div class="container">
+  <div class="row">
+    <h1><%= "#{@user.username.capitalize}'s Profile"%></h1>
+    <h3>Watchlist</h3>
+  </div>
 
-<h3>Watchlist</h3>
-
-<% @movies.each do |movie| %>
-  <ul>
-    <li>
-      <h4> <%= movie.title %> </h4>
-      <p> <%= "#{movie.runtime.to_s} mins / #{movie.genres.first.capitalize} / #{movie.year.to_s}" %> </p>
-      <%= image_tag(movie.poster_url, alt: "#{movie.title} cover art", width: 150) %>
-    </li>
-  </ul>
-<% end %>
+  <div class="row">
+    <div class="movie-cards">
+      <% @movies.each do |movie| %>
+        <div class="movie-card">
+          <h4> <%= movie.title %> </h4>
+          <p> <%= "#{movie.runtime.to_s} mins / #{movie.genres.first.capitalize} / #{movie.year.to_s}" %> </p>
+          <%= image_tag(movie.poster_url, alt: "#{movie.title} cover art", width: 150) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
