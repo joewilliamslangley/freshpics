@@ -11,7 +11,8 @@ class MoviesController < ApplicationController
 
   def search_results
     page_number = 1
-    # if
+    # if not a user, then need to create an array of services, based on search request
+    # need to then check each result to see if it is in the database.  If it is, then the id is saved to an array
   end
 
   private
@@ -32,7 +33,7 @@ class MoviesController < ApplicationController
     request["X-RapidAPI-Key"] = ENV['MOTN_API']
 
     response = http.request(request)
-
+    # need to return the response, which will include the number of pages, then repeat the search with a random page
   end
 
   def user_services
