@@ -5,9 +5,9 @@
   </div>
 
   <div class="row">
-    <div class="movie-cards">
+    <div class="movie-watchlist-cards">
       <% @movies.each do |movie| %>
-        <div class="movie-card">
+        <div class="movie-watchlist-card">
           <h4> <%= movie.title %> </h4>
           <p> <%= "#{movie.runtime.to_s} mins / #{movie.genres.first.capitalize} / #{movie.year.to_s}" %> </p>
           <%= image_tag(movie.poster_url, alt: "#{movie.title} cover art", width: 150) %>
