@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h1><%= "#{@user.username.capitalize}'s Profile"%></h1>
+    <%# <h1><%= "#{@user.username.capitalize}'s Profile"%></h1>
     <h3>Watchlist</h3>
   </div>
 
@@ -12,8 +12,9 @@
             <%= image_tag(movie.poster_url, alt: "#{movie.title} cover art", width: 165, class: "watchlist-poster") %>
           </div>
           <div class="card-content">
-            <p> <%= "#{movie.runtime.to_s} mins / #{movie.genres.first.capitalize} / #{movie.year.to_s}" %> </p>
+            <p> <%= "#{movie.runtime.to_s} mins / #{movie.year.to_s}" %> </p>
             <h4> <%= movie.title %> </h4>
+            <%# <h4><i class="fa-solid fa-angle-down"></i></h4> %>
           </div>
         </div>
       <% end %>
