@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_31_183814) do
+ActiveRecord::Schema.define(version: 2022_06_09_181513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,39 +18,58 @@ ActiveRecord::Schema.define(version: 2022_05_31_183814) do
   create_table "movie_bookmarks", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "movie_id", null: false
+    t.string "bookmark_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "type"
     t.index ["movie_id"], name: "index_movie_bookmarks_on_movie_id"
     t.index ["user_id"], name: "index_movie_bookmarks_on_user_id"
   end
 
   create_table "movies", force: :cascade do |t|
-    t.string "imdb_id" #imdb-api
+    t.string "imdb_id"
+    t.string "title"
+    t.integer "year"
+    t.string "poster_url"
+    t.integer "runtime"
+    t.text "genres", default: [], array: true
+    t.integer "imdb_rating"
+    t.integer "metacritic_rating"
+    t.text "plot"
+    t.text "director", default: [], array: true
+    t.text "stars", default: [], array: true
+    t.string "youtube_code"
+    t.boolean "english"
+    t.string "background_image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title" #imdb-api
-    t.integer "year" #imdb-api
-    t.string "poster_url" #imdb-api
-    t.integer "runtime" #imdb-api
-    t.text "genres", default: [], array: true #imdb-api
-    t.integer "imdb_rating" #imdb-api
-    t.integer "metacritic_rating" #imdb-api
-    t.text "plot" #imdb-api (but tMDb/MOTW is better)
-    t.text "director", default: [], array: true #imdb-api (but tMDb/MOTW is more reliable)
-    t.text "stars", default: [], array: true #imdb-api (but tMDb/MOTW is more reliable and MOTW has larger list)
-    t.string "trailer_url" #MOTW - or specific tMDB search
-    t.boolean "english" #can search on MOTW - info on tMDb
-    t.string "background_image_url" #MOTW or tMDb
-    t.string "netflix", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "prime", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "disney", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "mubi", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "now", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "all4", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "iplayer", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "britbox", default: "Unavailable" #MOTW - reliable on reelgood
-    t.string "apple", default: "Unavailable" #MOTW - reliable on reelgood
+  end
+
+  create_table "platform_bookmarks", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "platform_id", null: false
+    t.integer "added"
+    t.integer "leaving"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_platform_bookmarks_on_movie_id"
+    t.index ["platform_id"], name: "index_platform_bookmarks_on_platform_id"
+  end
+
+  create_table "platforms", force: :cascade do |t|
+    t.string "name"
+    t.string "logo_path"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_platforms", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "platform_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["platform_id"], name: "index_user_platforms_on_platform_id"
+    t.index ["user_id"], name: "index_user_platforms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,4 +87,8 @@ ActiveRecord::Schema.define(version: 2022_05_31_183814) do
 
   add_foreign_key "movie_bookmarks", "movies"
   add_foreign_key "movie_bookmarks", "users"
+  add_foreign_key "platform_bookmarks", "movies"
+  add_foreign_key "platform_bookmarks", "platforms"
+  add_foreign_key "user_platforms", "platforms"
+  add_foreign_key "user_platforms", "users"
 end
