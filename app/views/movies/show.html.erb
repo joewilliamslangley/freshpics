@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="result-card-single col-lg-6 col-md-7 col-sm-10" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path @movie.background_image_url %>')" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <div class="card-body">
+        <h3 class="card-title"><%= @movie.title %></h3>
+        <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
+        <p class="card-text"> Starring <%= @movie.stars.join %></p>
+        <p class="card-text">Directed by <%= @movie.director.join %></p>
+        <p class="card-text"><%= @movie.plot %></p>
+        <%# <p class="card-text"><%= @movie.poster_url</p %>
+      </div>
+    </div>
+  </div>
+  <%# <div class="row row d-flex justify-content-center">
+    <div class="collapse col-lg-6 col-md-7 col-sm-10" id="collapseExample">
+      <div class="row d-flex">
+        <div class="col-6">
+          <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>
+        <%# </div> %>
+        <%# <div class="col-6"> %>
+          <%# <h6>Stream Now On</h6> %>
+        <%# </div> %>
+      <%# </div> %>
+    <%# </div> %>
+  <%# </div> %>
+<%# </div> %>
