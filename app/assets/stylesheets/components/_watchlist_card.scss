@@ -3,6 +3,8 @@
    justify-content: center;
    grid-template-columns: 1fr 1fr;
    grid-gap: 10px;
+   flex-wrap: wrap;
+   margin: 0 auto;
  }
 
 
@@ -11,12 +13,14 @@
   // overflow: hidden;
   position: relative;
   width: 160;
+  justify-content: center;
+  align-content: center;
+
 
 
 }
 
-
-.container .watchlist-card .card-content {
+.watchlist-card .card-content {
   position: absolute;
   bottom: 0;
   // width: 100%;
@@ -25,6 +29,17 @@
   // transition: 1s;
   // z-index: 90;
 }
+
+
+.watchlist-card .card-image {
+  justify-content: center;
+}
+
+.watchlist-card:hover .card-image {
+  opacity: .7;
+}
+
+
 
 
 
