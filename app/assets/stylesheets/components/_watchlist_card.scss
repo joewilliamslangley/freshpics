@@ -1,0 +1,216 @@
+ .watchlist-cards {
+   display: grid;
+   justify-content: center;
+   grid-template-columns: 1fr 1fr;
+   grid-gap: 10px;
+   flex-wrap: wrap;
+   margin: 0 auto;
+ }
+
+
+ .watchlist-card {
+  // width: 2;
+  // overflow: hidden;
+  position: relative;
+  width: 160;
+  justify-content: center;
+  align-content: center;
+
+
+
+}
+
+.watchlist-card .card-content {
+  position: absolute;
+  bottom: 0;
+  // width: 100%;
+  // height: 100px;
+  // text-align: center;
+  // transition: 1s;
+  // z-index: 90;
+}
+
+
+.watchlist-card .card-image {
+  justify-content: center;
+}
+
+.watchlist-card:hover .card-image {
+  opacity: .7;
+}
+
+
+
+
+
+// .container .watchlist-card:before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   // background: #1BBFE9;
+//   // clip-path: circle(150px at 80% 20%);
+//   transition: 0.5s ease-in-out;
+// }
+
+// .container .watchlist-card:hover:before {
+//   clip-path: circle(300px at 80% -20%);
+// }
+
+// .container .watchlist-card:after {
+//   // content: "Nike";
+//   position: absolute;
+//   top: 30%;
+//   left: -20%;
+//   font-size: 12em;
+//   font-weight: 800;
+//   font-style: italic;
+//   color: rgba(255, 255, 255, 0.04);
+
+// }
+
+// .container .watchlist-card .card-image {
+//   position: absolute;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   z-index: 1000;
+//   width: 100%;
+//   height: 100%;
+//   transition: .5s;
+// }
+
+// .container .watchlist-card:hover .card-image {
+//   top: 0%;
+//   transform: translateY(-25%);
+//   /* bug  */
+// }
+
+// .container .watchlist-card .card-image img {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%) rotate(20deg);
+//   width: 270px;
+// }
+
+
+
+// .container .card:hover .card-content {
+//   height: 210px;
+// }
+
+// "NIKE SHOES"
+// .container .watchlist-card .card-content h2 {
+//   position: relative;
+//   font-weight: 600;
+//   letter-spacing: 1px;
+//   color: #fff;
+// }
+
+// // APPEARING TEXT PRE-HOVER
+// .container .watchlist-card .card-content p,
+// .container .watchlist-card .card-content h4 {
+// // .container .watchlist-card .card-content .card-image {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   // padding: 8px 20px;
+//   transition: .5s;
+//   opacity: 0;
+//   visibility: hidden;
+//   color: $off-white;
+//   font-weight: 300;
+//   // font-size: 14px;
+// }
+
+// APPEARING TEXT ON HOVER
+// .watchlist-card:hover .card-content p {
+//   opacity: 1;
+//   visibility: visible;
+//   transition-delay: .5s;
+//   color: $off-white;
+//   font-weight: 300;
+//   font-size: 14px;
+// }
+
+// .watchlist-card:hover .card-content h4 {
+//   opacity: 1;
+//   visibility: visible;
+//   transition-delay: .6s;
+//   color: $off-white;
+//   font-weight: 300;
+//   // font-size: 14px;
+// }
+
+// .container .watchlist-card .card-content .size h3,
+// .container .watchlist-card .card-content .color h3 {
+//   color: white;
+//   font-weight: 300;
+//   font-size: 14px;
+//   text-transform: uppercase;
+//   letter-spacing: 2px;
+//   margin-right: 10px;
+// }
+
+// .container .watchlist-card .card-content .size span {
+//   width: 26px;
+//   height: 26px;
+//   text-align: center;
+//   line-height: 26px;
+//   font-size: 14px;
+//   display: inline-block;
+//   color: #111;
+//   background: #fff;
+//   margin: 0 5px;
+//   transition: .5s;
+//   color: #111;
+//   border-radius: 4px;
+//   cursor: pointer;
+// }
+
+// .container .watchlist-card .card-content .size span:hover {  /* other bug */
+//   background: #B90000;
+// }
+
+// .container .watchlist-card .card-content .color span {
+//   width: 20px;
+//   height: 20px;
+//   background: #ff0;
+//   border-radius: 50%;
+//   margin: 0 5px;
+//   cursor: pointer;
+// }
+
+// .container .watchlist-card .card-content .color span:nth-child(2) {
+//    background: #1BBFE9;
+// }
+
+// .container .watchlist-card .card-content .color span:nth-child(3) {
+//    background: #1B2FE9;
+// }
+
+// .container .watchlist-card .card-content .color span:nth-child(4) {
+//    background: #080481;
+// }
+
+// .container .watchlist-card .card-content a {
+//   display: inline-block;
+//   padding: 10px 20px;
+//   background: #fff;
+//   border-radius: 4px;
+//   margin-top: 10px;
+//   text-decoration: none;
+//   font-weight: 600;
+//   color: #111;
+//   opacity: 0;
+//   transform: translateY(50px);
+//   transition: .5s;
+// }
+
+// .container .watchlist-card:hover .card-content a {
+//   opacity: 1;
+//   transform: translateY(0px);
+//   transition-delay: .7s;
+// }
