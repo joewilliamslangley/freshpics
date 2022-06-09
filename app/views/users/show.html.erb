@@ -7,12 +7,14 @@
   <div class="row">
     <div class="watchlist-cards">
       <% @movies.each do |movie| %>
-        <div class="watchlist-card  col-sm-6">
-          <div class="card-content">
-            <h4> <%= movie.title %> </h4>
-            <p> <%= "#{movie.runtime.to_s} mins / #{movie.genres.first.capitalize} / #{movie.year.to_s}" %> </p>
+        <div class="watchlist-card">
+          <div class="card-image">
+            <%= image_tag(movie.poster_url, alt: "#{movie.title} cover art", width: 165, class: "watchlist-poster") %>
           </div>
-          <%= image_tag(movie.poster_url, alt: "#{movie.title} cover art", width: 150, class: "watchlist-poster") %>
+          <div class="card-content">
+            <p> <%= "#{movie.runtime.to_s} mins / #{movie.genres.first.capitalize} / #{movie.year.to_s}" %> </p>
+            <h4> <%= movie.title %> </h4>
+          </div>
         </div>
       <% end %>
     </div>
