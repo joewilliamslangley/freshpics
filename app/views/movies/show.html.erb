@@ -1,26 +1,39 @@
 <div class="container">
+<%# BASIC CARD HEADER %>
   <div class="row d-flex justify-content-center">
     <div class="result-card-single col-lg-6 col-md-7 col-sm-10" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path @movie.background_image_url %>')" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       <div class="card-body">
         <h3 class="card-title"><%= @movie.title %></h3>
         <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
+
+  <%# MOVIE TRAILER %>
+          <div class="col-6">
+            <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+          </div>
+
+
+        <%# ADD TO WATCHLIST BUTTON %>
           <div class="row">
             <%= link_to "Add to Your Watchlist", movie_path, class: 'btn btn-primary col-4' %>
           </div>
-  <%# <% end %>
-        <%# <div id="tabbed-content"></div> %>
+
+        <%# TABS %>
           <div class="tabbed-content">
-            <ul class="list-inline tabs-underlined">
-              <li>
-                <a href="#" class="tab-underlined active">Bookings</a>
-              </li>
-              <li>
-                <a href="#" class="tab-underlined">Requests</a>
-              </li>
-              <li>
-                <a href="#" class="tab-underlined">Conversations</a>
-              </li>
-            </ul>
+            <header>
+              <ul class="list-inline tabs-underlined">
+                <li>
+                    <%= link_to "Cast & Crew", movie_path(@movie.stars.join), class: 'tab-underlined active' %>
+
+                  <%# <a href="#" class="tab-underlined active">Cast & Crew</a> %>
+                </li>
+                <li>
+                  <a href="#" class="tab-underlined">Genres</a>
+                </li>
+                <li>
+                  <a href="#" class="tab-underlined">Available On</a>
+                </li>
+              </ul>
+            </header>
         <p class="card-text"> Starring <%= @movie.stars.join %></p>
         <p class="card-text">Directed by <%= @movie.director.join %></p>
         <p class="card-text"><%= @movie.plot %></p>
