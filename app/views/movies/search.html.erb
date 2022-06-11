@@ -1,16 +1,20 @@
-<%= form_with url: search_path, method: :get do |form| %>
-  <%= form.label :keyword, "Keyword:" %>
-  <%= form.text_field :keyword%>
+<div class="container align">
+  <%= form_with url: search_path, method: :get do |form| %>
+    <%= form.label :keyword, "Keyword:" %>
+    <%= form.text_field :keyword%>
 
-  <%= form.check_box :netflix %>
-  <%= form.label :netflix, "Netflix" %>
-  <%= form.check_box :prime %>
-  <%= form.label :prime, "Amazon Prime" %>
-  <%= form.check_box :disney %>
-  <%= form.label :disney, "Disney Plus" %>
+    <div class="ck-button">
+      <%= form.check_box :netflix %><span>Netflix</span>
+    </div>
+    <%= form.label :netflix, "Netflix" %>
+    <%= form.check_box :prime %>
+    <%= form.label :prime, "Amazon Prime" %>
+    <%= form.check_box :disney %>
+    <%= form.label :disney, "Disney Plus" %>
 
-  <%= form.label :length, "Length:" %>
-  <%= form.text_field :length %>
+    <%= form.label :length, "Length:" %>
+    <%= form.text_field :length %>
 
-  <%= form.submit "Search", class: "btn btn-primary" %>
-<% end %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
