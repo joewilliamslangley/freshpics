@@ -9,7 +9,7 @@
         <button id="btn-1">Q1</button>
       </div>
 
-      <div id="question-2" class="question">
+      <div id="question-2" class="question hidden">
         <h3>What streaming services do you have access to?</h3>
         <div class="options">
           <%= form.check_box :netflix %>
@@ -32,7 +32,7 @@
         <button id="btn-2">Q2</button>
       </div>
 
-      <div id="question-3" class="question">
+      <div id="question-3" class="question hidden">
         <h3>Do you care what the critcs say?</h3>
         <div class="options">
           <%= form.radio_button :review_site, "imdb" %>
@@ -59,7 +59,7 @@
 
 
 
-      <div id="question-4">
+      <div id="question-4" class="question hidden">
         <h3>How much time do you have?</h3>
         <div class="options">
           <%= form.radio_button :time, "90" %>

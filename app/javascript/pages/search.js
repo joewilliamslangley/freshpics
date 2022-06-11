@@ -1,6 +1,7 @@
 let number = 1;
 let question = `question-${number}`;
 let btn = document.getElementById(`btn-${number}`);
+
 const addEventListenerToButtons = ((btn) => {
   btn.addEventListener('click', (event) => {
     number += 1;
@@ -8,6 +9,7 @@ const addEventListenerToButtons = ((btn) => {
       event.preventDefault();
       nextDiv = document.getElementById(`question-${number}`);
       console.log(nextDiv);
+      nextDiv.classList.remove("hidden")
       btn = document.getElementById(`btn-${number}`);
       addEventListenerToButtons(btn);
     }
