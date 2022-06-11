@@ -1,15 +1,16 @@
 <div class="container">
   <div class="row">
-    <%# <h1><%= "#{@user.username.capitalize}'s Profile"%></h1>
+    <h1><%= "#{@user.freshpics_handle.capitalize}'s Profile"%></h1>
     <h3>Watchlist</h3>
   </div>
-
+</div>
   <div class="row">
     <div class="watchlist-cards">
       <% @movies.each do |movie| %>
         <div class="watchlist-card">
           <div class="card-image">
-            <%= image_tag(movie.poster_url, alt: "#{movie.title} cover art", width: 165, class: "watchlist-poster") %>
+
+            <%= link_to image_tag(movie.background_image_url, alt: "#{movie.title} cover art", style: 'height:auto;width:100%;', class: "watchlist-poster"), movie_path(movie) %>
           </div>
           <div class="card-content">
             <p> <%= "#{movie.runtime.to_s} mins / #{movie.year.to_s}" %> </p>
@@ -18,7 +19,7 @@
             <h4> <%= movie.title %> </h4>
 
             <%= link_to ('<i class="fa fa-trash" aria-hidden="true"></i>').html_safe,
-               # Must find the movie bookmark id - do this by gettind this into the user conteoller and finding one with the movie_id that matches the
+               # Must find the movie bookmark id - do this by getting this into the user conteoller and finding one with the movie_id that matches the
                 { controller: "movie_bookmarks", action: "destroy", id: @movie_bookmarks.find_by(movie_id: movie.id).id },
                   data: { confirm: 'Are you sure?' },
                   method: :delete %>
@@ -27,7 +28,7 @@
       <% end %>
     </div>
   </div>
-</div>
+
 
 
 
