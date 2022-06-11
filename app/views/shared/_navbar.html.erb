@@ -2,28 +2,47 @@
   <div class="container-fluid">
 
   <%# LOGO %>
+ <% if false %>
     <%= link_to "#", class: "navbar-brand" do %>
       <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
     <% end %>
+  <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> %>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+    <div  id="navbarSupportedContent">
+    <%# class="collapse navbar-collapse" for a collapsable menu%>
+      <ul class="navbar-nav">
 
-    <%# USER VIEW %>
+
+        <li class="nav-item active">
+            <%= link_to ('<i class="fa fa-home" aria-hidden="true"></i>').html_safe, root_path, class: "nav-link" %>
+        </li>
+
+<%# USER VIEW %>
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
 
+    <%# Watchlist%>
+        <li class="nav-item">
+            <%= link_to ('<i class="fa fa-eye" aria-hidden="true"></i>').html_safe, user_path(current_user), class: "nav-link" %>
+        </li>
+    <%# Profile%>
+        <li class="nav-item">
+            <%= link_to ('<i class="fa fa-user" aria-hidden="true"></i>').html_safe, user_path(current_user), class: "nav-link" %>
+        </li>
+
+
+    <%# Other items %>
+        <% if false %>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+            <%= link_to "Watchlist", "#", class: "nav-link" %>
             <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </li>
 
+
+    <%# Avatar and dropdown%>
           <li class="nav-item dropdown">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -32,6 +51,8 @@
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
+        <% end %>
+
 
     <%# VISITOR VIEW%>
         <% else %>
