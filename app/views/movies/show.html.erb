@@ -1,7 +1,6 @@
 <div class="container">
 <%# BASIC CARD HEADER %>
   <div class="row d-flex justify-content-center">
-    <div class="result-card-single col-lg-6 col-md-7 col-sm-10" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path @movie.background_image_url %>')" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       <div class="card-body">
         <h3 class="card-title"><%= @movie.title %></h3>
         <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
