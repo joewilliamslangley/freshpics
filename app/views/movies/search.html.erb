@@ -1,0 +1,16 @@
+<%= form_with url: search_path, method: :get do |form| %>
+  <%= form.label :keyword, "Keyword:" %>
+  <%= form.text_field :keyword%>
+
+  <%= form.check_box :netflix %>
+  <%= form.label :netflix, "Netflix" %>
+  <%= form.check_box :prime %>
+  <%= form.label :prime, "Amazon Prime" %>
+  <%= form.check_box :disney %>
+  <%= form.label :disney, "Disney Plus" %>
+
+  <%= form.label :length, "Length:" %>
+  <%= form.text_field :length %>
+
+  <%= form.submit "Search", class: "btn btn-primary" %>
+<% end %>
