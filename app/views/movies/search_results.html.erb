@@ -1,10 +1,19 @@
 <div class="container">
+  <div class="refresh-button" data-controller="refresh">
+    <button data-action="click->refresh#next">Refresh</button>
+  </div>
+
+  <%@movies.each do |movie|%>
   <div class="row d-flex justify-content-center">
-    <div class="result-card card col-lg-6 col-md-7 col-sm-10" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path @movie.background_image_url%>')" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <div class="result-card card col-lg-6 col-md-7 col-sm-10" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       <div class="card-body">
-        <h3 class="card-title"><%= @movie.title %></h3>
-        <h6 class="card-subtitle mb-2"><%= @movie.genres[0] %> / <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
-        <p class="card-text"><%= @movie.plot %></p>
+        <h3 class="card-title"><%= movie.title %></h3>
+        <h6 class="card-subtitle mb-2"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins</h6>
+        <p class="card-text"><%= movie.plot %></p>
+      </div>
+      <div class="card-body cast-info">
+        <p>Director - <%= movie.director.join(", ") %></p>
+        <p>Starring - <%= movie.stars[0..2].join(", ") %></p>
       </div>
     </div>
   </div>
@@ -12,12 +21,22 @@
     <div class="collapse col-lg-6 col-md-7 col-sm-10" id="collapseExample">
       <div class="row d-flex">
         <div class="col-6">
-          <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+
         </div>
         <div class="col-6">
           <h6>Stream Now On</h6>
+          <% movie.platform_bookmarks.each do |bookmark|%>
+            <div class="streaming-available">
+              <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100), bookmark.link, target: :_blank %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-6">
+          <button>Add to Watchlist</button>
+          <button>Don't Show Me Again</button>
         </div>
       </div>
     </div>
   </div>
+  <%end%>
 </div>

@@ -12,4 +12,11 @@ class MovieBookmarksController < ApplicationController
     @movie_bookmark.save!
     redirect_to user_path(current_user)
   end
+
+  def destroy
+    @movie_bookmark = MovieBookmark.find(params[:id])
+    @user = current_user
+    @movie_bookmark.destroy
+    redirect_to user_path(@user)
+  end
 end
