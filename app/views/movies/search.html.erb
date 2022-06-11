@@ -3,14 +3,27 @@
     <%= form.label :keyword, "Keyword:" %>
     <%= form.text_field :keyword%>
 
-    <div class="ck-button">
-      <%= form.check_box :netflix %><span>Netflix</span>
-    </div>
+    <%= form.check_box :netflix %>
     <%= form.label :netflix, "Netflix" %>
     <%= form.check_box :prime %>
     <%= form.label :prime, "Amazon Prime" %>
     <%= form.check_box :disney %>
     <%= form.label :disney, "Disney Plus" %>
+    <%= form.check_box :bbc %>
+    <%= form.label :bbc, "BBC iPlayer" %>
+    <%= form.check_box :all4 %>
+    <%= form.label :all4, "All 4" %>
+    <%= form.check_box :now %>
+    <%= form.label :now, "Now TV" %>
+    <%= form.check_box :mubi %>
+    <%= form.label :mubi, "Mubi" %>
+    <%= form.check_box :britbox %>
+    <%= form.label :britbox, "BritBox" %>
+
+    <%= form.radio_button :review_site, "imdb" %>
+    <%= form.label :imdb, "IMDb" %>
+    <%= form.radio_button :review_site, "metacritic" %>
+    <%= form.label :age_adult, "Metacritic" %>
 
     <%= form.label :length, "Length:" %>
     <%= form.text_field :length %>
