@@ -7,15 +7,19 @@
 
   <%# MOVIE TRAILER %>
           <div class="col-6">
-            <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+            <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: 300 ) %>
+            <%# <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto"
+            <%# src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>
+            <%# ' frameborder='0' allowfullscreen></iframe> %>
           </div>
-
 
         <%# ADD TO WATCHLIST BUTTON %>
           <div class="row">
-            <%= link_to "Add to Your Watchlist", movie_path, class: 'btn btn-primary col-4' %>
+            <%= simple_form_for [@movie_bookmark] do |f| %>
+            <%= f.hidden_field :movie, value: @movie.id %>
+            <%= f.submit class: 'btn btn-warning col-4' %>
+        <% end %>
           </div>
-
         <%# TABS %>
           <div class="tabbed-content">
             <header>

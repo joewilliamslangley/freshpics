@@ -11,7 +11,11 @@ class MoviesController < ApplicationController
     # Movie.where('runtime  < ?', "100").where('runtime  > ?', "90")
     # Movie.where('imdb_rating > ?', "70")
     # Movie.where('metacritic_rating > ?', '70')
+  end
 
+  def show
+    @movie = Movie.find(params[:id])
+    @movie_bookmark = MovieBookmark.new
   end
 
   private
