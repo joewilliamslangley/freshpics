@@ -13,9 +13,15 @@
           </div>
           <div class="card-content">
             <p> <%= "#{movie.runtime.to_s} mins / #{movie.year.to_s}" %> </p>
-            <h4> <%= movie.title %> </h4>
             <%# <h4><i class="fa-solid fa-angle-down"></i></h4> %>
-          </div>
+
+            <h4> <%= movie.title %> </h4>
+
+          <%= link_to "Remove",
+              user_path(@user),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+               </div>
         </div>
       <% end %>
     </div>
