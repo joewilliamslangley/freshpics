@@ -17,11 +17,12 @@
 
             <h4> <%= movie.title %> </h4>
 
-          <%= link_to "Remove",
-              user_path(@user),
-              method: :delete,
-              data: { confirm: "Are you sure?" } %>
-               </div>
+            <%= link_to "<i class="fa fa-trash" aria-hidden="true"></i>",
+               # Must find the movie bookmark id - do this by adding this into the user conteoller and finding one with the movie_id that matches the oteration
+                { controller: "movie_bookmarks", action: "destroy", id: @movie_bookmarks.find_by(movie_id: movie.id).id },
+                  data: { confirm: 'Are you sure?' },
+                  method: :delete %>
+          </div>
         </div>
       <% end %>
     </div>
