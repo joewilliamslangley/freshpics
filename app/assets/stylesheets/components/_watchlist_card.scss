@@ -17,7 +17,7 @@
   width: 100%;
   justify-content: center;
   align-content: center;
-  opacity: .7;
+
 
 
 }
@@ -32,14 +32,22 @@
   // z-index: 90;
 }
 
+// .watchlist-card .card-content p {
+//   font-size: ;
+// }
+
+.watchlist-card .card-content h4 {
+  font-size: 30;
+}
 
 .watchlist-card .card-image {
   justify-content: center;
-}
-
-.watchlist-card:hover .card-image {
   opacity: .7;
 }
+
+// .watchlist-card:hover .card-image {
+//   opacity: .7;
+
 
 
 
