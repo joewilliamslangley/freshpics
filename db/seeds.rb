@@ -13,15 +13,15 @@ def create_platforms(name)
   puts "Created #{name}!"
 end
 
-create_platforms('netflix')
-create_platforms('all4')
-create_platforms('apple')
-create_platforms('britbox')
-create_platforms('disney')
-create_platforms('iplayer')
-create_platforms('mubi')
-create_platforms('now')
-create_platforms('prime')
+# create_platforms('netflix')
+# create_platforms('all4')
+# create_platforms('apple')
+# create_platforms('britbox')
+# create_platforms('disney')
+# create_platforms('iplayer')
+# create_platforms('mubi')
+# create_platforms('now')
+# create_platforms('prime')
 
 # # Seedings From IMDb-API (https://imdb-api.com/api)
 
@@ -93,7 +93,8 @@ def create_platform_bookmark(movie, platform, motn_data)
 end
 
 def add_streaming_data
-  movies = Movie.last(2)
+  PlatformBookmark.delete_all
+  movies = Movie.all
   platforms = ["netflix", "prime", "all4", "disney", "mubi", "now", "all4", "iplayer", "britbox", "apple"]
   movies.each do |movie|
     motn_data = get_motn(movie.imdb_id)
@@ -105,15 +106,14 @@ def add_streaming_data
       movie.youtube_code = motn_data["video"]
       movie.background_image_url = motn_data["backdropURLs"]["original"]
       movie.save!
+      platforms.each do |platform|
+        create_platform_bookmark(movie, platform, motn_data) if motn_data["streamingInfo"][platform]
+      end
+      puts "#{movie.title} saved!"
     end
-
-    platforms.each do |platform|
-      create_platform_bookmark(movie, platform, motn_data) if motn_data["streamingInfo"][platform]
-    end
-    puts "#{movie.title} saved!"
   end
 end
 
-create_movies
+# create_movies
 
 add_streaming_data
