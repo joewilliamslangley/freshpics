@@ -23,10 +23,18 @@
     <%= form.radio_button :review_site, "imdb" %>
     <%= form.label :imdb, "IMDb" %>
     <%= form.radio_button :review_site, "metacritic" %>
-    <%= form.label :age_adult, "Metacritic" %>
+    <%= form.label :metacritic, "Metacritic" %>
+    <%= form.radio_button :review_site, "no_site" %>
+    <%= form.label :no_site, "No review site" %>
 
-    <%= form.label :length, "Length:" %>
-    <%= form.text_field :length %>
+    <%= form.radio_button :time, "90" %>
+    <%= form.label :'90', "90 mins" %>
+    <%= form.radio_button :time, "120" %>
+    <%= form.label :'120', "120 mins" %>
+    <%= form.radio_button :time, "150" %>
+    <%= form.label :'150', "150 mins" %>
+    <%= form.radio_button :time, "no_limit" %>
+    <%= form.label :no_limit, "No limit" %>
 
     <%= form.submit "Search", class: "btn btn-primary" %>
   <% end %>
