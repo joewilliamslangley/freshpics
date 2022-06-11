@@ -8,6 +8,10 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
+    <%= f.input :freshpics_handle,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "freshpics_handle" }%>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),

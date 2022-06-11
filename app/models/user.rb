@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :movie_bookmarks
   has_many :movies, through: :movie_bookmarks
+  validates_presence_of :freshpics_handle
 end
