@@ -1,8 +1,11 @@
 <div class="container align">
   <%= form_with url: movies_path, method: :get do |form| %>
-    <%= form.label :keyword, "Keyword:" %>
+
+    <h3>Pick a Genre</h3>
+    <%# <%= form.label :keyword, "Genre:" %>
     <%= form.text_field :keyword%>
 
+    <h3>Select your streaming services</h3>
     <%= form.check_box :netflix %>
     <%= form.label :netflix, "Netflix" %>
     <%= form.check_box :prime %>
@@ -20,6 +23,7 @@
     <%= form.check_box :britbox %>
     <%= form.label :britbox, "BritBox" %>
 
+    <h3>Review_site:</h3>
     <%= form.radio_button :review_site, "imdb" %>
     <%= form.label :imdb, "IMDb" %>
     <%= form.radio_button :review_site, "metacritic" %>
@@ -27,6 +31,17 @@
     <%= form.radio_button :review_site, "no_site", checked: true %>
     <%= form.label :no_site, "No review site" %>
 
+    <h3>Minimum score</h3>
+    <%= form.radio_button :score, "60" %>
+    <%= form.label :'60', "60" %>
+    <%= form.radio_button :score, "70" %>
+    <%= form.label :'70', "70" %>
+    <%= form.radio_button :score, "80" %>
+    <%= form.label :'80', "80" %>
+    <%= form.radio_button :score, "90" %>
+    <%= form.label :'90', "90" %>
+
+    <h3>Time limit</h3>
     <%= form.radio_button :time, "90" %>
     <%= form.label :'90', "90 mins" %>
     <%= form.radio_button :time, "120" %>
