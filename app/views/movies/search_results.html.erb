@@ -1,9 +1,49 @@
 <div class="container">
-  <div class="refresh-button" data-controller="refresh">
+  <div class="refresh-button" data-controller="refresh" data-results="<%= @movies %>">
     <button data-action="click->refresh#next">Refresh</button>
   </div>
 
-  <%@movies.each do |movie|%>
+  <%= form_with url: movies_path, method: :get do |form| %>
+
+    <h3>Pick a Genre</h3>
+    <%# <%= form.label :keyword, "Genre:" %>
+    <%= form.text_field :keyword%>
+
+    <h3>Select your streaming services</h3>
+    <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :name %>
+
+    <h3>Review_site:</h3>
+    <%= form.radio_button :review_site, "imdb" %>
+    <%= form.label :imdb, "IMDb" %>
+    <%= form.radio_button :review_site, "metacritic" %>
+    <%= form.label :metacritic, "Metacritic" %>
+    <%= form.radio_button :review_site, "no_site", checked: true %>
+    <%= form.label :no_site, "No review site" %>
+
+    <h3>Minimum score</h3>
+    <%= form.radio_button :score, "60" %>
+    <%= form.label :'60', "60" %>
+    <%= form.radio_button :score, "70" %>
+    <%= form.label :'70', "70" %>
+    <%= form.radio_button :score, "80" %>
+    <%= form.label :'80', "80" %>
+    <%= form.radio_button :score, "90" %>
+    <%= form.label :'90', "90" %>
+
+    <h3>Time limit</h3>
+    <%= form.radio_button :time, "90" %>
+    <%= form.label :'90', "90 mins" %>
+    <%= form.radio_button :time, "120" %>
+    <%= form.label :'120', "120 mins" %>
+    <%= form.radio_button :time, "150" %>
+    <%= form.label :'150', "150 mins" %>
+    <%= form.radio_button :time, "no_limit", checked: true %>
+    <%= form.label :no_limit, "No limit" %>
+
+    <%= form.submit "Search", class: "btn btn-primary" %>
+  <% end %>
+
+  <%@movies.first(3).each do |movie|%>
   <div class="row d-flex justify-content-center">
     <div class="result-card card col-lg-6 col-md-7 col-sm-10" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       <div class="card-body">
