@@ -4,42 +4,42 @@
   </div>
 
   <%@movies.each do |movie|%>
-  <div class="row d-flex justify-content-center">
-    <div class="result-card card col-lg-6 col-md-7 col-sm-10" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      <div class="card-body">
-        <h3 class="card-title"><%= movie.title %></h3>
-        <h6 class="card-subtitle mb-2"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins</h6>
-        <p class="card-text"><%= movie.plot %></p>
-      </div>
-      <div class="card-body cast-info">
-        <p>Director - <%= movie.director.join(", ") %></p>
-        <p>Starring - <%= movie.stars[0..2].join(", ") %></p>
-      </div>
-    </div>
-  </div>
-  <div class="row row d-flex justify-content-center">
-    <div class="collapse col-lg-6 col-md-7 col-sm-10" id="collapseExample">
-      <div class="row d-flex">
-        <div class="col-6">
+    <div class="row d-flex justify-content-center" data-controller="search-result-card">
+      <div class="result-card card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')">
+        <div class="card-body" data-action="click->search-result-card#revealContent" type="button">
+          <h3 class="card-title"><%= movie.title %></h3>
+          <h6 class="card-subtitle mb-2"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins</h6>
+          <p class="card-text"><%= movie.plot %></p>
+          <p>Director - <%= movie.director.join(", ") %></p>
+          <p>Starring - <%= movie.stars[0..2].join(", ") %></p>
+        </div>
+        <div class="card-body cast-info">
 
         </div>
-        <div class="col-6">
-          <h6>Stream Now On</h6>
-          <% movie.platform_bookmarks.each do |bookmark|%>
-            <div class="streaming-available">
-              <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100), bookmark.link, target: :_blank %>
+        <div class="d-none" data-search-result-card-target="expand">
+          <div class="row d-flex">
+            <div class="col-6">
+              <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" src="https://www.youtube.com/embed/<%= movie.youtube_code %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>" frameborder='0' allowfullscreen></iframe>
             </div>
-          <% end %>
+            <div class="col-6">
+              <h6>Stream Now On</h6>
+              <% movie.platform_bookmarks.each do |bookmark|%>
+                <div class="streaming-available">
+                  <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100), bookmark.link, target: :_blank %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="row d-flex">
+            <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+                <%= f.hidden_field :movie, value: movie.id %>
+                <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
+                <%= f.submit "Add to Watchlist", class: 'btn btn-warning', id: 'watch-list-add'%>
+            <% end %>
+          </div>
         </div>
-        <div class="col-6">
-          <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
-            <%= f.hidden_field :movie, value: movie.id %>
-            <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-            <%= f.submit "Add to Watchlist", class: 'btn btn-warning' %>
-        <% end %>
-        </div>
+
       </div>
     </div>
-  </div>
   <%end%>
 </div>

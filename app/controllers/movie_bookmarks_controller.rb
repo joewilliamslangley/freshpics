@@ -9,8 +9,11 @@ class MovieBookmarksController < ApplicationController
     @movie_bookmark = MovieBookmark.new(movie_bookmark_params)
     @movie_bookmark.user = current_user
     @movie_bookmark.movie = @movie
-    @movie_bookmark.save!
-    # redirect_to user_path(current_user)
+    if @movie_bookmark.save
+      # redirect_to user_path(current_user)
+    else
+      flash[:alert] = "Error"
+    end
   end
 
   def destroy

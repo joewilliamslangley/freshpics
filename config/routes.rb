@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'users/show'
   devise_for :users
-  root to: 'pages#home'
+  root to: 'movies#search'
   get '/search', to: 'movies#search'
   get 'movies', to: 'movies#search_results'
   get 'movies/:id', to: 'movies#show', as: :movie

@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: [:search, :search_results, :show]
   def search
 
   end

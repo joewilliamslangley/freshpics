@@ -115,16 +115,17 @@
   font-family: futura-pt, sans-serif;
   text-shadow: 0 1px 0 black;
   color: white;
-  height: 20em;
-  background-size: 100%;
-
+  height: 24em;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .result-card-expand {
-  border: none;
+  height: 40em;
 }
 
-#collapseExample{
+.expanded{
   background-color: grey;
 }
 // .result-card-text {
@@ -137,9 +138,5 @@
 // }
 
 .result-card-single {
-  font-family: futura-pt, sans-serif;
-  text-shadow: 0 1px 0 black;
-  color: white;
   height: 40em;
-  background-size: 100%;
 }
