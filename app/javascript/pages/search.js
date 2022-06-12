@@ -7,9 +7,11 @@ const addEventListenerToButtons = ((btn) => {
     number += 1;
     if (number < 5) {
       event.preventDefault();
+      currentDiv = document.getElementById(`question-${number - 1}`);
+      currentDiv.classList.add("hidden")
       nextDiv = document.getElementById(`question-${number}`);
-      console.log(nextDiv);
       nextDiv.classList.remove("hidden")
+      nextDiv.classList.add("fade-in")
       btn = document.getElementById(`btn-${number}`);
       addEventListenerToButtons(btn);
     }
