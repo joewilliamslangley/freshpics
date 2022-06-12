@@ -15,6 +15,11 @@ class MoviesController < ApplicationController
     # raise
   end
 
+  def show
+    @movie = Movie.find(params[:id])
+    @movie_bookmark = MovieBookmark.new
+  end
+
   private
 
   def user_platforms

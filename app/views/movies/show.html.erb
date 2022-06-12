@@ -1,22 +1,48 @@
 <div class="container">
 <%# BASIC CARD HEADER %>
-  <div class="row d-flex justify-content-center">
+  <div class="row d-flex justify-content-center align-items">
       <div class="card-body">
         <h3 class="card-title"><%= @movie.title %></h3>
         <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
 
-  <%# MOVIE TRAILER %>
-          <div class="col-6">
-            <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+  <%# MOVIE POSTER %>
+          <div class="col-6 ">
+            <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: 300 ) %>
+            <%# <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto"
+            <%# src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>
+            <%# ' frameborder='0' allowfullscreen></iframe> %>
           </div>
-
 
         <%# ADD TO WATCHLIST BUTTON %>
           <div class="row">
-            <%= link_to "Add to Your Watchlist", movie_path, class: 'btn btn-primary col-4' %>
+            <%= simple_form_for [@movie_bookmark] do |f| %>
+            <%= f.hidden_field :movie, value: @movie.id %>
+            <%= f.submit class: 'btn btn-warning col-4' %>
+        <% end %>
           </div>
-
         <%# TABS %>
+<div>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="pills-details-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Movie Details</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-profile-genres" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Genres</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pills-contact-platforms" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Platforms</button>
+      </li>
+    </ul>
+</div>
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+        <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
+        <p class="card-text">Directed by <%= @movie.director.join</p>
+        <p class="card-text"><%= @movie.plot %></p> %>
+    </div>
+    <div class="tab-pane fade" id="pills-genres" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
+    <div class="tab-pane fade" id="pills-platforms" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
+  </div>
           <div class="tabbed-content">
             <header>
               <ul class="list-inline tabs-underlined">
@@ -33,23 +59,10 @@
                 </li>
               </ul>
             </header>
-        <p class="card-text"> Starring <%= @movie.stars.join %></p>
+        <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
         <p class="card-text">Directed by <%= @movie.director.join %></p>
         <p class="card-text"><%= @movie.plot %></p>
         <%# <p class="card-text"><%= @movie.poster_url</p %>
       </div>
     </div>
   </div>
-  <%# <div class="row row d-flex justify-content-center">
-    <div class="collapse col-lg-6 col-md-7 col-sm-10" id="collapseExample">
-      <div class="row d-flex">
-        <div class="col-6">
-          <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>
-        <%# </div> %>
-        <%# <div class="col-6"> %>
-          <%# <h6>Stream Now On</h6> %>
-        <%# </div> %>
-      <%# </div> %>
-    <%# </div> %>
-  <%# </div> %>
-<%# </div> %>

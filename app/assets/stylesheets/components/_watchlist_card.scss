@@ -1,43 +1,64 @@
- .watchlist-cards {
-   display: grid;
-   justify-content: center;
-   grid-template-columns: 1fr 1fr;
-   grid-gap: 10px;
-   flex-wrap: wrap;
-   margin: 0 auto;
- }
+
+// GRID FOR POSTER LAYOUT
+//  .watchlist-cards {
+//    display: grid;
+//    justify-content: center;
+//    grid-template-columns: 1fr 1fr;
+//    grid-gap: 10px;
+//    flex-wrap: wrap;
+//    margin: 0 auto;
+//  }
 
 
  .watchlist-card {
   // width: 2;
   // overflow: hidden;
   position: relative;
-  width: 160;
+  width: 100%;
   justify-content: center;
   align-content: center;
-
-
-
 }
 
 .watchlist-card .card-content {
   position: absolute;
   bottom: 0;
-  // width: 100%;
+  width: 100%;
+  padding: 0px 10px;
+  line-height: 0.15;
   // height: 100px;
   // text-align: center;
   // transition: 1s;
   // z-index: 90;
 }
 
+// .watchlist-card .card-sub-content {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .watchlist-card .card-content p {
+//   font-size: ;
+// }
+
+.watchlist-card .delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+#icon-delete {
+  color: $off-white;
+}
+
 
 .watchlist-card .card-image {
   justify-content: center;
-}
-
-.watchlist-card:hover .card-image {
   opacity: .7;
 }
+
+// .watchlist-card:hover .card-image {
+//   opacity: .7;
+
 
 
 
