@@ -6,15 +6,13 @@ class MoviesController < ApplicationController
 
   def search_results
     @movies = Movie.all
-
     @movies = @movies.where('genres && ?', "{#{params[:keyword]}}") if params[:keyword] != ""
-
     @movies = @movies.where('metacritic_rating >= ?', params[:score]) if params[:review_site] == "metacritic" && params[:score]
     @movies = @movies.where('imdb_rating >= ?', params[:score]) if params[:review_site] == "imdb" && params[:score]
-    @movies = @movies.where('runtime <= ?', params[:time]) unless params[:time] == "no_limit"
-
-    # Movie.joins(platform_bookmarks: :platform).where(platform: {name: "netflix"})
-    # Movie.joins(platform_bookmarks: :platform).where(platform: {id: user.platforms.ids})
+    @movies = @movies.where('runtime <= ?', params[:time]) if params[:time] != "no_limit"
+    @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: current_user.platforms.ids }) if current_user.platforms.count.positive?
+    @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: params[:platform_ids] }) if params[:platform_ids]
+    # raise
   end
 
   private
