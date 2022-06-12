@@ -34,6 +34,7 @@
         <div class="col-6">
           <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
             <%= f.hidden_field :movie, value: movie.id %>
+            <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
             <%= f.submit "Add to Watchlist", class: 'btn btn-warning' %>
         <% end %>
         </div>

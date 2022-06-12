@@ -17,6 +17,7 @@
           <div class="row">
             <%= simple_form_for [@movie_bookmark] do |f| %>
             <%= f.hidden_field :movie, value: @movie.id %>
+            <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
             <%= f.submit class: 'btn btn-warning col-4' %>
         <% end %>
           </div>
