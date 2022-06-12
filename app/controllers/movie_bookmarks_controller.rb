@@ -10,7 +10,7 @@ class MovieBookmarksController < ApplicationController
     @movie_bookmark.user = current_user
     @movie_bookmark.movie = @movie
     @movie_bookmark.save!
-    redirect_to user_path(current_user)
+    # redirect_to user_path(current_user)
   end
 
   def destroy

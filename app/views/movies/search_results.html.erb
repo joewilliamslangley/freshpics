@@ -32,8 +32,10 @@
           <% end %>
         </div>
         <div class="col-6">
-          <button>Add to Watchlist</button>
-          <button>Don't Show Me Again</button>
+          <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+            <%= f.hidden_field :movie, value: movie.id %>
+            <%= f.submit "Add to Watchlist", class: 'btn btn-warning' %>
+        <% end %>
         </div>
       </div>
     </div>

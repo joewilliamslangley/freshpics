@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
   end
 
   def search_results
+    @movie_bookmark = MovieBookmark.new
     @results = Movie.joins(:platform_bookmarks)
     @movies = @results[0..2]
     # Movie.where('genres && ?', "{Drama}")
