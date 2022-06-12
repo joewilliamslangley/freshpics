@@ -17,11 +17,13 @@
 
         </div>
         <div class="d-none" data-search-result-card-target="expand">
-          <div class="row d-flex">
-            <div class="col-6">
-              <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" src="https://www.youtube.com/embed/<%= movie.youtube_code %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>" frameborder='0' allowfullscreen></iframe>
+          <div class="row d-flex justify-content-center">
+            <div class="col-10">
+              <iframe id="ytplayer" type="text/html" height="300" width="100%" height="auto" src="https://www.youtube.com/embed/<%= movie.youtube_code %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>" frameborder='0' allowfullscreen></iframe>
             </div>
-            <div class="col-6">
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-10">
               <h6>Stream Now On</h6>
               <% movie.platform_bookmarks.each do |bookmark|%>
                 <div class="streaming-available">
@@ -30,12 +32,14 @@
               <% end %>
             </div>
           </div>
-          <div class="row d-flex">
-            <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
-                <%= f.hidden_field :movie, value: movie.id %>
-                <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                <%= f.submit "Add to Watchlist", class: 'btn btn-warning', id: 'watch-list-add'%>
-            <% end %>
+          <div class="row d-flex justify-content-center">
+            <div class="col-10">
+              <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+                  <%= f.hidden_field :movie, value: movie.id %>
+                  <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
+                  <%= f.submit "Add to Watchlist", class: 'btn btn-warning', id: 'watch-list-add'%>
+              <% end %>
+            </div>
           </div>
         </div>
 
