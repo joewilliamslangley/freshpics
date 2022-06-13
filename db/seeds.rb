@@ -95,7 +95,7 @@ end
 def add_streaming_data
   movies = Movie.where("id > ?", 85).where("id < ?", 175)
   puts movies.count
-  platforms = ["netflix", "prime", "all4", "disney", "mubi", "now", "all4", "iplayer", "britbox", "apple"]
+  platforms = ["netflix", "prime", "all4", "disney", "mubi", "now", "iplayer", "britbox", "apple"]
   movies.each do |movie|
     motn_data = get_motn(movie.imdb_id)
 

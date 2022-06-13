@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   def search_results
     @movie_bookmark = MovieBookmark.new
     @results = Movie.joins(:platform_bookmarks)
-    @movies = @results[0..2]
+    @movies = @results
     # Movie.where('genres && ?', "{Drama}")
     # Movie.where('runtime  < ?', "100").where('runtime  > ?', "90")
     # Movie.where('imdb_rating > ?', "70")
@@ -18,6 +18,10 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @movie_bookmark = MovieBookmark.new
   end
+
+  # def result
+  #   @movie = Movie.find(params)
+  # end
 
   private
 

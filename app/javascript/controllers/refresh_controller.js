@@ -6,16 +6,17 @@ export default class extends Controller {
   }
   next(event) {
     console.log(this.element.dataset.refreshMovies)
-    console.log("what's next")
-    fetch("views/movies/_test.html.erb")
-        .then((res) => res.text())
-        .then((html) => {
-          const fragment = document
-            .createRange()
-            .createContextualFragment(html);
-
-          this.element.appendChild(fragment);
-          // OR document.getElementById("testy_element").appendChild(fragment)
-        });
+    let movieData = this.element.dataset.refreshMovies
+    console.log(movieData)
+    // fetch(`movies/${2}/result`)
+    //     .then((res) => res.text())
+    //     .then((html) => {
+    //       const fragment = document
+    //         .createRange()
+    //         .createContextualFragment(html);
+    //       console.log(fragment)
+    //       this.element.appendChild(fragment);
+    //       // OR document.getElementById("testy_element").appendChild(fragment)
+    //     });
   }
 }

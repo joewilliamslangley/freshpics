@@ -36,13 +36,13 @@
               <% end %>
             </div>
           </div>
-          <div class="row d-flex justify-content-center">
+          <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
             <% unless current_user.movies.include? movie%>
-              <div class="col-10" data-controller="change-watchlist-button">
+              <div class="col-10">
                 <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
                     <%= f.hidden_field :movie, value: movie.id %>
                     <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                    <%= f.submit "Add to Watchlist", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.button' }%>
+                    <%= f.submit "Add to Watchlist", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
                 <% end %>
                 <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
               </div>
