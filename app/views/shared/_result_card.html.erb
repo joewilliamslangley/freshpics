@@ -1,0 +1,42 @@
+<div class="row d-flex justify-content-center" data-controller="search-result-card">
+  <div class="result-card card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')">
+    <div class="card-body" data-action="click->search-result-card#revealContent" type="button">
+      <h3 class="card-title"><%= movie.title %></h3>
+      <h6 class="card-subtitle mb-2"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins</h6>
+      <p class="card-text"><%= movie.plot %></p>
+      <p>Director - <%= movie.director.join(", ") %></p>
+      <p>Starring - <%= movie.stars[0..2].join(", ") %></p>
+      <p><%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %> <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
+    </div>
+    <div class="card-body cast-info">
+
+    </div>
+    <div class="d-none" data-search-result-card-target="expand">
+      <div class="row d-flex justify-content-center">
+        <div class="col-10">
+
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-10">
+          <h6>Stream Now On</h6>
+          <% movie.platform_bookmarks.each do |bookmark|%>
+            <div class="streaming-available">
+              <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100), bookmark.link, target: :_blank %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-10">
+          <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+              <%= f.hidden_field :movie, value: movie.id %>
+              <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
+              <%= f.submit "Add to Watchlist", class: 'btn btn-warning', id: 'watch-list-add'%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

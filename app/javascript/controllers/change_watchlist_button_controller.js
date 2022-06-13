@@ -1,13 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["button"]
+  static targets = ["button", "added"]
 
   connect() {
     console.log("hello from refresh_controller!")
   }
 
-  add(event) {
-    console.log('added')
+  change(event) {
+    console.log(this.buttonTarget.innerText)
+    console.log(this.buttonTarget.innerText)
+    this.buttonTarget.classList.add("d-none")
+    this.addedTarget.classList.remove("d-none")
   }
 }

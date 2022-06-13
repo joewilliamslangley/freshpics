@@ -1,6 +1,9 @@
 <div class="container">
-  <div class="refresh-button" data-controller="refresh">
+  <div class="refresh-button" data-controller="refresh" data-refresh-movies="<%= @movies %>">
     <button data-action="click->refresh#next">Refresh</button>
+    <div data-refresh-button-target="add">
+
+    </div>
   </div>
 
   <%@movies.each do |movie|%>
@@ -20,7 +23,7 @@
         <div class="d-none" data-search-result-card-target="expand">
           <div class="row d-flex justify-content-center">
             <div class="col-10">
-              <iframe id="ytplayer" type="text/html" height="300" width="100%" height="auto" src="https://www.youtube.com/embed/<%= movie.youtube_code %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>" frameborder='0' allowfullscreen></iframe>
+
             </div>
           </div>
           <div class="row d-flex justify-content-center">
@@ -34,13 +37,20 @@
             </div>
           </div>
           <div class="row d-flex justify-content-center">
-            <div class="col-10">
-              <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
-                  <%= f.hidden_field :movie, value: movie.id %>
-                  <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                  <%= f.submit "Add to Watchlist", class: 'btn btn-warning', id: 'watch-list-add'%>
-              <% end %>
-            </div>
+            <% unless current_user.movies.include? movie%>
+              <div class="col-10" data-controller="change-watchlist-button">
+                <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+                    <%= f.hidden_field :movie, value: movie.id %>
+                    <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
+                    <%= f.submit "Add to Watchlist", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.button' }%>
+                <% end %>
+                <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
+              </div>
+            <% else %>
+              <div class="col-10">
+                <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
+              </div>
+            <% end %>
           </div>
         </div>
 
