@@ -12,6 +12,7 @@
           <p class="card-text"><%= movie.plot %></p>
           <p>Director - <%= movie.director.join(", ") %></p>
           <p>Starring - <%= movie.stars[0..2].join(", ") %></p>
+          <p><%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %> <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
         </div>
         <div class="card-body cast-info">
 
