@@ -1,31 +1,28 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid ">
+<div class="bottom-navbar">
 
+<%# <div class="navbar navbar-expand-sm navbar-light navbar-lewagon"> %>
+  <%# <div class="container-fluid "> %>
+      <%# <div class="navbar-nav"> %>
 
-    <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> %>
-
-    <%# <div  id="navbarSupportedContent"> %>
-    <%# class="collapse navbar-collapse" for a collapsable menu%>
-      <ul class="navbar-nav d-flex flex-row ">
-
-
-        <li class="nav-item active">
-            <%= link_to ('<i class="fa fa-home" aria-hidden="true"></i>').html_safe, root_path, class: "nav-link" %>
-        </li>
+        <div class="navbar-item">
+            <%= link_to ('<i class="fa fa-home" aria-hidden="true"></i>').html_safe, root_path, class: "nav-icon" %>
+            <p>Home</p>
+        </div>
 
 <%# USER VIEW %>
         <% if user_signed_in? %>
 
     <%# Watchlist%>
-        <li class="nav-item">
-            <%= link_to ('<i class="fa fa-eye" aria-hidden="true"></i>').html_safe, user_path(current_user), class: "nav-link" %>
-        </li>
+        <div class="navbar-item">
+            <%= link_to ('<i class="fa fa-eye" aria-hidden="true"></i>').html_safe, user_path(current_user), class: "nav-icon" %>
+            <p>Watchlist</p>
+        </div>
+
     <%# Profile%>
-        <li class="nav-item">
-            <%= link_to ('<i class="fa fa-user" aria-hidden="true"></i>').html_safe, user_path(current_user), class: "nav-link" %>
-        </li>
+        <div class="navbar-item">
+            <%= link_to ('<i class="fa fa-user" aria-hidden="true"></i>').html_safe, user_path(current_user), class: "nav-icon" %>
+            <p>Profile</p>
+        </div>
 
 
     <%# Other items %>
@@ -54,7 +51,7 @@
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
-      </ul>
+      </div>
     </div>
   </div>
 </div>
