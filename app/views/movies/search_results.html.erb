@@ -13,28 +13,25 @@
               <p>Starring - <%= movie.stars[0..2].join(", ") %></p>
               <p><%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %> <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
             </div>
-            <div class="card-body cast-info">
-
-            </div>
-            <div class="d-none" data-search-result-card-target="expand">
+            <div class="d-none result-card-expand" data-search-result-card-target="expand">
               <div class="row d-flex justify-content-center">
-                <div class="col-10">
-
+                <div class="col-12">
+                  <%# YouTube Imbed %>
                 </div>
               </div>
               <div class="row d-flex justify-content-center">
-                <div class="col-10">
-                  <h6>Stream Now On</h6>
+                <div class="col-12">
+                  <h4>Stream Now On</h4>
+                </div>
+                <div class="streaming-available col-12">
                   <% movie.platform_bookmarks.each do |bookmark|%>
-                    <div class="streaming-available">
-                      <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100), bookmark.link, target: :_blank %>
-                    </div>
+                    <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
                   <% end %>
                 </div>
               </div>
               <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
                 <% unless current_user.movies.include? movie%>
-                  <div class="col-10">
+                  <div class="col-12">
                     <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
                         <%= f.hidden_field :movie, value: movie.id %>
                         <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
@@ -43,7 +40,7 @@
                     <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
                   </div>
                 <% else %>
-                  <div class="col-10">
+                  <div class="col-12">
                     <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
                   </div>
                 <% end %>
