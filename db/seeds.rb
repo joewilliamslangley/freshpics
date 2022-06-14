@@ -13,6 +13,7 @@ def create_platforms(name, display_name)
   puts "Created #{name}!"
 end
 
+
 # Platform.delete_all
 # create_platforms('netflix', 'Netflix')
 # create_platforms('all4', 'All4')
@@ -23,6 +24,8 @@ end
 # create_platforms('mubi', 'Mubi')
 # create_platforms('now', 'NowTV')
 # create_platforms('prime', 'Prime Video')
+
+
 
 # # Seedings From IMDb-API (https://imdb-api.com/api)
 
