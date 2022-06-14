@@ -14,7 +14,6 @@ class MoviesController < ApplicationController
     @movies = @movies.where('runtime <= ?', params[:time]) if params[:time] != "no_limit"
     @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: current_user.platforms.ids }) if current_user.platforms.count.positive?
     @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: params[:platform_ids] }) if params[:platform_ids]
-    # raise
 
   end
 
