@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="refresh-button" data-controller="refresh">
+  <div class="refresh-button" data-controller="refresh" data-results="<%= @movies %>">
     <button data-action="click->refresh#next">Refresh</button>
   </div>
 
-  <%@movies.each do |movie|%>
+  <%@movies.first(3).each do |movie|%>
   <div class="row d-flex justify-content-center">
     <div class="result-card card col-lg-6 col-md-7 col-sm-10" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       <div class="card-body">

@@ -5,7 +5,8 @@ export default class extends Controller {
     console.log("hello from refresh_controller!")
   }
   next(event) {
-    console.log("what's next")
+    const allMovies = this.element.dataset.results
+    const newMovies = allMovies.splice(0,3)
 
   }
 }
