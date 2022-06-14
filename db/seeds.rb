@@ -13,15 +13,15 @@ def create_platforms(name, display_name)
   puts "Created #{name}!"
 end
 
-# create_platforms('netflix', 'Netflix')
-# create_platforms('all4', 'All4')
-# create_platforms('apple', 'Apple TV+')
-# create_platforms('britbox', 'BritBox')
-# create_platforms('disney', 'Disney+')
-# create_platforms('iplayer', 'iPlayer')
-# create_platforms('mubi', 'Mubi')
-# create_platforms('now', 'NowTV')
-# create_platforms('prime', 'Prime Video')
+create_platforms('netflix', 'Netflix')
+create_platforms('all4', 'All4')
+create_platforms('apple', 'Apple TV+')
+create_platforms('britbox', 'BritBox')
+create_platforms('disney', 'Disney+')
+create_platforms('iplayer', 'iPlayer')
+create_platforms('mubi', 'Mubi')
+create_platforms('now', 'NowTV')
+create_platforms('prime', 'Prime Video')
 
 # # Seedings From IMDb-API (https://imdb-api.com/api)
 
