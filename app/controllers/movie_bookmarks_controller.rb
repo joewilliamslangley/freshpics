@@ -6,11 +6,14 @@ class MovieBookmarksController < ApplicationController
   def create
     @movies = Movie.all
     @movie = Movie.find(params[:movie_bookmark][:movie])
-    @movie_bookmark = MovieBookmark.new
+    @movie_bookmark = MovieBookmark.new(movie_bookmark_params)
     @movie_bookmark.user = current_user
     @movie_bookmark.movie = @movie
-    @movie_bookmark.save!
-    redirect_to user_path(current_user)
+    if @movie_bookmark.save
+      # redirect_to user_path(current_user)
+    else
+      flash[:alert] = "Error"
+    end
   end
 
   def destroy
@@ -19,4 +22,11 @@ class MovieBookmarksController < ApplicationController
     @movie_bookmark.destroy
     redirect_to user_path(@user)
   end
+
+  private
+
+  def movie_bookmark_params
+    params.require(:movie_bookmark).permit(:bookmark_type)
+  end
+
 end

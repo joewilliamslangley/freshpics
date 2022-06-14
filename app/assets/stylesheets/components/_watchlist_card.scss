@@ -9,20 +9,21 @@
 //    margin: 0 auto;
 //  }
 
+.watchlist-cards {
+  padding-right: 0px;
+}
 
  .watchlist-card {
-  // width: 2;
-  // overflow: hidden;
   position: relative;
-  width: 100%;
-  justify-content: center;
-  align-content: center;
+  // overflow: hidden;
+  // width: 100%;
+  // justify-content: center;
+  // align-content: center;
 }
 
 .watchlist-card .card-content {
   position: absolute;
   bottom: 0;
-  width: 100%;
   padding: 0px 10px;
   line-height: 0.15;
   // height: 100px;

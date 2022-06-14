@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_11_082048) do
+ActiveRecord::Schema.define(version: 2022_06_12_221912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 2022_06_11_082048) do
   create_table "platform_bookmarks", force: :cascade do |t|
     t.bigint "movie_id", null: false
     t.bigint "platform_id", null: false
-    t.integer "added"
-    t.integer "leaving"
+    t.bigint "added"
+    t.bigint "leaving"
     t.string "link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2022_06_11_082048) do
     t.string "logo_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "display_name"
   end
 
   create_table "user_platforms", force: :cascade do |t|
