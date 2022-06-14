@@ -13,6 +13,7 @@ def create_platforms(name, display_name)
   puts "Created #{name}!"
 end
 
+# Platform.delete_all
 # create_platforms('netflix', 'Netflix')
 # create_platforms('all4', 'All4')
 # create_platforms('apple', 'Apple TV+')
@@ -128,13 +129,3 @@ end
 
 
 # add_streaming_data
-
-add_display_name_to(Platform.find(1), "Netflix")
-add_display_name_to(Platform.find(2), "All4")
-add_display_name_to(Platform.find(3), "Apple TV+")
-add_display_name_to(Platform.find(4), "BritBox")
-add_display_name_to(Platform.find(5), "Disney+")
-add_display_name_to(Platform.find(6), "iPlayer")
-add_display_name_to(Platform.find(7), "Mubi")
-add_display_name_to(Platform.find(8), "NowTV")
-add_display_name_to(Platform.find(9), "Prime Video")
