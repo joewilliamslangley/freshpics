@@ -1,22 +1,24 @@
 <div class="container">
 <%# BASIC CARD HEADER %>
-  <div class="row d-flex justify-content-center align-items">
-      <div class="card-body">
+  <div class="row d-flex justify-content-center">
+      <div class="col-12">
         <h3 class="card-title"><%= @movie.title %></h3>
         <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
-
+      </div>
+  </div>
   <%# MOVIE POSTER %>
-          <div class="col-6 ">
-            <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: 300 ) %>
+        <div class="col-6 ">
+          <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: 300 ) %>
             <%# <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto"
             <%# src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>
             <%# ' frameborder='0' allowfullscreen></iframe> %>
-          </div>
+        </div>
 
         <%# ADD TO WATCHLIST BUTTON %>
           <div class="row">
             <%= simple_form_for [@movie_bookmark] do |f| %>
             <%= f.hidden_field :movie, value: @movie.id %>
+            <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
             <%= f.submit class: 'btn btn-warning col-4' %>
         <% end %>
           </div>
@@ -37,7 +39,7 @@
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
         <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
-        <p class="card-text">Directed by <%= @movie.director.join%></p>
+        <p class="card-text">Directed by <%= @movie.director.join %></p>
         <p class="card-text"><%= @movie.plot %></p>
     </div>
     <div class="tab-pane fade" id="pills-genres" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
