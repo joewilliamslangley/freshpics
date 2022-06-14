@@ -144,3 +144,13 @@
 .streaming-logo {
   margin: 0 6em 1.5em 0;
 }
+
+.result-card-title {
+  color: white;
+  text-decoration: none;
+}
+
+.result-card-title:hover {
+  color: $orange;
+  text-decoration: none;
+}

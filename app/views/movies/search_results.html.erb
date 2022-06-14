@@ -6,7 +6,7 @@
         <div class="row d-flex justify-content-center" data-controller="search-result-card">
           <div class="result-card card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')">
             <div class="card-body" data-action="click->search-result-card#revealContent" type="button">
-              <h3 class="card-title"><%= movie.title %></h3>
+              <h3><%= link_to movie.title, movie_path(movie), class: "result-card-title" %></h3>
               <h6 class="card-subtitle mb-2"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins</h6>
               <p class="card-text"><%= movie.plot %></p>
               <p>Director - <%= movie.director.join(", ") %></p>
