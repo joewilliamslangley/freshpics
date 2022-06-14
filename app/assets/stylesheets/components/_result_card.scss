@@ -111,18 +111,6 @@
 // 	}
 // }
 
-.result-card {
-  font-family: futura-pt, sans-serif;
-  text-shadow: 0 1px 0 black;
-  color: white;
-  height: auto;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 40px;
-  display: none;
-}
-
 // .result-card-text {
 //   position: relative;
 // }
@@ -135,3 +123,15 @@
 // .result-card-single {
 //   height: auto;
 // }
+
+.result-card {
+  font-family: futura-pt, sans-serif;
+  text-shadow: 0 1px 0 black;
+  color: white;
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 40px;
+  display: none;
+}
