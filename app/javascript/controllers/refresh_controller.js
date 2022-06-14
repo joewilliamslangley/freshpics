@@ -27,5 +27,6 @@ export default class extends Controller {
     //       this.element.appendChild(fragment);
     //       // OR document.getElementById("testy_element").appendChild(fragment)
     //     });
+
   }
 }
