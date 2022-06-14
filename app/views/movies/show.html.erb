@@ -1,17 +1,18 @@
 <div class="container">
 <%# BASIC CARD HEADER %>
-  <div class="row d-flex justify-content-center align-items">
-      <div class="card-body">
+  <div class="row d-flex justify-content-center">
+      <div class="col-12">
         <h3 class="card-title"><%= @movie.title %></h3>
         <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
-
+      </div>
+  </div>
   <%# MOVIE POSTER %>
-          <div class="col-6 ">
-            <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: 300 ) %>
+        <div class="col-6 ">
+          <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: 300 ) %>
             <%# <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto"
             <%# src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>
             <%# ' frameborder='0' allowfullscreen></iframe> %>
-          </div>
+        </div>
 
         <%# ADD TO WATCHLIST BUTTON %>
           <div class="row">
