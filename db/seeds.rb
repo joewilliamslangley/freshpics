@@ -115,7 +115,16 @@ def add_streaming_data
   end
 end
 
+x = 1
+y = 150
 
+while x < 2000
+  # create_movies(x, y)
+  puts x
+  puts y
+  x += 150
+  y += 150
+end
 # create_movies(601, 850)
 # create_movies(851, 1100)
 # create_movies(1101, 1350)
