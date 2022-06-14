@@ -13,6 +13,8 @@ export default class extends Controller {
     current_cards.forEach((card) => card.style.display = 'none')
     current_cards = cards_array.splice(0,3)
     current_cards.forEach((card) => card.style.display = 'block')
+    window.scrollTo(0,0)
+    // ('html, body').animate({ scrollTop: 0 }, 'fast');
     // let movieData = this.element.dataset.refreshMovies
     // console.log(movieData)
     // fetch(`movies/${2}/result`)
