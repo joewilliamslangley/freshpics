@@ -17,6 +17,7 @@
           <div class="row">
             <%= simple_form_for [@movie_bookmark] do |f| %>
             <%= f.hidden_field :movie, value: @movie.id %>
+            <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
             <%= f.submit class: 'btn btn-warning col-4' %>
         <% end %>
           </div>
@@ -37,8 +38,8 @@
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
         <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
-        <p class="card-text">Directed by <%= @movie.director.join</p>
-        <p class="card-text"><%= @movie.plot %></p> %>
+        <p class="card-text">Directed by <%= @movie.director.join %></p>
+        <p class="card-text"><%= @movie.plot %></p>
     </div>
     <div class="tab-pane fade" id="pills-genres" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
     <div class="tab-pane fade" id="pills-platforms" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
