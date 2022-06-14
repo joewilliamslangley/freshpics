@@ -1,13 +1,20 @@
 import { Controller } from "@hotwired/stimulus"
+const cards = document.querySelectorAll(".result-card");
+let cards_array = cards_array = [...cards];
+let current_cards = cards_array.splice(0,3)
+current_cards.forEach((card) => card.style.display = 'block')
 
 export default class extends Controller {
   connect() {
-    console.log("hello from refresh_controller!")
+    // console.log("Howdy")
+
   }
   next(event) {
-    console.log(this.element.dataset.refreshMovies)
-    let movieData = this.element.dataset.refreshMovies
-    console.log(movieData)
+    current_cards.forEach((card) => card.style.display = 'none')
+    current_cards = cards_array.splice(0,3)
+    current_cards.forEach((card) => card.style.display = 'block')
+    // let movieData = this.element.dataset.refreshMovies
+    // console.log(movieData)
     // fetch(`movies/${2}/result`)
     //     .then((res) => res.text())
     //     .then((html) => {

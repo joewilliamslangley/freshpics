@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["watchlist", "added", "ignore"]
 
   connect() {
-    console.log("hello from refresh_controller!")
+
   }
 
   change(event) {
