@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="" data-controller="refresh" data-refresh-movies="<%= @movies %>">
+  <div class="" data-controller="refresh" >
 
     <div data-refresh-button-target="add" display="none">
       <%@movies.each do |movie|%>
@@ -15,7 +15,8 @@
             </div>
             <div class="d-none result-card-expand" data-search-result-card-target="expand">
               <div class="row d-flex justify-content-center">
-                <div class="col-12">
+                <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>">
+
                 </div>
               </div>
               <div class="row d-flex justify-content-center">
