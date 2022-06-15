@@ -13,15 +13,19 @@ def create_platforms(name, display_name)
   puts "Created #{name}!"
 end
 
-create_platforms('netflix', 'Netflix')
-create_platforms('all4', 'All4')
-create_platforms('apple', 'Apple TV+')
-create_platforms('britbox', 'BritBox')
-create_platforms('disney', 'Disney+')
-create_platforms('iplayer', 'iPlayer')
-create_platforms('mubi', 'Mubi')
-create_platforms('now', 'NowTV')
-create_platforms('prime', 'Prime Video')
+
+# Platform.delete_all
+# create_platforms('netflix', 'Netflix')
+# create_platforms('all4', 'All4')
+# create_platforms('apple', 'Apple TV+')
+# create_platforms('britbox', 'BritBox')
+# create_platforms('disney', 'Disney+')
+# create_platforms('iplayer', 'iPlayer')
+# create_platforms('mubi', 'Mubi')
+# create_platforms('now', 'NowTV')
+# create_platforms('prime', 'Prime Video')
+
+
 
 # # Seedings From IMDb-API (https://imdb-api.com/api)
 
@@ -114,7 +118,16 @@ def add_streaming_data
   end
 end
 
+x = 1
+y = 150
 
+while x < 2000
+  # create_movies(x, y)
+  puts x
+  puts y
+  x += 150
+  y += 150
+end
 # create_movies(601, 850)
 # create_movies(851, 1100)
 # create_movies(1101, 1350)
@@ -128,13 +141,3 @@ end
 
 
 # add_streaming_data
-
-add_display_name_to(Platform.find(1), "Netflix")
-add_display_name_to(Platform.find(2), "All4")
-add_display_name_to(Platform.find(3), "Apple TV+")
-add_display_name_to(Platform.find(4), "BritBox")
-add_display_name_to(Platform.find(5), "Disney+")
-add_display_name_to(Platform.find(6), "iPlayer")
-add_display_name_to(Platform.find(7), "Mubi")
-add_display_name_to(Platform.find(8), "NowTV")
-add_display_name_to(Platform.find(9), "Prime Video")
