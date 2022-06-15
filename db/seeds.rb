@@ -126,8 +126,8 @@ y = 150
 while x < 10_000
   create_movies(x, y)
   sleep 10
-  x += 150
-  y += 150
+  x += 250
+  y += 250
 end
 # create_movies(601, 850)
 # create_movies(851, 1100)

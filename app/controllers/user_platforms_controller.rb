@@ -1,0 +1,2 @@
+class UserPlatformsController < ApplicationController
+end

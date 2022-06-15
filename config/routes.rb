@@ -9,4 +9,5 @@ Rails.application.routes.draw do
 
   resources :movie_bookmarks, only: [ :index, :show, :create, :destroy ]
   resources :users, only: [:show]
+  resources :user_platforms, only: [:index, :create, :destroy]
 end
