@@ -13,19 +13,21 @@ def create_platforms(name, display_name)
   puts "Created #{name}!"
 end
 
+def add_display_name_to(platform, display_name)
+  platform.display_name = display_name
+  platform.save!
+end
 
 # Platform.delete_all
-# create_platforms('netflix', 'Netflix')
-# create_platforms('all4', 'All4')
-# create_platforms('apple', 'Apple TV+')
-# create_platforms('britbox', 'BritBox')
-# create_platforms('disney', 'Disney+')
-# create_platforms('iplayer', 'iPlayer')
-# create_platforms('mubi', 'Mubi')
-# create_platforms('now', 'NowTV')
-# create_platforms('prime', 'Prime Video')
-
-
+create_platforms('netflix', 'Netflix')
+create_platforms('all4', 'All4')
+create_platforms('apple', 'Apple TV+')
+create_platforms('britbox', 'BritBox')
+create_platforms('disney', 'Disney+')
+create_platforms('iplayer', 'iPlayer')
+create_platforms('mubi', 'Mubi')
+create_platforms('now', 'NowTV')
+create_platforms('prime', 'Prime Video')
 
 # # Seedings From IMDb-API (https://imdb-api.com/api)
 
@@ -121,10 +123,9 @@ end
 x = 1
 y = 150
 
-while x < 2000
-  # create_movies(x, y)
-  puts x
-  puts y
+while x < 10_000
+  create_movies(x, y)
+  sleep 10
   x += 150
   y += 150
 end
@@ -132,10 +133,7 @@ end
 # create_movies(851, 1100)
 # create_movies(1101, 1350)
 
-def add_display_name_to(platform, display_name)
-  platform.display_name = display_name
-  platform.save!
-end
+
 
 # create_movies
 
