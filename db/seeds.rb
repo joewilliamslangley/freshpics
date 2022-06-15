@@ -19,15 +19,15 @@ def add_display_name_to(platform, display_name)
 end
 
 # Platform.delete_all
-create_platforms('netflix', 'Netflix')
-create_platforms('all4', 'All4')
-create_platforms('apple', 'Apple TV+')
-create_platforms('britbox', 'BritBox')
-create_platforms('disney', 'Disney+')
-create_platforms('iplayer', 'iPlayer')
-create_platforms('mubi', 'Mubi')
-create_platforms('now', 'NowTV')
-create_platforms('prime', 'Prime Video')
+# create_platforms('netflix', 'Netflix')
+# create_platforms('all4', 'All4')
+# create_platforms('apple', 'Apple TV+')
+# create_platforms('britbox', 'BritBox')
+# create_platforms('disney', 'Disney+')
+# create_platforms('iplayer', 'iPlayer')
+# create_platforms('mubi', 'Mubi')
+# create_platforms('now', 'NowTV')
+# create_platforms('prime', 'Prime Video')
 
 # # Seedings From IMDb-API (https://imdb-api.com/api)
 
@@ -98,8 +98,8 @@ def create_platform_bookmark(movie, platform, motn_data)
   puts "Bookmark #{bookmark.id} - #{bookmark.movie.title} on #{bookmark.platform.name} "
 end
 
-def add_streaming_data
-  movies = Movie.where("id > ?", 85).where("id < ?", 175)
+def add_streaming_data(min, max)
+  movies = Movie.where("id > ?", min).where("id < ?", max)
   puts movies.count
   platforms = ["netflix", "prime", "all4", "disney", "mubi", "now", "iplayer", "britbox", "apple"]
   movies.each do |movie|
@@ -120,22 +120,13 @@ def add_streaming_data
   end
 end
 
-x = 1
-y = 150
-
-while x < 10_000
-  create_movies(x, y)
-  sleep 10
-  x += 150
-  y += 150
+def add_motn_data(min, max, last)
+  while min < last
+    create_movies(min, max)
+    sleep 10
+    min += 250
+    max += 250
+  end
 end
-# create_movies(601, 850)
-# create_movies(851, 1100)
-# create_movies(1101, 1350)
 
-
-
-# create_movies
-
-
-# add_streaming_data
+add_streaming_data(1, 100)
