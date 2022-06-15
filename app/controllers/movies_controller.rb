@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
 
     # raise
     @movies = @movies.uniq
-    @movies = @movies[0..12]
+    @movies = @movies[0..100]
 
   end
 

@@ -121,10 +121,9 @@ end
 x = 1
 y = 150
 
-while x < 2000
-  # create_movies(x, y)
-  puts x
-  puts y
+while x < 10_000
+  create_movies(x, y)
+  sleep 10
   x += 150
   y += 150
 end
