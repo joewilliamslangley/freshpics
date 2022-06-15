@@ -99,7 +99,7 @@ def create_platform_bookmark(movie, platform, motn_data)
 end
 
 def add_streaming_data(min, max)
-  movies = Movie.where("id > ?", min).where("id < ?", max)
+  movies = Movie.where("id >= ?", min).where("id <= ?", max)
   puts movies.count
   platforms = ["netflix", "prime", "all4", "disney", "mubi", "now", "iplayer", "britbox", "apple"]
   movies.each do |movie|
