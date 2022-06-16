@@ -130,4 +130,6 @@ def add_motn_data(min, max, last)
   end
 end
 
+#seed call to database
+
 add_streaming_data(101, 6857)
