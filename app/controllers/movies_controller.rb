@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:search, :search_results, :show]
   def search
+
     @genres = [["Biography", "Biography"],
                ["Film Noir", "Film-Noir"],
                ["Musical", "Musical"],
@@ -27,6 +28,7 @@ class MoviesController < ApplicationController
   end
 
   def search_results
+    # raise
     @movie_bookmark = MovieBookmark.new
 
     @movies = Movie.includes(:platform_bookmarks)
@@ -35,7 +37,11 @@ class MoviesController < ApplicationController
     @movies = @movies.where('imdb_rating >= ?', params[:score]) if params[:review_site] == "imdb" && params[:score]
     @movies = @movies.where('runtime <= ?', params[:time]) if params[:time] != "no_limit"
     @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: current_user.platforms.ids }) if current_user.platforms.count.positive?
-    @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: params[:platform_ids] }) if params[:platform_ids]
+    if params[:platform_ids]
+      @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: params[:platform_ids] })
+    else
+      @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: [1..9] })
+    end
     user_watchlist = Movie.joins(movie_bookmarks: :user).where(user: { id: current_user.id })
     @movies = @movies.where.not(id: user_watchlist.ids)
     # raise
