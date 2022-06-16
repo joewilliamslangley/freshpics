@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   def search_results
     @movie_bookmark = MovieBookmark.new
 
-    @movies = Movie.all
+    @movies = Movie.includes(:platform_bookmarks)
     @movies = @movies.where('genres && ?', "{#{params[:keyword]}}") if params[:keyword] != ""
     @movies = @movies.where('metacritic_rating >= ?', params[:score]) if params[:review_site] == "metacritic" && params[:score]
     @movies = @movies.where('imdb_rating >= ?', params[:score]) if params[:review_site] == "imdb" && params[:score]
