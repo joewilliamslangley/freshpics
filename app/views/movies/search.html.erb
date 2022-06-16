@@ -4,7 +4,7 @@
 
       <div id="question-1" class="question">
         <h3>What genre do you fancy?</h3>
-        <%= form.text_field :keyword%>
+        <%= form.select :keyword, @genres%>
 
         <button id="btn-1">OK</button>
       </div>
