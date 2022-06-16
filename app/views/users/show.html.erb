@@ -1,7 +1,13 @@
 <div class="container">
    <div class="row">
     <h1><%= "#{@user.freshpics_handle.capitalize}'s Profile"%></h1>
-    <h3>Watchlist</h3>
+    <div class="d-flex justify-content-between">
+      <h3>Watchlist</h3>
+      <h3><%= link_to 'Update User Platforms', user_platforms_path %></h3>
+      <h3><%= link_to "Edit Profile", edit_user_registration_path(current_user) %></h3>
+      <h3><%= link_to "Log out", destroy_user_session_path, method: :delete %></h3>
+    </div>
+
   </div>
 </div>
   <%# <div class="row"> %>

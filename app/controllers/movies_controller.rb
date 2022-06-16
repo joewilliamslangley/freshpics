@@ -7,16 +7,17 @@ class MoviesController < ApplicationController
   def search_results
     @movie_bookmark = MovieBookmark.new
 
-    @movies = Movie.all
+    @movies = Movie.includes(:platform_bookmarks)
     @movies = @movies.where('genres && ?', "{#{params[:keyword]}}") if params[:keyword] != ""
     @movies = @movies.where('metacritic_rating >= ?', params[:score]) if params[:review_site] == "metacritic" && params[:score]
     @movies = @movies.where('imdb_rating >= ?', params[:score]) if params[:review_site] == "imdb" && params[:score]
     @movies = @movies.where('runtime <= ?', params[:time]) if params[:time] != "no_limit"
     @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: current_user.platforms.ids }) if current_user.platforms.count.positive?
     @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: params[:platform_ids] }) if params[:platform_ids]
-
+    user_watchlist = Movie.joins(movie_bookmarks: :user).where(user: { id: current_user.id })
+    @movies = @movies.where.not(id: user_watchlist.ids)
     # raise
-    @movies = @movies.uniq
+    @movies = @movies.uniq.shuffle
     @movies = @movies[0..100]
 
   end
