@@ -1,7 +1,29 @@
 class MoviesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:search, :search_results, :show]
   def search
-
+    @genres = [["Biography", "Biography"],
+               ["Film Noir", "Film-Noir"],
+               ["Musical", "Musical"],
+               ["Sport", "Sport"],
+               ["Short", "Short"],
+               ["Adventure", "Adventure"],
+               ["Fantasy", "Fantasy"],
+               ["Animation", "Animation"],
+               ["Drama", "Drama"],
+               ["Horror", "Horror"],
+               ["Action", "Action"],
+               ["Comedy", "Comedy"],
+               ["History", "History"],
+               ["Western", "Western"],
+               ["Thriller", "Thriller"],
+               ["Crime", "Crime"],
+               ["Documentary", "Documentary"],
+               ["Science Fiction", "Sci-Fi"],
+               ["Mystery", "Mystery"],
+               ["Music", "Music"],
+               ["Romance", "Romance"],
+               ["Family", "Family"],
+               ["War", "War"]]
   end
 
   def search_results
