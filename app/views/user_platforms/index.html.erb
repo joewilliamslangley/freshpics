@@ -1,4 +1,4 @@
-<%= form_for url: user_platforms_path, method: :post do |form| %>
+<%= form_with url: user_platforms_update_platforms_path, method: :get do |form| %>
   <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :display_name, include_hidden: false %>
   <%= form.submit "Save", class: "btn btn-primary", id: "btn-4" %>
 <% end %>

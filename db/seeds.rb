@@ -9,7 +9,7 @@ require "nokogiri"
 # Create 9 Platforms
 
 def create_platforms(name, display_name)
-  Platform.create!(name: name, logo_path: "#{name}.png", display_name: display_name)
+  Platform.create!(name: name, logo_path: "#{name}.svg", display_name: display_name)
   puts "Created #{name}!"
 end
 
