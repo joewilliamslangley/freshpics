@@ -22,3 +22,18 @@
   opacity: 1;
   border-bottom: 3px solid $orange;
 }
+
+.tabs-results {
+  margin-top: 8px;
+}
+
+.back-button {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.poster-card {
+  display: flex;
+  justify-content: space-around;
+}
