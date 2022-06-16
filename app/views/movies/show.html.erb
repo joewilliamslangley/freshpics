@@ -53,7 +53,7 @@
                 <div class="row d-flex justify-content-center">
                   <div class="col-12">
                     <h4>Stream Now On</h4>
-                    <% @movie.platforms.each do |bookmark|%>
+                    <% @movie.platform_bookmarks.each do |bookmark|%>
                         <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
                         <% end %>
                   </div>

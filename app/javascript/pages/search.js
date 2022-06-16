@@ -14,6 +14,7 @@ const addEventListenerToButtons = ((btn) => {
       nextDiv.classList.add("fade-in")
       btn = document.getElementById(`btn-${number}`);
       addEventListenerToButtons(btn);
+      alert("button pressed")
     }
   });
 });
