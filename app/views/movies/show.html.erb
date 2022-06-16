@@ -1,51 +1,94 @@
 <div class="container">
-<%# BASIC CARD HEADER %>
   <div class="row d-flex justify-content-center">
-      <div class="col-12">
-        <h3 class="card-title"><%= @movie.title %></h3>
-        <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
-      </div>
-  </div>
-  <%# MOVIE POSTER %>
-        <div class="col-6 ">
-          <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: 300 ) %>
-            <%# <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto"
-            <%# src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>
-            <%# ' frameborder='0' allowfullscreen></iframe> %>
-        </div>
-
-        <%# ADD TO WATCHLIST BUTTON %>
-          <div class="row">
-            <%= simple_form_for [@movie_bookmark] do |f| %>
-            <%= f.hidden_field :movie, value: @movie.id %>
-            <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-            <%= f.submit class: 'btn btn-warning col-4' %>
-        <% end %>
+    <div class="col-lg-6 col-md-7 col-sm-10">
+  <%# BASIC CARD HEADER %>
+          <div>
+            <h3 class="card-title"><%= @movie.title %> </h3>
+            <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
           </div>
-        <%# TABS %>
-<div>
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-details-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Movie Details</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-profile-genres" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Genres</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-contact-platforms" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Platforms</button>
-      </li>
-    </ul>
-</div>
-  <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-        <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
-        <p class="card-text">Directed by <%= @movie.director.join %></p>
-        <p class="card-text"><%= @movie.plot %></p>
+      <%# MOVIE POSTER %>
+              <div>
+                <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: "100%" ) %>
+              </div>
+                <%# <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" %>
+                <%# src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>
+                <%# ' frameborder='0' allowfullscreen></iframe> %>
+
+
+            <%# ADD TO WATCHLIST BUTTON %>
+                <div>
+                  <%= simple_form_for [@movie_bookmark] do |f| %>
+                  <%= f.hidden_field :movie, value: @movie.id %>
+                  <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
+                  <%= f.submit class: 'btn btn-warning col-12' %>
+                    <% end %>
+                </div>
+
+            <%# TABS %>
+            <nav>
+              <div class="nav nav-tabs tabs-underlined" id="nav-tab" role="tablist">
+                <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Movie Details</button>
+                <button class="nav-link tab-underlined" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Genres</button>
+                <button class="nav-link tab-underlined" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Platforms</button>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
+                <p class="card-text">Directed by <%= @movie.director.join %></p>
+                <p class="card-text"><%= @movie.plot %></p>
+              </div>
+              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                <p> XXXXXXGenresXXXXXXX </p>
+              </div>
+              <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                <div class="row d-flex justify-content-center">
+                  <div class="col-12">
+                    <h4>Stream Now On</h4>
+                  </div>
+                  <div class="col-12">
+                    <% @movie.platform_bookmarks.each do |bookmark|%>
+                      <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <%# <div>
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-details-tab" data-bs-toggle="pill" data-bs-target="#pills-details" type="button" role="tab" aria-controls="pills-details" aria-selected="true">Movie Details</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-genres-tab" data-bs-toggle="pill" data-bs-target="#pills-genres" type="button" role="tab" aria-controls="pills-genres" aria-selected="false">Genres</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-platforms-tab" data-bs-toggle="pill" data-bs-target="#pills-platforms" type="button" role="tab" aria-controls="pills-platforms" aria-selected="false">Platforms</button>
+                </li>
+              </ul>
+            </div>
+          <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-details-tab" tabindex="0">
+                <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
+                <%# <p class="card-text">Directed by <%= @movie.director.join %></p>
+                <%# <p class="card-text"><%= @movie.plot %>
+              <%# </div> %>
+          <%# </div> %>
+            <%# <div class="tab-pane fade" id="pills-genres" role="tabpanel" aria-labelledby="pills-genres-tab" tabindex="0"> %>
+                <%# <p> XXXXXXGenresXXXXXXX </p> %>
+            <%# </div> %>
+          <%# <div class="tab-pane fade" id="pills-platforms" role="tabpanel" aria-labelledby="pills-platforms-tab" tabindex="0"> %>
+                  <%# <h4>Stream Now On</h4> %>
+                <%# <div class="col-12"> %>
+                  <%# <% @movie.platform_bookmarks.each do |bookmark|%>
+                    <%# <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
+                  <%# <% end %>
+                <%# </div> %>
+          <%# </div> %>
     </div>
-    <div class="tab-pane fade" id="pills-genres" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="pills-platforms" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
   </div>
-          <div class="tabbed-content">
+</div>
+    <!--      <div class="tabbed-content">
             <header>
               <ul class="list-inline tabs-underlined">
                 <li>
