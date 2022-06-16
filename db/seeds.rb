@@ -132,4 +132,4 @@ end
 
 #seed call to database
 
-add_streaming_data(2407, 6857)
+add_streaming_data(3188, 6857)
