@@ -3,8 +3,12 @@
     <div class="col-lg-6 col-md-7 col-sm-10">
   <%# BASIC CARD HEADER %>
           <div>
-            <h3 class="card-title"><%= @movie.title %> </h3>
+            <h3 class="card-title back-button"><%= @movie.title %>
+              <%= link_to "Back to your Results", movies_path(@user), class: "btn btn-outline-warning"%>
+            </h3>
             <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
+            <%# <h3 class="card-text d-flex align-items-end">
+              <button type="button" class="btn btn-outline-warning">Back to Your Results</button> %>
           </div>
       <%# MOVIE POSTER %>
               <div>
