@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["card", "expand"]
 
   connect() {
-    console.log("hello from search_result_controller!")
+    // console.log("hello from search_result_controller!")
   }
 
   revealContent() {
