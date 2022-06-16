@@ -7,9 +7,8 @@
               <%= link_to "Back to your Results", movies_path(@user), class: "btn btn-outline-warning"%>
             </h3>
             <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
-            <%# <h3 class="card-text d-flex align-items-end">
-              <button type="button" class="btn btn-outline-warning">Back to Your Results</button> %>
           </div>
+
       <%# MOVIE POSTER %>
               <div class="poster-card">
                 <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: "50%" ) %>
@@ -61,60 +60,6 @@
                 </div>
               </div>
             </div>
-            <%# <div>
-              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="pills-details-tab" data-bs-toggle="pill" data-bs-target="#pills-details" type="button" role="tab" aria-controls="pills-details" aria-selected="true">Movie Details</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-genres-tab" data-bs-toggle="pill" data-bs-target="#pills-genres" type="button" role="tab" aria-controls="pills-genres" aria-selected="false">Genres</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-platforms-tab" data-bs-toggle="pill" data-bs-target="#pills-platforms" type="button" role="tab" aria-controls="pills-platforms" aria-selected="false">Platforms</button>
-                </li>
-              </ul>
-            </div>
-          <div class="tab-content" id="pills-tabContent">
-              <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-details-tab" tabindex="0">
-                <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
-                <%# <p class="card-text">Directed by <%= @movie.director.join %></p>
-                <%# <p class="card-text"><%= @movie.plot %>
-              <%# </div> %>
-          <%# </div> %>
-            <%# <div class="tab-pane fade" id="pills-genres" role="tabpanel" aria-labelledby="pills-genres-tab" tabindex="0"> %>
-                <%# <p> XXXXXXGenresXXXXXXX </p> %>
-            <%# </div> %>
-          <%# <div class="tab-pane fade" id="pills-platforms" role="tabpanel" aria-labelledby="pills-platforms-tab" tabindex="0"> %>
-                  <%# <h4>Stream Now On</h4> %>
-                <%# <div class="col-12"> %>
-                  <%# <% @movie.platform_bookmarks.each do |bookmark|%>
-                    <%# <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
-                  <%# <% end %>
-                <%# </div> %>
-          <%# </div> %>
     </div>
   </div>
 </div>
-    <!--      <div class="tabbed-content">
-            <header>
-              <ul class="list-inline tabs-underlined">
-                <li>
-                    <%= link_to "Cast & Crew", movie_path(@movie.stars.join), class: 'tab-underlined active' %>
-
-                  <%# <a href="#" class="tab-underlined active">Cast & Crew</a> %>
-                </li>
-                <li>
-                  <a href="#" class="tab-underlined">Genres</a>
-                </li>
-                <li>
-                  <a href="#" class="tab-underlined">Available On</a>
-                </li>
-              </ul>
-            </header>
-        <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
-        <p class="card-text">Directed by <%= @movie.director.join %></p>
-        <p class="card-text"><%= @movie.plot %></p>
-        <%# <p class="card-text"><%= @movie.poster_url</p %>
-      </div>
-    </div>
-  </div>
