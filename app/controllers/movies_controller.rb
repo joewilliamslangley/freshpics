@@ -14,9 +14,10 @@ class MoviesController < ApplicationController
     @movies = @movies.where('runtime <= ?', params[:time]) if params[:time] != "no_limit"
     @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: current_user.platforms.ids }) if current_user.platforms.count.positive?
     @movies = @movies.joins(platform_bookmarks: :platform).where(platform: { id: params[:platform_ids] }) if params[:platform_ids]
-
+    user_watchlist = Movie.joins(movie_bookmarks: :user).where(user: { id: current_user.id })
+    @movies = @movies.where.not(id: user_watchlist.ids)
     # raise
-    @movies = @movies.uniq
+    @movies = @movies.uniq.shuffle
     @movies = @movies[0..100]
 
   end
