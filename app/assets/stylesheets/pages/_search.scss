@@ -54,3 +54,30 @@
     opacity:1;
 }
 }
+
+.tag-item {
+  display: inline-block;
+}
+
+.tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 50px;
+  padding: 0.1rem 0.5rem;
+  color: $yellow;
+  border: 1.5px solid $yellow;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+  opacity: 0.5;
+}
+
+.tag-selector:checked + label {
+  opacity: 1;
+  color: $yellow;
+  border: 1.5px solid $yellow;
+}
