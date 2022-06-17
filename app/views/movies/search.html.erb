@@ -16,7 +16,12 @@
       <div id="question-2" class="question hidden" data-controller="load-search-questions">
         <h3>What streaming services do you have access to?</h3>
         <div class="options">
-          <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :display_name, include_hidden: false %>
+          <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :display_name do |b| %>
+            <div class="question-tag">
+              <%= b.label %>
+              <%= b.check_box %>
+            </div>
+          <% end %>
         </div>
 
         <button id="btn-2"
