@@ -1,9 +1,21 @@
 .user-platform {
   // margin: 0, 20px;
-  height: 100px;
-  width: 200px;
+  height: 75px;
+  width: 150px;
 }
 
 .user-platform-unselected {
   opacity: 0.5;
+}
+
+.user-platform-form {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.user-platform-submit {
+  margin-top: 20px;
+  width: auto;
 }
