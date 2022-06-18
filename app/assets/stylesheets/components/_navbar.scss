@@ -3,7 +3,8 @@
   width: 100%;
   background-color: $dark-gray;
   overflow: auto ; //auto?
-  position: fixed;
+  position: sticky;
+  margin-top: auto;
   bottom: 0;
   border-top: 1px solid $off-white;
   display: flex;
