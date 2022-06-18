@@ -2,9 +2,9 @@
   <%= form_with url: user_platforms_update_platforms_path, method: :get do |form| %>
     <%= form.collection_check_boxes(:platform_ids, Platform.all, :id, :display_name, include_hidden: false) do |b| %>
       <% if current_user.platforms.include? (b.object) %>
-        <%= b.label(class: "btn user-platform") { image_tag(b.object.logo_path) } %>
+        <%= b.label(class: "", data: {controller: "user-platform"}) { b.check_box(checked: true, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
           <% else %>
-        <%= b.label(class: "btn user-platform user-platform-unselected") { image_tag(b.object.logo_path, class: "streaming-logo") } %>
+        <%= b.label(class: "user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
       <% end %>
     <% end %>
     <%= form.submit "Save", class: "btn btn-primary", id: "btn-4" %>
