@@ -26,7 +26,7 @@
                   class="btn btn-white">
             OK
           </button>
-    
+
       <!-- SKIP -->
           <%= form.collection_radio_buttons :keyword, @skip, :last, :first, include_hidden: false do |b| %>
               <%= b.radio_button class: "genre-tag-selector" %>
@@ -52,16 +52,17 @@
               <%= b.label  %>
             </div>
           <% end %>
-          
+
         <button id="btn-2"
                 data-action="click->load-search-questions#nextQuestion"
                 data-load-search-questions-target="button"
                 class="btn btn-white">
           OK
-        </button>  
+        </button>
+       </div>
        </div>
 
-        
+
 <!-- QUESTION THREE : CRITIC SCORE -->
 
         <div id="question-3" class="question hidden" data-load-search-questions-target="question">
@@ -110,9 +111,9 @@
           </button>
         </div>
 
- 
+
 <!-- QUESTION FOUR : DURATION -->
-        
+
         <div id="question-4" class="question hidden" data-load-search-questions-target="question">
           <h3>How much time do you have?</h3>
           <div class="options">
