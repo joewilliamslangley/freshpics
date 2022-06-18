@@ -18,7 +18,7 @@
             <%= link_to image_tag(movie.background_image_url, alt: "#{movie.title} cover art", style: 'height:auto;width:100%;'), movie_path(movie) %>
           </div>
           <div class="delete-icon">
-                <%= link_to ('<i class="fa fa-trash" aria-hidden="true" id="icon-delete"></i>').html_safe, # X ICON => <i class="fa-light fa-circle-x"></i>
+                <%= link_to ('<i class="fas fa-times-circle" id="icon-delete"></i>').html_safe, # X ICON => <i class="fa-light fa-circle-x"></i>
                 # Must find the movie bookmark id - do this by getting this into the user conteoller and finding one with the movie_id that matches the
                   { controller: "movie_bookmarks", action: "destroy", id: @movie_bookmarks.find_by(movie_id: movie.id).id },
                     data: { confirm: 'Are you sure?' },

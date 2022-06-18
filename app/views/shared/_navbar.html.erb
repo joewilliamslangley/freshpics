@@ -47,9 +47,12 @@
 
     <%# VISITOR VIEW%>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
+
+          <div class="navbar-item">
+            <%= link_to ('<i class="fas fa-sign-in-alt"></i>').html_safe, new_user_session_path, class: "nav-icon" %>
+            <p>Login</p>
+          </div>
+
         <% end %>
       </div>
     </div>
