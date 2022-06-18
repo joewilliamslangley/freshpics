@@ -82,14 +82,18 @@
   border: 1.5px solid $yellow;
 }
 
+.directional {
+  cursor: pointer;
+}
+
 .back {
   position: fixed; /* or absolute */
   top: 50%;
-  left: 0%;
+  left: 1%;
 }
 
 .forward {
   position: fixed; /* or absolute */
   top: 50%;
-  right: 0%;
+  right: 1%;
 }
