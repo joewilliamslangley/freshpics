@@ -2,6 +2,8 @@
   <div class="search-form d-flex justify-content-center">
     <%= form_with url: movies_path, method: :get do |form| %>
 
+<!-- QUESTION ONE : GENRE -->
+
       <div id="question-1" class="question" data-controller="load-search-questions">
         <h3>What genre do you fancy?</h3>
         <%= form.select :keyword, @genres%>
@@ -13,6 +15,9 @@
           OK
         </button>
       </div>
+
+
+<!-- QUESTION TWO : PLATFORMS -->
 
       <div id="question-2" class="question hidden" data-controller="load-search-questions">
         <h3>What streaming services do you have access to?</h3>
@@ -32,6 +37,9 @@
           OK
         </button>
       </div>
+
+
+<!-- QUESTION THREE : CRITIC SCORE -->
 
       <div id="question-3" class="question hidden" data-controller="load-search-questions">
         <h3>Do you care what the critcs say?</h3>
@@ -77,6 +85,9 @@
           OK
         </button>
       </div>
+
+
+<!-- QUESTION FOUR : DURATION -->
 
       <div id="question-4" class="question hidden">
         <h3>How much time do you have?</h3>
