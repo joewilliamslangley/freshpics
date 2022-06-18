@@ -11,7 +11,7 @@
             <%= form.collection_check_boxes :genres, @genres, :last, :first, include_hidden: false do |b| %>
               <div class="genre-tag-item">
                 <%= b.check_box class: "genre-tag-selector" %>
-                <%= b.label  %>
+                <%= b.label %>
               </div>
             <% end %>
           </div>
