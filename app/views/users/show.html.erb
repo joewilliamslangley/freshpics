@@ -1,5 +1,5 @@
 <div class="container">
-  <% if @user = current_user %>
+  <% if @user == current_user %>
     <div class="row">
       <h1><%= "#{@user.freshpics_handle.capitalize}'s Profile"%></h1>
       <div class="d-flex justify-content-between">
