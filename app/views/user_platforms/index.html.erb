@@ -2,8 +2,8 @@
   <div class="row">
     <h1><%= "#{@user.freshpics_handle.capitalize}'s Profile"%></h1>
     <div class="d-flex justify-content-between">
-      <p>Watchlist</p>
-      <p><%= link_to 'Update User Platforms', user_platforms_path, class: "link-orange" %></p>
+      <p><%= link_to 'Watchlist', user_path(current_user), class: "link-orange" %></p>
+      <p>Update User Platforms</p>
       <p><%= link_to "Edit Profile", edit_user_registration_path(current_user), class: "link-orange" %></p>
       <p><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "link-orange" %></p>
     </div>
@@ -20,6 +20,6 @@
       <% end %>
   </div>
   <div class="row justify-content-center">
-    <%= form.submit "Save", class: "btn btn-white user-platform-submit", id: "btn-4" %>
+    <%= form.submit "Save", class: "btn btn-white user-platform-submit mb-5" %>
     <% end %>
   </div>
