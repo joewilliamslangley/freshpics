@@ -81,3 +81,15 @@
   color: $yellow;
   border: 1.5px solid $yellow;
 }
+
+.back {
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 0%;
+}
+
+.forward {
+  position: fixed; /* or absolute */
+  top: 50%;
+  right: 0%;
+}
