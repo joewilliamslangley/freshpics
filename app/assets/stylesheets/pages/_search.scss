@@ -86,3 +86,19 @@
   color: $yellow;
   border: 1.5px solid $yellow;
 }
+
+.directional {
+  cursor: pointer;
+}
+
+.back {
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 1%;
+}
+
+.forward {
+  position: fixed; /* or absolute */
+  top: 50%;
+  right: 1%;
+}
