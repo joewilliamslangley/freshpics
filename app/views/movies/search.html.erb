@@ -8,7 +8,8 @@
 
         <button id="btn-1"
                 data-action="click->load-search-questions#load"
-                data-load-search-questions-target="button">
+                data-load-search-questions-target="button"
+                class="btn btn-white">
           OK
         </button>
       </div>
@@ -16,12 +17,18 @@
       <div id="question-2" class="question hidden" data-controller="load-search-questions">
         <h3>What streaming services do you have access to?</h3>
         <div class="options">
-          <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :display_name, include_hidden: false %>
+          <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :display_name, include_hidden: false do |b| %>
+            <div class="tag-item">
+              <%= b.check_box class: "tag-selector" %>
+              <%= b.label  %>
+            </div>
+          <% end %>
         </div>
 
         <button id="btn-2"
                 data-action="click->load-search-questions#load"
-                data-load-search-questions-target="button">
+                data-load-search-questions-target="button"
+                class="btn btn-white">
           OK
         </button>
       </div>
@@ -29,29 +36,44 @@
       <div id="question-3" class="question hidden" data-controller="load-search-questions">
         <h3>Do you care what the critcs say?</h3>
         <div class="options">
-          <%= form.radio_button :review_site, "imdb" %>
+          <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false do |b| %>
+            <div class="tag-item">
+              <%= b.radio_button class: "tag-selector" %>
+              <%= b.label  %>
+            </div>
+          <% end %>
+
+          <!-- <%= form.radio_button :review_site, "imdb" %>
           <%= form.label :imdb, "IMDb" %>
           <%= form.radio_button :review_site, "metacritic" %>
           <%= form.label :metacritic, "Metacritic" %>
           <%= form.radio_button :review_site, "no_site", checked: true %>
-          <%= form.label :no_site, "No review site" %>
+          <%= form.label :no_site, "No review site" %> -->
         </div>
 
         <h5>Pick a minimum score for your film</h5>
         <div class="options">
-          <%= form.radio_button :score, "60" %>
+          <%= form.collection_radio_buttons :score, [['60'], ['70'], ['80'], ['90']], :first, :first, include_hidden: false do |b| %>
+            <div class="tag-item">
+              <%= b.radio_button class: "tag-selector" %>
+              <%= b.label  %>
+            </div>
+          <% end %>
+
+          <!-- <%= form.radio_button :score, "60" %>
           <%= form.label :'60', "60" %>
           <%= form.radio_button :score, "70" %>
           <%= form.label :'70', "70" %>
           <%= form.radio_button :score, "80" %>
           <%= form.label :'80', "80" %>
           <%= form.radio_button :score, "90" %>
-          <%= form.label :'90', "90" %>
+          <%= form.label :'90', "90" %> -->
         </div>
 
         <button id="btn-3"
                 data-action="click->load-search-questions#load"
-                data-load-search-questions-target="button">
+                data-load-search-questions-target="button"
+                class="btn btn-white">
           OK
         </button>
       </div>
@@ -59,17 +81,24 @@
       <div id="question-4" class="question hidden">
         <h3>How much time do you have?</h3>
         <div class="options">
-          <%= form.radio_button :time, "90" %>
+          <%= form.collection_radio_buttons :time, [['90 mins', '90'], ['120 mins', '120'], ['150 mins', '150'], ['No Limit', 'no_limit']], :last, :first, include_hidden: false do |b| %>
+            <div class="tag-item">
+              <%= b.radio_button class: "tag-selector" %>
+              <%= b.label  %>
+            </div>
+          <% end %>
+
+          <!-- <%= form.radio_button :time, "90" %>
           <%= form.label :'90', "90 mins" %>
           <%= form.radio_button :time, "120" %>
           <%= form.label :'120', "120 mins" %>
           <%= form.radio_button :time, "150" %>
           <%= form.label :'150', "150 mins" %>
           <%= form.radio_button :time, "no_limit", checked: true %>
-          <%= form.label :no_limit, "No limit" %>
+          <%= form.label :no_limit, "No limit" %> -->
         </div>
 
-        <%= form.submit "Search", class: "btn btn-primary", id: "btn-4" %>
+        <%= form.submit "Search", class: "btn btn-white", id: "btn-4" %>
       </div>
 
 
