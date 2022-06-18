@@ -4,15 +4,14 @@
   <%# BASIC CARD HEADER %>
           <div>
             <h3 class="card-title back-button"><%= @movie.title %>
-              <%= link_to "Back", :back, class: "btn btn-outline-warning"%>
+              <%= link_to "Back to your Results", movies_path(@user), class: "btn btn-outline-warning"%>
             </h3>
             <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
           </div>
 
       <%# MOVIE POSTER %>
-              <div class="result-card">
-                <div class="row d-flex justify-content-center">
-                <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= @movie.youtube_code %>">
+              <div class="poster-card">
+                <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: "50%" ) %>
               </div>
                 <%# <iframe id="ytplayer" type="text/html" height="160" width="100%" height="auto" %>
                 <%# src='https://www.youtube.com/embed/1Vnghdsjmd0?rel=0&autoplay=<%= params[:autoplay] || 0 %>
@@ -34,8 +33,6 @@
                 <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Movie Details</button>
                 <button class="nav-link tab-underlined" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Genres</button>
                 <button class="nav-link tab-underlined" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Platforms</button>
-                <button class="nav-link tab-underlined" id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" type="button" role="tab" aria-controls="nav-reviews" aria-selected="false">Reviews</button>
-
               </div>
             </nav>
             <div class="tab-content tabs-results" id="nav-tabContent">
@@ -61,9 +58,6 @@
                         <% end %>
                   </div>
                 </div>
-              </div>
-              <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab" tabindex="0">
-                <p><%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{@movie.imdb_id}", target: :_blank %> <%= @movie.imdb_rating.to_f / 10 %> <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{@movie.imdb_id}/criticreviews", target: :_blank %> <%= @movie.metacritic_rating %></p>
               </div>
             </div>
     </div>
