@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 let num = 0;
 
 export default class extends Controller {
-  static targets = ["button", "question", "back", "forward"];
+  static targets = ["button", "question", "back", "forward", "circle", "progress"];
 
   handleLoading(event, addNum) {
     event.preventDefault();
@@ -17,6 +17,8 @@ export default class extends Controller {
 
     if (num == 1) this.backTarget.classList.remove("hidden");
     if (num == 3) this.forwardTarget.classList.add("hidden");
+    this.circleTargets[num].classList.add("active");
+    this.progressTarget.style.width = (num / 3) * 100 + "%";
   }
 
   previousQuestion(event) {
@@ -24,5 +26,7 @@ export default class extends Controller {
 
     if (num == 0) this.backTarget.classList.add("hidden");
     if (num == 2) this.forwardTarget.classList.remove("hidden");
+    this.circleTargets[num + 1].classList.remove("active");
+    this.progressTarget.style.width = (num / 3) * 100 + "%";
   }
 }

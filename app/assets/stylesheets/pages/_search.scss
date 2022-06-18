@@ -103,6 +103,12 @@
   right: 1%;
 }
 
+.progress-bar {
+  // position: fixed; /* or absolute */
+  // bottom: 2%;
+  // left: 50%;
+}
+
 .progress-container::before {
   content: "";
   background: $dark-gray;
