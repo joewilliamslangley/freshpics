@@ -6,31 +6,14 @@
         <div class="row d-flex justify-content-center" data-controller="search-result-card">
           <div class="result-card card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')">
             <div class="card-body" data-action="click->search-result-card#revealContent" type="button">
-              <h3><%= link_to movie.title, movie_path(movie), class: "result-card-title" %></h3>
-              <h6 class="card-subtitle mb-2"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins</h6>
-              <p class="card-text"><%= movie.plot %></p>
-              <p>Director - <%= movie.director.join(", ") %></p>
-              <p>Starring - <%= movie.stars[0..2].join(", ") %></p>
-              <p><%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %> <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
-            </div>
-            <div class="d-none result-card-expand" data-search-result-card-target="expand">
-              <div class="row d-flex justify-content-center">
-                <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>">
-
-                </div>
-              </div>
-              <div class="row d-flex justify-content-center">
-                <div class="col-12">
-                  <h4>Stream Now On</h4>
-                </div>
-                <div class="streaming-available col-12">
-                  <% movie.platform_bookmarks.each do |bookmark|%>
-                    <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
-                  <% end %>
-                </div>
-              </div>
-              <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
-                <% if current_user %>
+              <h3 class="result-card-collapse"><%= link_to movie.title, movie_path(movie), class: "result-card-title" %>
+                <% movie.platform_bookmarks.each do |bookmark|%>
+                  <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
+                <% end %>
+              </h3>
+              <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
+                <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
+                  <% if current_user %>
                   <% unless current_user.movies.include? movie%>
                     <div class="col-12">
                       <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
@@ -40,17 +23,38 @@
                       <% end %>
                       <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
                     </div>
-                  <% else %>
+                    <% else %>
                     <div class="col-12">
                       <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
                     </div>
+                    <% end %>
+                    <% else %>
+                    <div class="col-12">
+                      <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
+                    </div>
                   <% end %>
-                <% else %>
-                  <div class="col-12">
-                    <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
-                  </div>
-                <% end %>
+                </div>
+              </h6>
+              <p><%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %> <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
+              <div class="d-flex justify-content-center">
+                <i class="fa-solid fa-angle-down fa-2xl"></i>
               </div>
+            </div>
+            <div class="d-none result-card-expand" data-search-result-card-target="expand">
+              <div class="row d-flex justify-content-center">
+                <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
+              </div>
+              <%# <div class="row d-flex justify-content-center">
+                <div class="col-12">
+                  <h4>Stream Now On</h4>
+                </div>
+                <div class="streaming-available col-12">
+                  <% movie.platform_bookmarks.each do |bookmark|%>
+                    <%# <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
+                  <%# <% end %
+                <%# </div> %>
+              <%# </div> %>
+
             </div>
 
           </div>
