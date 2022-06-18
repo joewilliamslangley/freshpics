@@ -135,6 +135,8 @@
   margin-bottom: 40px;
   display: none;
   padding-bottom: 1.5em;
+  display: flex;
+  justify-content: space-between;
 }
 
 .result-card-expand {
@@ -148,9 +150,31 @@
 .result-card-title {
   color: white;
   text-decoration: none;
+  display: flex;
+  justify-content: space-between;
 }
 
 .result-card-title:hover {
   color: $orange;
   text-decoration: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.card-subtitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-critic {
+  display: flex;
+  align-items: left ;
+}
+
+.card-platform {
+
 }
