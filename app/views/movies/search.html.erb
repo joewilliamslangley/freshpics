@@ -47,20 +47,20 @@
         <h3>What streaming services do you have access to?</h3>
         <div class="options">
           <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :display_name, include_hidden: false do |b| %>
-            <div class="tag-item">
-              <%= b.check_box class: "tag-selector" %>
+            <div class="platform-tag-item">
+              <%= b.check_box class: "platform-tag-selector" %>
               <%= b.label  %>
             </div>
           <% end %>
-
+</div>
         <button id="btn-2"
                 data-action="click->load-search-questions#nextQuestion"
                 data-load-search-questions-target="button"
                 class="btn btn-white">
           OK
         </button>
-       </div>
-       </div>
+
+      </div>
 
 
 <!-- QUESTION THREE : CRITIC SCORE -->
