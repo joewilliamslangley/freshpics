@@ -1,5 +1,12 @@
 // GENRE BUTTONS
 
+// .genre-tag-wrapper {
+//   display: flex;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+// }
+
+
 .genre-tag-item {
   display: inline-grid;
   width: 120px;
@@ -31,4 +38,12 @@
   opacity: 1;
   color: $yellow;
   border: 1.5px solid $yellow;
+}
+
+
+
+// BACKGROUND IMAGERY FOR EACH BUTTON / LABEL
+
+#genres_biography + label {
+  // color: #FD1015;
 }

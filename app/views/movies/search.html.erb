@@ -7,25 +7,35 @@
       <div id="question-1" class="question" data-controller="load-search-questions">
         <h3>What genre do you fancy?</h3>
         <!-- DROPDOWN <%= form.select :keyword, @genres%>-->
+
+        <!-- GENRE SELECTION -->
+        <!-- Not check_boxes as isn't expecting an array (genre -> nil) -->
           <div class="options">
-            <%= form.collection_check_boxes :genres, @genres, :last, :first, include_hidden: false do |b| %>
+            <%= form.collection_radio_buttons :keyword, @genres, :last, :first, include_hidden: false do |b| %>
               <div class="genre-tag-item">
-                <%= b.check_box class: "genre-tag-selector" %>
+                <%= b.radio_button class: "genre-tag-selector" %>
                 <%= b.label %>
               </div>
             <% end %>
           </div>
+          <button id="btn-1"
+                  data-action="click->load-search-questions#load"
+                  data-load-search-questions-target="button"
+                  class="btn btn-white">
+            OK
+          </button>
 
-        <button id="btn-1"
-                data-action="click->load-search-questions#load"
-                data-load-search-questions-target="button"
-                class="btn btn-white">
-          OK
-        </button>
+          <!-- SKIP -->
+          <%= form.collection_radio_buttons :keyword, @skip, :last, :first, include_hidden: false do |b| %>
+              <%= b.radio_button class: "genre-tag-selector" %>
+          <% end %>
 
-        <%# <button class="btn btn-white">
-          Don't mind!
-        </button> %>
+          <button id="btn-1"
+                  data-action="click->load-search-questions#load"
+                  data-load-search-questions-target="button"
+                  class="btn btn-white">
+            Don't mind!
+          </button>
       </div>
 
 
