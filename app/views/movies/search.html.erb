@@ -6,7 +6,15 @@
 
       <div id="question-1" class="question" data-controller="load-search-questions">
         <h3>What genre do you fancy?</h3>
-        <%= form.select :keyword, @genres%>
+        <!-- DROPDOWN <%= form.select :keyword, @genres%>-->
+          <div class="options">
+            <%= form.collection_check_boxes :genres, @genres, :last, :first, include_hidden: false do |b| %>
+              <div class="genre-tag-item">
+                <%= b.check_box class: "genre-tag-selector" %>
+                <%= b.label  %>
+              </div>
+            <% end %>
+          </div>
 
         <button id="btn-1"
                 data-action="click->load-search-questions#load"
@@ -14,6 +22,10 @@
                 class="btn btn-white">
           OK
         </button>
+
+        <%# <button class="btn btn-white">
+          Don't mind!
+        </button> %>
       </div>
 
 

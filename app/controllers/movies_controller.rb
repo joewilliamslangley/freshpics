@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
                ["Thriller", "Thriller"],
                ["Crime", "Crime"],
                ["Documentary", "Documentary"],
-               ["Science Fiction", "Sci-Fi"],
+               ["Sci-Fi", "Sci-Fi"],
                ["Mystery", "Mystery"],
                ["Music", "Music"],
                ["Romance", "Romance"],
