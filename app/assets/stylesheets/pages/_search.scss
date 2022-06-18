@@ -55,15 +55,19 @@
 }
 }
 
+// GENERAL SEARCH BUTTONS
+
 .tag-item {
   display: inline-block;
 }
 
+// Hides the checkbox & repositions
 .tag-selector {
   position: absolute;
   transform: scale(0);
 }
 
+// Makes the label look like a button
 .tag-selector + label {
   cursor: pointer;
   display: inline-block;
@@ -76,6 +80,7 @@
   opacity: 0.5;
 }
 
+// Label/button when checked
 .tag-selector:checked + label {
   opacity: 1;
   color: $yellow;

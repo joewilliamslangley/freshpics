@@ -2,17 +2,44 @@
   <div class="search-form d-flex justify-content-center">
     <%= form_with url: movies_path, method: :get do |form| %>
 
+<!-- QUESTION ONE : GENRE -->
+
       <div id="question-1" class="question" data-controller="load-search-questions">
         <h3>What genre do you fancy?</h3>
-        <%= form.select :keyword, @genres%>
+        <!-- DROPDOWN <%= form.select :keyword, @genres%>-->
 
-        <button id="btn-1"
-                data-action="click->load-search-questions#load"
-                data-load-search-questions-target="button"
-                class="btn btn-white">
-          OK
-        </button>
+        <!-- GENRE SELECTION -->
+        <!-- Not check_boxes as isn't expecting an array (genre -> nil) -->
+          <div class="options">
+            <%= form.collection_radio_buttons :keyword, @genres, :last, :first, include_hidden: false do |b| %>
+              <div class="genre-tag-item">
+                <%= b.radio_button class: "genre-tag-selector" %>
+                <%= b.label %>
+              </div>
+            <% end %>
+          </div>
+          <button id="btn-1"
+                  data-action="click->load-search-questions#load"
+                  data-load-search-questions-target="button"
+                  class="btn btn-white">
+            OK
+          </button>
+
+          <!-- SKIP -->
+          <%= form.collection_radio_buttons :keyword, @skip, :last, :first, include_hidden: false do |b| %>
+              <%= b.radio_button class: "genre-tag-selector" %>
+          <% end %>
+
+          <button id="btn-1"
+                  data-action="click->load-search-questions#load"
+                  data-load-search-questions-target="button"
+                  class="btn btn-white">
+            Don't mind!
+          </button>
       </div>
+
+
+<!-- QUESTION TWO : PLATFORMS -->
 
       <div id="question-2" class="question hidden" data-controller="load-search-questions">
         <h3>What streaming services do you have access to?</h3>
@@ -32,6 +59,9 @@
           OK
         </button>
       </div>
+
+
+<!-- QUESTION THREE : CRITIC SCORE -->
 
       <div id="question-3" class="question hidden" data-controller="load-search-questions">
         <h3>Do you care what the critcs say?</h3>
@@ -77,6 +107,9 @@
           OK
         </button>
       </div>
+
+
+<!-- QUESTION FOUR : DURATION -->
 
       <div id="question-4" class="question hidden">
         <h3>How much time do you have?</h3>

@@ -2,30 +2,31 @@ class MoviesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:search, :search_results, :show]
   def search
 
-    @genres = [["Don't Mind!", nil],
+    @genres =  [["Drama", "Drama"],
+               ["Action", "Action"],
+               ["Comedy", "Comedy"],
+               ["Horror", "Horror"],
+               ["Adventure", "Adventure"],
+               ["Fantasy", "Fantasy"],
+               ["Animation", "Animation"],
+               ["Thriller", "Thriller"],
+               ["Documentary", "Documentary"],
+               ["Sci-Fi", "Sci-Fi"],
+               ["History", "History"],
+               ["Western", "Western"],
+               ["Crime", "Crime"],
                ["Biography", "Biography"],
                ["Film Noir", "Film-Noir"],
                ["Musical", "Musical"],
                ["Sport", "Sport"],
                ["Short", "Short"],
-               ["Adventure", "Adventure"],
-               ["Fantasy", "Fantasy"],
-               ["Animation", "Animation"],
-               ["Drama", "Drama"],
-               ["Horror", "Horror"],
-               ["Action", "Action"],
-               ["Comedy", "Comedy"],
-               ["History", "History"],
-               ["Western", "Western"],
-               ["Thriller", "Thriller"],
-               ["Crime", "Crime"],
-               ["Documentary", "Documentary"],
-               ["Science Fiction", "Sci-Fi"],
                ["Mystery", "Mystery"],
                ["Music", "Music"],
                ["Romance", "Romance"],
                ["Family", "Family"],
-               ["War", "War"]]
+               ["War", "War"],
+               ]
+    @skip = [["Don't Mind!", ""]]
   end
 
   def search_results
