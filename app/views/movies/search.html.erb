@@ -50,9 +50,11 @@
             <% if current_user %>
               <% if current_user.platforms.include? (b.object) %>
                 <%= b.label(class: "platform-flex-item", data: {controller: "user-platform"}) { b.check_box(checked: true, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
+              <% else %>
+                <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
               <% end %>
             <% else %>
-               <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
+              <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
             <% end %>
 
           <% end %>
