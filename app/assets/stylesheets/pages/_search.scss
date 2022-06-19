@@ -1,3 +1,10 @@
+.form-container {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+
 .hidden {
   display: none;
 }
@@ -54,6 +61,9 @@
     opacity:1;
 }
 }
+
+
+
 
 // GENERAL SEARCH BUTTONS
 
