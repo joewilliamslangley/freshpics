@@ -9,6 +9,7 @@
 
 .genre-tag-item {
   display: inline-grid;
+  align-items: stretch;
   width: 120px;
   height: 50px;
   border-radius: 25px;
@@ -17,11 +18,13 @@
 // Hides the checkbox & repositions
 .genre-tag-selector {
   position: absolute;
+  // transform-origin: top left; // -replaced with below to allow centering
   transform: scale(0);
 }
 
 // Makes the label look like a button
 .genre-tag-selector + label {
+  // grid-column-start: 2;
   cursor: pointer;
   // display: inline-block;
   // border-radius: 50px;
