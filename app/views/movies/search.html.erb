@@ -75,7 +75,7 @@
         <div id="question-3" class="question hidden" data-load-search-questions-target="question">
           <h3>Do you care what the critcs say?</h3>
           <div class="options">
-            <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false do |b| %>
+            <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false, checked: ['No Site', 'no_site'] do |b| %>
               <div class="tag-item">
                 <%= b.radio_button class: "tag-selector" %>
                 <%= b.label  %>
@@ -124,7 +124,7 @@
         <div id="question-4" class="question hidden" data-load-search-questions-target="question">
           <h3>How much time do you have?</h3>
           <div class="options">
-            <%= form.collection_radio_buttons :time, [['90 mins', '90'], ['120 mins', '120'], ['150 mins', '150'], ['No Limit', 'no_limit']], :last, :first, include_hidden: false do |b| %>
+            <%= form.collection_radio_buttons :time, [['90 mins', '90'], ['120 mins', '120'], ['150 mins', '150'], ['No Limit', 'no_limit']], :last, :first, include_hidden: false, checked: ['No Limit', 'no_limit'] do |b| %>
               <div class="tag-item">
                 <%= b.radio_button class: "tag-selector" %>
                 <%= b.label  %>
