@@ -1,6 +1,7 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 @import url("https://use.typekit.net/anw8xlb.css");
+@import url("https://use.typekit.net/anw8xlb.css");
 
 // Define fonts for body and headers
 $body-font: "futura-pt", "sans-serif";
@@ -17,3 +18,8 @@ $headers-font: "futura-pt", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+@font-face {
+  font-family: 'blade-runner';
+  src: url('BLADRMF_.TTF');
+}
