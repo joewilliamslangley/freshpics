@@ -18,6 +18,7 @@
           <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
         <% end %>
       <% end %>
+
   </div>
   <div class="row justify-content-center">
     <%= form.submit "Save", class: "btn btn-white user-platform-submit mb-5" %>
