@@ -92,13 +92,16 @@
 
 
           <h5>Pick a minimum score for your film</h5>
-          <div class="options">
-            <%= form.collection_radio_buttons :score, [['60'], ['70'], ['80'], ['90']], :first, :first, include_hidden: false do |b| %>
+          <div class="options slidecontainer">
+ %>
+            <%= form.range_field :score,  min: "60", max: "90" %>
+
+            <!-- <%= form.collection_radio_buttons :score, [['60'], ['70'], ['80'], ['90']], :first, :first, include_hidden: false do |b| %>
               <div class="tag-item">
                 <%= b.radio_button class: "tag-selector" %>
                 <%= b.label  %>
               </div>
-            <% end %>
+            <% end %> -->
 
             <!-- <%= form.radio_button :score, "60" %>
             <%= form.label :'60', "60" %>
