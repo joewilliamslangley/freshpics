@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
                ["Music", "Music"],
                ["Romance", "Romance"],
                ["Family", "Family"],
-               ["War", "War"],
+              #  ["War", "War"],
                ]
     @skip = [["Don't Mind!", ""]]
   end
