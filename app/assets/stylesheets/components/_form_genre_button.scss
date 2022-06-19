@@ -23,7 +23,7 @@
 // Makes the label look like a button
 .genre-tag-selector + label {
   cursor: pointer;
-  display: inline-block;
+  // display: inline-block;
   // border-radius: 50px;
   padding: 0.1rem 0.5rem;
   color: $yellow;
@@ -31,6 +31,8 @@
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
   opacity: 0.5;
+  text-align: center;
+  line-height: 2.2;
 }
 
 // Label/button when checked
