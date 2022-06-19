@@ -1,38 +1,50 @@
 <div class="container">
-   <div class="row" data-controller="refresh">
-    <h1><%= "#{@user.freshpics_handle.capitalize}'s Profile"%></h1>
-    <div class="d-flex justify-content-between">
-      <h3>Watchlist</h3>
-      <h3><%= link_to 'Update User Platforms', user_platforms_path %></h3>
-      <h3><%= link_to "Edit Profile", edit_user_registration_path(current_user) %></h3>
-      <h3><%= link_to "Log out", destroy_user_session_path, method: :delete %></h3>
+  <% if @user == current_user %>
+    <div class="row">
+      <h1><%= "#{@user.freshpics_handle.capitalize}'s Profile"%></h1>
+      <div class="d-flex justify-content-between">
+        <p>Watchlist</p>
+        <p><%= link_to 'Update User Platforms', user_platforms_path, class: "link-orange" %></p>
+        <p><%= link_to "Edit Profile", edit_user_registration_path(current_user), class: "link-orange" %></p>
+        <p><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "link-orange" %></p>
+      </div>
     </div>
+  <% else %>
+    <div class="row">
+    <h1><%= "#{@user.freshpics_handle.capitalize}'s Watchlist"%></h1>
+  <% end %>
 
-  </div>
-</div>
-  <%# <div class="row"> %>
-    <div class="watchlist-cards col-12" >
+
+  <div class="watchlist-cards">
       <% @movies.each do |movie| %>
-        <div class="watchlist-card">
-          <div class="card-image">
-            <%= link_to image_tag(movie.background_image_url, alt: "#{movie.title} cover art", style: 'height:auto;width:100%;'), movie_path(movie) %>
-          </div>
-          <div class="delete-icon">
-                <%= link_to ('<i class="fas fa-times-circle" id="icon-delete"></i>').html_safe, # X ICON => <i class="fa-light fa-circle-x"></i>
-                # Must find the movie bookmark id - do this by getting this into the user conteoller and finding one with the movie_id that matches the
-                  { controller: "movie_bookmarks", action: "destroy", id: @movie_bookmarks.find_by(movie_id: movie.id).id },
-                    data: { confirm: 'Are you sure?' },
-                    method: :delete %>
-          </div>
-          <div class="card-content">
-            <h2> <%= movie.title %> </h2>
-            <div class="card-sub-content">
-              <p> <%= "#{movie.runtime.to_s} mins / #{movie.year.to_s}" %> </p>
+        <div class="row justify-content-center">
+          <div class="watchlist-card col-lg-8 col-md-10 col-sm-12">
+            <div class="card-image">
+              <%= link_to image_tag(movie.background_image_url, alt: "#{movie.title} cover art", style: 'height:auto;width:100%;'), movie_path(movie) %>
+            </div>
+            <% if @user == current_user %>
+            <div class="delete-icon">
+                  <%= link_to ('<i class="fas fa-times-circle" id="icon-delete"></i>').html_safe, # X ICON => <i class="fa-light fa-circle-x"></i>
+                  # Must find the movie bookmark id - do this by getting this into the user conteoller and finding one with the movie_id that matches the
+                    { controller: "movie_bookmarks", action: "destroy", id: @movie_bookmarks.find_by(movie_id: movie.id).id },
+                      data: { confirm: 'Are you sure?' },
+                      method: :delete %>
+            </div>
+            <% end %>
+            <div class="card-content">
+              <h2> <%= movie.title %> </h2>
+              <div class="card-sub-content">
+                <p> <%= "#{movie.runtime.to_s} mins / #{movie.year.to_s}" %> </p>
+              </div>
             </div>
           </div>
         </div>
+
       <% end %>
     </div>
+</div>
+  <%# <div class="row"> %>
+
 
 
 

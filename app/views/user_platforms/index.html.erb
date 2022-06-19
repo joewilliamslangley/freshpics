@@ -1,4 +1,14 @@
 <div class="container">
+  <div class="row">
+    <h1><%= "#{@user.freshpics_handle.capitalize}'s Profile"%></h1>
+    <div class="d-flex justify-content-between">
+      <p><%= link_to 'Watchlist', user_path(current_user), class: "link-orange" %></p>
+      <p>Update User Platforms</p>
+      <p><%= link_to "Edit Profile", edit_user_registration_path(current_user), class: "link-orange" %></p>
+      <p><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "link-orange" %></p>
+    </div>
+
+  </div>
   <div class="row justify-content-center">
     <%= form_with url: user_platforms_update_platforms_path, class: "user-platform-form col-lg-6 col-md-8", method: :get do |form| %>
     <%= form.collection_check_boxes(:platform_ids, Platform.all, :id, :display_name, include_hidden: false) do |b| %>
@@ -8,8 +18,9 @@
           <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
         <% end %>
       <% end %>
+
   </div>
   <div class="row justify-content-center">
-    <%= form.submit "Save", class: "btn btn-white user-platform-submit", id: "btn-4" %>
+    <%= form.submit "Save", class: "btn btn-white user-platform-submit mb-5" %>
     <% end %>
   </div>

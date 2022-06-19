@@ -1,4 +1,15 @@
 <div class="container">
+  <div class="row">
+    <h1><%= "#{@user.freshpics_handle.capitalize}'s Profile"%></h1>
+    <div class="d-flex justify-content-between">
+      <p><%= link_to 'Watchlist', user_path(current_user), class: "link-orange" %></p>
+      <p><%= link_to 'Update User Platforms', user_platforms_path, class: "link-orange" %></p>
+      <p>Edit Profile</p>
+      <p><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "link-orange" %></p>
+    </div>
+
+  </div>
+
   <h2>Edit My Account <%= resource_name.to_s.humanize %></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
