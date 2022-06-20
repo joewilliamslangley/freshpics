@@ -1,36 +1,246 @@
 // Specific CSS for your home-page
 .banner {
   padding: 50px 0;
+  justify-content: center;
+  margin: auto;
+  height: 84vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .banner h1 {
-  color: $off-white;
-  font-size: 55px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  text-align: center;
 }
 
-.banner p {
+.home-subtitle {
+  margin-top: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.home-text {
+  margin-top: 20px;
   font-size: 23px;
-  color: $off-white;
+  text-align: center;
+  font-weight: normal;
   // opacity: .7;
   // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-.banner img {
-  min-width: 100%;
-  max-width: 100%;
-  object-fit: cover;
-  border: 3px solid #000000;
-  border-radius: 25px;
-  height: 500px;
+.home-btn {
+  width: auto;
+  margin-top: 50px;
 }
 
-@font-face {
-  font-family: 'blade-runner';
-  src: url('BLADRMF_.TTF');
+.home-btn:hover {
+  border-color: white;
 }
 
-.home-title {
-  font-family: 'blade-runner';
+// Styling for Alien
+
+.home-title-1 {
+  font-size: 55px;
+  font-family: 'alien-bold', 'futura', sans-serif;
+  color: #ABC8ED;
+  text-shadow: 0 0 15px #486DBE;
+}
+
+.home-subtitle-1 {
+  font-size: 30px;
+  font-family: 'alien-expanded', 'futura', sans-serif;
+  color: #FCFCFE;
+}
+
+.home-btn-1:hover {
+  background-color: #486DBE !important;
+}
+
+// Styling for Pulp Fiction
+
+.home-title-2 {
+  font-size: 55px;
+  font-family: 'aachen', 'futura', sans-serif;
+  color: #FFAD00;
+
+  text-shadow: 0px 5px #DF0004;
+}
+
+.home-subtitle-2 {
+  font-size: 30px;
+  font-family: itc-benguiat, serif;;
+  color: #FFAD00;
+}
+
+.home-text-2 {
+  font-size: 20px;
+  font-family: 'ITC-Busorama', 'futura', sans-serif;
+  color: #FFAD00;
+}
+
+.home-btn-2:hover {
+  background-color: #FFAD00;
+}
+
+// Styling for Blade Runner
+
+.home-title-3 {
+  font-family: 'blade-runner', 'futura', sans-serif;
+  font-size: 40px;
+  color: #D4211B;
+}
+
+.home-btn-3:hover {
+  background-color: #D4211B;
+}
+
+// Styling for Star Trek
+.home-title-4 {
+  font-size: 45px;
+  font-family: 'star-trek-title', 'futura', sans-serif;
+  letter-spacing: 3px;
+  color: #FFFFFF;
+}
+
+.home-subtitle-4 {
+  font-family: 'star-trek-text', 'futura', sans-serif;
+  font-size: 35px;
+  color: #EAAF1C;
+}
+
+.home-text-4 {
+  font-size: 20px;
+  font-family: 'serif-gothic', 'futura', sans-serif;
+  color: #FFFFFF;
+}
+
+.home-btn-4:hover {
+  background-color: #EAAF1C;
+}
+
+// Styling for Jurassic Park
+
+.home-title-5 {
+  font-size: 75px;
+  letter-spacing: 3px;
+  line-height: 70%;
+  font-family: 'jurassic-park', 'futura', sans-serif;
+  color: #FFFFFF;
+}
+
+.home-btn-5:hover {
+  background-color: #C61D1E;
+}
+
+// Styling for Lord of the Rings
+.home-title-6 {
+  letter-spacing: 2px;
+  font-size: 45px;
+  font-family: 'lord-rings', 'futura', sans-serif;
+  color: #DBC44B;
+}
+
+.home-subtitle-6 {
+  font-family: 'lord-rings-2', 'futura', sans-serif;
+  color: #DBC44B;
+}
+
+.home-btn-6:hover {
+  background-color: #e0c43aa6;
+}
+
+// Styling for Finding Nemo
+.home-title-7 {
+  font-size: 45px;
+  font-family: 'finding-nemo', 'futura', sans-serif;
+  color: #FFFFFF;
+}
+
+.home-btn-7:hover {
+  background-color: #E25B27;
+}
+
+// Styling for The Godfather
+.home-title-8 {
+  font-size: 55px;
+  letter-spacing: 4px;
+  font-family: 'godfather', 'futura', sans-serif;
+  color: #D4BC7A;
+}
+
+.home-btn-8:hover {
+  background-color: #D8572B;
+}
+
+// Styling for Nightmare Before Christmas
+.home-title-9 {
+  font-size: 55px;
+  text-shadow: 0px 1px black;
+  font-family: 'nightmare-before', 'futura', sans-serif;
+  color: #FFAC32;
+}
+
+.home-subtitle-9 {
+  font-size: 40px;
+  font-family: 'nightmare-before', 'futura', sans-serif;
+  letter-spacing: 2px;
+  text-shadow: 0px 1px black;
+  color: #FFAC32;
+}
+
+.home-btn-9:hover {
+  background-color: #FFAC32;
+}
+
+// Styling for The Matrix
+.home-title-10 {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-family: 'matrix-1', 'futura', sans-serif;
+  color: #F8FBFF;
+  text-shadow: 0 0 20px #6bba8f;
+}
+
+.home-subtitle-10 {
+  text-transform: uppercase;
+  font-family: 'matrix-2', 'futura', sans-serif;
+  color: #F8FBFF;
+}
+
+.home-text-10 {
+  text-transform: uppercase;
+  font-family: 'matrix-2', 'futura', sans-serif;
+  color: #F8FBFF;
+}
+
+.home-btn-10:hover {
+  background-color: #499069;
+}
+
+// Styling for Planet of the Apes
+
+.home-title-11 {
+  font-size: 30px;
+  letter-spacing: 3px;
+  line-height: 180%;
+  font-family: 'planet-apes', 'futura', sans-serif;
+  color: #F8FBFF;
+}
+
+.home-btn-11:hover {
+  background-color: #2A6AD0;
+}
+
+// Styling for Terminator
+.home-title-12 {
+  font-family: 'terminator', 'futura', sans-serif;
+  color: #EDF5F5;
+  text-shadow: 1px 1px #C80D0A;
+}
+
+.home-btn-12:hover {
+  background-color: #C80D0A;
 }

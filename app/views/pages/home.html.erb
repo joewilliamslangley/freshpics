@@ -1,14 +1,17 @@
-<div class="banner">
-  <div class="container">
-    <div class="row">
-      <div class="d-flex col-12 col-lg-6 justify-content-center align-items-start flex-column">
-        <h1 class="home-title">Find your perfect film in two minutes</h1>
-        <p>FreshPics matches the streaming services you have with the films movies you're in the mood for.</p>
-       <%= link_to "Find a movie", search_path, class: "btn btn-white" %>
-      </div>
-      <div class="col-12 col-lg-6 align-middle d-none d-lg-block">
+<div class="banner" data-controller="home" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('<%= image_path "home_backgrounds/#{@number}.jpeg"%>')" >
+  <div class="container home-content">
+    <div class="row justify-content-center">
+      <div class="d-flex col-12 col-lg-6 flex-column">
+        <h1 class="home-title <%="home-title-#{@number}"%>">Find Your Perfect Film in Two Minutes</h1>
+        <h3 class="home-subtitle <%="home-subtitle-#{@number}"%>">Don't waste time endlessly scrolling.<h3>
+        <p class="home-text <%="home-text-#{@number}"%>">Freshpics can give you refined movie recommendations - just tell us what streaming services you have and what you're in the mood for!</p>
 
       </div>
     </div>
+    <div class="row justify-content-center">
+        <%= link_to "Find a movie", search_path, class: "btn btn-white home-btn home-btn-#{@number}" %>
+    </div>
   </div>
 </div>
+
+<!--  -->

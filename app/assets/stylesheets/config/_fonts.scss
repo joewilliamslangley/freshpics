@@ -1,7 +1,7 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 @import url("https://use.typekit.net/anw8xlb.css");
-@import url("https://use.typekit.net/anw8xlb.css");
+
 
 // Define fonts for body and headers
 $body-font: "futura-pt", "sans-serif";
@@ -22,4 +22,89 @@ $headers-font: "futura-pt", "sans-serif";
 @font-face {
   font-family: 'blade-runner';
   src: url('BLADRMF_.TTF');
+}
+
+@font-face {
+  font-family: 'aachen';
+  src: url('aachenn.ttf');
+}
+
+@font-face {
+  font-family: 'alien-bold';
+  src: url('AlienLeagueBold-1WRj.otf');
+}
+
+@font-face {
+  font-family: 'alien-expanded';
+  src: url('AlienLeagueIiExpanded-Pgl2.otf');
+}
+
+@font-face {
+  font-family: 'star-trek-title';
+  src: url('DS9_Title.ttf');
+}
+
+@font-face {
+  font-family: 'star-trek-text';
+  src: url('Final_Frontier.ttf');
+}
+
+@font-face {
+  font-family: 'ITC-Busorama';
+  src: url('ITC Busorama Bold.otf');
+}
+
+@font-face {
+  font-family: 'jurassic-park';
+  src: url('JurassicPark-BL48.ttf');
+}
+
+@font-face {
+  font-family: 'finding-nemo';
+  src: url('LostFish-5DOz.ttf');
+}
+
+@font-face {
+  font-family: 'matrix-1';
+  src: url('Matrix-MZ4P.ttf');
+}
+
+@font-face {
+  font-family: 'matrix-2';
+  src: url('MatrixCodeNfi-YPPj.otf');
+}
+
+@font-face {
+  font-family: 'nightmare-before';
+  src: url('NightmareBeforeChristmas-2v8e.ttf');
+}
+
+@font-face {
+  font-family: 'planet-apes';
+  src: url('PlanetOfTheApes-7OdB.ttf');
+}
+
+@font-face {
+  font-family: 'terminator';
+  src: url('TerminatorRealNfi-oloB.otf');
+}
+
+@font-face {
+  font-family: 'godfather';
+  src: url('Corleone-e9gB.ttf');
+}
+
+@font-face {
+  font-family: 'lord-rings';
+  src: url('RingbearerMedium-51mgZ.ttf');
+}
+
+@font-face {
+  font-family: 'lord-rings-2';
+  src: url('anirb___.ttf');
+}
+
+@font-face {
+  font-family: 'serif-gothic';
+  src: url('SerifGothicStd.otf');
 }
