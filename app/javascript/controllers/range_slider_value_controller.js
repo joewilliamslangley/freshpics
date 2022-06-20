@@ -12,7 +12,9 @@ export default class extends Controller {
   }
 
   showValue(event) {
-    console.log(this.scoreRangeTarget.value)
+    // console.log(event)
+
+    // Update the current slider value (each time you drag the slider handle)
     this.valueOutputTarget.innerHTML = this.scoreRangeTarget.value
 
     // JAVASCRIPT CODE
