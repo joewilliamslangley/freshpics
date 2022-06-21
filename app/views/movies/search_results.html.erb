@@ -1,62 +1,81 @@
-<div class="container">
+<div class="container mt-5">
   <div class="" data-controller="refresh" >
 
     <div data-refresh-button-target="add" display="none">
-      <%@movies.each do |movie|%>
+      <%@movies.each_with_index do |movie, index|%>
         <div class="row d-flex justify-content-center" data-controller="search-result-card">
-          <div class="result-card card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')">
+          <div class="result-card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')">
             <div class="card-body" data-action="click->search-result-card#revealContent" type="button">
-              <h3 class="result-card-collapse"><%= link_to movie.title, movie_path(movie), class: "result-card-title" %>
-                <% movie.platform_bookmarks.each do |bookmark|%>
-                  <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
-                <% end %>
-              </h3>
+              <h3 class="result-card-collapse"><%= link_to movie.title, movie_path(movie), class: "result-card-title" %></h3>
               <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
-                <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
-                  <% if current_user %>
-                  <% unless current_user.movies.include? movie%>
-                    <div class="col-12">
-                      <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
-                          <%= f.hidden_field :movie, value: movie.id %>
-                          <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                          <%= f.submit "Add to Watchlist", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
-                      <% end %>
-                      <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
-                    </div>
-                    <% else %>
-                    <div class="col-12">
-                      <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
-                    </div>
-                    <% end %>
-                    <% else %>
-                    <div class="col-12">
-                      <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
-                    </div>
-                  <% end %>
-                </div>
+                <p><%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %> <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
               </h6>
-              <p><%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %> <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
               <div class="d-flex justify-content-center">
                 <i class="fa-solid fa-angle-down fa-2xl"></i>
               </div>
             </div>
             <div class="d-none result-card-expand" data-search-result-card-target="expand">
-              <div class="row d-flex justify-content-center">
-                <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
-              </div>
-              <%# <div class="row d-flex justify-content-center">
-                <div class="col-12">
-                  <h4>Stream Now On</h4>
+              <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
+                <div class="expand-buttons">
+                  <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
+                    <% if current_user %>
+                      <% unless current_user.movies.include? movie%>
+                          <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+                            <%= f.hidden_field :movie, value: movie.id %>
+                            <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
+                            <%= f.submit "Add to Watchlist", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
+                          <% end %>
+                          <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
+                        <% else %>
+                          <div class="col-12 d-flex justify-content-center">
+                            <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
+                          </div>
+                        <% end %>
+                        <% else %>
+                          <div class="col-12 expand-buttons">
+                            <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
+                          </div>
+                    <% end %>
+                  </div>
+                    <div class="platform-buttons">
+                      <% movie.platform_bookmarks.each do |bookmark|%>
+                        <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
+                        <% end %>
+                    </div>
                 </div>
-                <div class="streaming-available col-12">
-                  <% movie.platform_bookmarks.each do |bookmark|%>
-                    <%# <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
-                  <%# <% end %
-                <%# </div> %>
-              <%# </div> %>
-
+              <nav>
+                <div class="nav nav-tabs tabs-underlined" id="nav-tab-<%= index %>" role="tablist">
+                  <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home<%= index %>" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Cast & Crew</button>
+                  <button class="nav-link tab-underlined" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile<%= index %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Synopsis</button>
+                  <button class="nav-link tab-underlined" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact<%= index %>" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Genres</button>
+                </div>
+              </nav>
+              <div class="tab-content tabs-results" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home<%= index %>" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                  <p class="card-text"> Starring <%= movie.stars.join(", ") %></p>
+                  <p class="card-text">Directed by <%= movie.director.join %></p>
+                </div>
+                <div class="tab-pane fade" id="nav-profile<%= index %>" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                      <p class="card-text"><%= movie.plot %></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-contact<%= index %>" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                      <p class=""><% movie.genres.each do |genre| %>
+                        <button type="button" class="btn btn-outline-warning">
+                          <%= genre %>
+                          <% end %>
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
       <%end%>
