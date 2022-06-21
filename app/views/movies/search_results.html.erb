@@ -4,7 +4,7 @@
     <div data-refresh-button-target="add" display="none">
       <%@movies.each_with_index do |movie, index|%>
         <div class="row d-flex justify-content-center" data-controller="search-result-card">
-          <div class="result-card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= image_path movie.background_image_url%>')">
+          <div class="result-card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%if movie.background_image_url %>'<%= image_path movie.background_image_url%>' <%else%> <%= 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'%><%end%>)">
             <div class="card-body" data-action="click->search-result-card#revealContent" type="button">
               <h3 class="result-card-collapse"><%= link_to movie.title, movie_path(movie), class: "result-card-title" %></h3>
               <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
