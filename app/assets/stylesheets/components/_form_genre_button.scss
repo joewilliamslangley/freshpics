@@ -9,7 +9,7 @@
 
 .genre-tag-item {
   display: inline-grid;
-  align-items: stretch;
+
   width: 120px;
   height: 50px;
   border-radius: 25px;
@@ -31,8 +31,7 @@
   padding: 0.1rem 0.5rem;
   color: $yellow;
   border: 1.5px solid $yellow;
-  margin-right: 0.6rem;
-  margin-bottom: 0.4rem;
+  margin: 0.4rem 0.6em;
   opacity: 0.5;
   text-align: center;
   line-height: 2.2;

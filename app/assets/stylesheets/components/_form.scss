@@ -1,26 +1,28 @@
 .form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 20px;
   margin-top: 30px;
-  display: inline-block;
 
   h3 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    text-align: center;
   }
 
   .form-button {
     display: flex;
     justify-content: center;
-    margin: 0px 30px;
-    .btn-1 {
-      margin: 0px 20px;
+    margin: 10px 30px;
+    #btn-1 {
+      margin: 5px ;
     }
   }
 }
 
-// .options {
-//   display: flex;
-//   justify-content: center;
-// }
+.options {
+  text-align: center;
+}
 
 .question {
   margin: 20px;
