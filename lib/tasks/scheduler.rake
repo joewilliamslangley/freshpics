@@ -1,6 +1,4 @@
 desc "This task is called by the Heroku scheduler add-on"
-task :update_feed => :environment do
-  puts "Updating feed..."
-
-  puts "done."
+task :test_function => :environment do
+  puts "Running a Test..."
 end
