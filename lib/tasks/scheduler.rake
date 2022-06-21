@@ -3,3 +3,4 @@ task :delete_bookmarks => :environment do
   puts "Running the Delete Bookmarks Job."
   RemovePlatformBookmarksJob.perform_now
 end
+# test
