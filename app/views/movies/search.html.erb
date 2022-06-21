@@ -98,8 +98,8 @@
         <div class="question-block">
           <h5>Pick a minimum score for your film</h5>
           <div class="options slidecontainer" data-controller="range-slider-value">
-            <%= form.range_field :score,  min: "60", max: "90", class: "slider", value: 60, step: 5, data: { action: "change->range-slider-value#showValue", range_slider_value_target: "scoreRange"}%>
-            <p>Value: <span data-range-slider-value-target="valueOutput">60</span></p>
+            <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "change->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
+            <p><span data-range-slider-value-target="valueOutput">50%</span></p>
 
             <!-- <%= form.collection_radio_buttons :score, [['60'], ['70'], ['80'], ['90']], :first, :first, include_hidden: false do |b| %>
               <div class="tag-item">
@@ -107,15 +107,6 @@
                 <%= b.label  %>
               </div>
             <% end %> -->
-
-            <!-- <%= form.radio_button :score, "60" %>
-            <%= form.label :'60', "60" %>
-            <%= form.radio_button :score, "70" %>
-            <%= form.label :'70', "70" %>
-            <%= form.radio_button :score, "80" %>
-            <%= form.label :'80', "80" %>
-            <%= form.radio_button :score, "90" %>
-            <%= form.label :'90', "90" %> -->
 
           </div>
         </div>
@@ -145,22 +136,19 @@
       <div id="question-4" class="question hidden" data-load-search-questions-target="question">
         <div class="question-block">
           <h3>How much time do you have?</h3>
-          <div class="options">
-            <%= form.collection_radio_buttons :time, [['90 mins', '90'], ['120 mins', '120'], ['150 mins', '150'], ['No Limit', 'no_limit']], :last, :first, include_hidden: false, checked: ['No Limit', 'no_limit'] do |b| %>
-              <div class="tag-item">
-                <%= b.radio_button class: "tag-selector" %>
-                <%= b.label  %>
-              </div>
-            <% end %>
+            <div class="options slidecontainer" data-controller="range-slider-value">
+              <%= form.range_field :time,  min: "90", max: "180", class: "slider", value: 180, step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
+              <p><span data-range-slider-value-target="valueOutput">No limit</span></p>
 
-            <!-- <%= form.radio_button :time, "90" %>
-            <%= form.label :'90', "90 mins" %>
-            <%= form.radio_button :time, "120" %>
-            <%= form.label :'120', "120 mins" %>
-            <%= form.radio_button :time, "150" %>
-            <%= form.label :'150', "150 mins" %>
-            <%= form.radio_button :time, "no_limit", checked: true %>
-            <%= form.label :no_limit, "No limit" %> -->
+
+            <!-- <div class="options">
+              <%= form.collection_radio_buttons :time, [['90 mins', '90'], ['120 mins', '120'], ['150 mins', '150'], ['No Limit', 'no_limit']], :last, :first, include_hidden: false, checked: ['No Limit', 'no_limit'] do |b| %>
+                <div class="tag-item">
+                  <%= b.radio_button class: "tag-selector" %>
+                  <%= b.label  %>
+                </div>
+              <% end %>  -->
+
           </div>
         </div>
         <div class="form-button">
@@ -189,7 +177,7 @@
       <div class="circle" data-load-search-questions-target="circle"></div>
     </div>
 
-  
+
   <div class="search-navigation">
     <span class="directional back hidden" data-action="click->load-search-questions#previousQuestion" data-load-search-questions-target="back">
       <i class="fas fa-chevron-left fa-lg"></i>
@@ -198,5 +186,6 @@
       <i class="fas fa-chevron-right fa-lg"></i>
     </span>
   </div>
+
   </div>
 </div>
