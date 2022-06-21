@@ -9,6 +9,6 @@ export default class extends Controller {
 
   revealContent() {
     this.expandTarget.classList.toggle("d-none")
-    this.cardTarget.classList.toggle("result-card-single")
+    this.cardTarget.classList.toggle("result-card single")
   }
 }
