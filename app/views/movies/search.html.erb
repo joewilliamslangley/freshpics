@@ -97,13 +97,26 @@
 
         <div class="question-block">
           <h5>Pick a minimum score for your film</h5>
-          <div class="options">
-            <%= form.collection_radio_buttons :score, [['60'], ['70'], ['80'], ['90']], :first, :first, include_hidden: false do |b| %>
+          <div class="options slidecontainer" data-controller="range-slider-value">
+            <%= form.range_field :score,  min: "60", max: "90", class: "slider", value: 60, step: 10, data: { action: "change->range-slider-value#showValue", range_slider_value_target: "scoreRange"}%>
+            <p>Value: <span data-range-slider-value-target="valueOutput">60</span></p>
+
+            <!-- <%= form.collection_radio_buttons :score, [['60'], ['70'], ['80'], ['90']], :first, :first, include_hidden: false do |b| %>
               <div class="tag-item">
                 <%= b.radio_button class: "tag-selector" %>
                 <%= b.label  %>
               </div>
-            <% end %>
+            <% end %> -->
+
+            <!-- <%= form.radio_button :score, "60" %>
+            <%= form.label :'60', "60" %>
+            <%= form.radio_button :score, "70" %>
+            <%= form.label :'70', "70" %>
+            <%= form.radio_button :score, "80" %>
+            <%= form.label :'80', "80" %>
+            <%= form.radio_button :score, "90" %>
+            <%= form.label :'90', "90" %> -->
+
           </div>
         </div>
 
