@@ -1,25 +1,26 @@
-<div search-form data-controller="load-search-questions">
-  <div class="container align">
-    <div class="search-form d-flex justify-content-center">
-      <%= form_with url: movies_path, method: :get do |form| %>
+<div  data-controller="load-search-questions">
 
+  <div class="form-container">
+    <%= form_with url: movies_path, method: :get do |form| %>
 
 <!-- QUESTION ONE : GENRE -->
 
-      <div id="question-1" class="question" data-load-search-questions-target="question">
-        <h3>What genre do you fancy?</h3>
-        <!-- DROPDOWN <%= form.select :keyword, @genres%>-->
+    <div id="question-1" class="question" data-load-search-questions-target="question">
+      <h3>What genre do you fancy?</h3>
+      <!-- DROPDOWN <%= form.select :keyword, @genres%>-->
 
-        <!-- GENRE SELECTION -->
-        <!-- Not check_boxes as isn't expecting an array (genre -> nil) -->
-          <div class="options">
-            <%= form.collection_radio_buttons :keyword, @genres, :last, :first, include_hidden: false do |b| %>
-              <div class="genre-tag-item">
-                <%= b.radio_button class: "genre-tag-selector" %>
-                <%= b.label %>
-              </div>
-            <% end %>
-          </div>
+      <!-- GENRE SELECTION -->
+      <!-- Not check_boxes as isn't expecting an array (genre -> nil) -->
+        <div class="options">
+          <%= form.collection_radio_buttons :keyword, @genres, :last, :first, include_hidden: false do |b| %>
+            <div class="genre-tag-item">
+              <%= b.radio_button class: "genre-tag-selector" %>
+              <%= b.label %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="form-button">
           <button id="btn-1"
                   data-action="click->load-search-questions#nextQuestion"
                   data-load-search-questions-target="button"
@@ -38,59 +39,63 @@
                   class="btn btn-white">
             Don't mind!
           </button>
-      </div>
+        </div>
+    </div>
 
 
 <!-- QUESTION TWO : PLATFORMS -->
 
-      <div id="question-2" class="question hidden" data-load-search-questions-target="question">
-        <h3>What streaming services do you have access to?</h3>
-        <div class="options">
-          <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :display_name, include_hidden: false do |b| %>
-            <% if current_user %>
-              <% if current_user.platforms.include? (b.object) %>
-                <%= b.label(class: "platform-flex-item", data: {controller: "user-platform"}) { b.check_box(checked: true, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
-              <% else %>
-                <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
-              <% end %>
+    <div id="question-2" class="question hidden" data-load-search-questions-target="question">
+      <h3>What streaming services do you have access to?</h3>
+      <div class="options">
+        <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :display_name, include_hidden: false do |b| %>
+          <% if current_user %>
+            <% if current_user.platforms.include? (b.object) %>
+              <%= b.label(class: "platform-flex-item", data: {controller: "user-platform"}) { b.check_box(checked: true, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
             <% else %>
               <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
             <% end %>
-
+          <% else %>
+            <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
           <% end %>
-        </div>
 
+        <% end %>
+      </div>
+
+      <div class="form-button">
         <button id="btn-2"
                 data-action="click->load-search-questions#nextQuestion"
                 data-load-search-questions-target="button"
                 class="btn btn-white">
           OK
         </button>
-
       </div>
+    </div>
 
 
 <!-- QUESTION THREE : CRITIC SCORE -->
 
-        <div id="question-3" class="question hidden" data-load-search-questions-target="question">
+      <div id="question-3" class="question hidden" data-load-search-questions-target="question">
+        <div class="question-block">
           <h3>Do you care what the critcs say?</h3>
           <div class="options">
-            <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false do |b| %>
+            <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false, checked: ['No Site', 'no_site'] do |b| %>
               <div class="tag-item">
                 <%= b.radio_button class: "tag-selector" %>
                 <%= b.label  %>
               </div>
             <% end %>
-
+          </div>
+        </div>
             <!-- <%= form.radio_button :review_site, "imdb" %>
             <%= form.label :imdb, "IMDb" %>
             <%= form.radio_button :review_site, "metacritic" %>
             <%= form.label :metacritic, "Metacritic" %>
             <%= form.radio_button :review_site, "no_site", checked: true %>
             <%= form.label :no_site, "No review site" %> -->
-          </div>
 
 
+        <div class="question-block">
           <h5>Pick a minimum score for your film</h5>
           <div class="options slidecontainer" data-controller="range-slider-value">
             <%= form.range_field :score,  min: "60", max: "90", class: "slider", value: 60, step: 10, data: { action: "change->range-slider-value#showValue", range_slider_value_target: "scoreRange"}%>
@@ -111,8 +116,20 @@
             <%= form.label :'80', "80" %>
             <%= form.radio_button :score, "90" %>
             <%= form.label :'90', "90" %> -->
-          </div>
 
+          </div>
+        </div>
+
+          <!-- <%= form.radio_button :score, "60" %>
+          <%= form.label :'60', "60" %>
+          <%= form.radio_button :score, "70" %>
+          <%= form.label :'70', "70" %>
+          <%= form.radio_button :score, "80" %>
+          <%= form.label :'80', "80" %>
+          <%= form.radio_button :score, "90" %>
+          <%= form.label :'90', "90" %> -->
+
+        <div class="form-button">
           <button id="btn-3"
                   data-action="click->load-search-questions#nextQuestion"
                   data-load-search-questions-target="button"
@@ -120,14 +137,16 @@
             OK
           </button>
         </div>
+      </div>
 
 
 <!-- QUESTION FOUR : DURATION -->
 
-        <div id="question-4" class="question hidden" data-load-search-questions-target="question">
+      <div id="question-4" class="question hidden" data-load-search-questions-target="question">
+        <div class="question-block">
           <h3>How much time do you have?</h3>
           <div class="options">
-            <%= form.collection_radio_buttons :time, [['90 mins', '90'], ['120 mins', '120'], ['150 mins', '150'], ['No Limit', 'no_limit']], :last, :first, include_hidden: false do |b| %>
+            <%= form.collection_radio_buttons :time, [['90 mins', '90'], ['120 mins', '120'], ['150 mins', '150'], ['No Limit', 'no_limit']], :last, :first, include_hidden: false, checked: ['No Limit', 'no_limit'] do |b| %>
               <div class="tag-item">
                 <%= b.radio_button class: "tag-selector" %>
                 <%= b.label  %>
@@ -143,21 +162,24 @@
             <%= form.radio_button :time, "no_limit", checked: true %>
             <%= form.label :no_limit, "No limit" %> -->
           </div>
-
-
+        </div>
+        <div class="form-button">
           <%= form.submit "Search", class: "btn btn-white", id: "btn-4" %>
         </div>
+      </div>
 
 
-      <% end %>
+    <% end %>
+
+
+    <div class="search-navigation">
+      <span class="directional back hidden" data-action="click->load-search-questions#previousQuestion" data-load-search-questions-target="back">
+        <i class="fas fa-chevron-left fa-lg"></i>
+      </span>
+      <span class="directional forward" data-action="click->load-search-questions#nextQuestion" data-load-search-questions-target="forward">
+        <i class="fas fa-chevron-right fa-lg"></i>
+      </span>
     </div>
-  </div>
-  <div class="search-navigation">
-    <span class="directional back hidden" data-action="click->load-search-questions#previousQuestion" data-load-search-questions-target="back">
-      <i class="fas fa-chevron-left fa-lg"></i>
-    </span>
-    <span class="directional forward" data-action="click->load-search-questions#nextQuestion" data-load-search-questions-target="forward">
-      <i class="fas fa-chevron-right fa-lg"></i>
-    </span>
+
   </div>
 </div>
