@@ -8,7 +8,9 @@
             <div class="card-body" data-action="click->search-result-card#revealContent" type="button">
               <h3 class="result-card-collapse"><%= link_to movie.title, movie_path(movie), class: "result-card-title" %></h3>
               <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
-                <p> <% if movie.metacritic_rating.present? %>
+
+                <p> <% if movie.imdb_rating.present? %> <%#fixed syntax error %>
+
                     <%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %>
                     <% end %>
                     <% if movie.metacritic_rating.present? %>
