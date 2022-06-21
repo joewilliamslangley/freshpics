@@ -11,3 +11,14 @@
   background-color: $orange;
   border: 1px solid $orange;
 }
+
+.link-orange {
+  color: $orange;
+  border-bottom: 2px solid $orange;
+  text-decoration: none;
+}
+
+.link-orange:hover {
+  color: $bold-orange;
+  border-bottom: 2px solid $bold-orange;
+}

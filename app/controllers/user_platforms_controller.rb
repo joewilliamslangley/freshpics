@@ -1,5 +1,6 @@
 class UserPlatformsController < ApplicationController
   def index
+    @user = current_user
     @platforms = Platform.all
   end
 
