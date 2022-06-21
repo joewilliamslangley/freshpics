@@ -23,7 +23,9 @@
               </div>
             </div>
             <div class="d-none result-card-expand" data-search-result-card-target="expand">
-              <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
+              <% if movie.youtube_code %>
+                <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
+              <% end %>
                 <div class="expand-buttons">
                   <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
                     <% if current_user %>
