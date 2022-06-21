@@ -8,10 +8,16 @@
             <div class="card-body" data-action="click->search-result-card#revealContent" type="button">
               <h3 class="result-card-collapse"><%= link_to movie.title, movie_path(movie), class: "result-card-title" %></h3>
               <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
-                <p><%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %> <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
+                <p> <%= if movie.metacritic_rating.present? %>%>
+                    <%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %>
+                    <% end %>
+                    <% if movie.metacritic_rating.present? %>
+                    <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
+                    <% end %>
+                    <% %>
               </h6>
               <div class="d-flex justify-content-center">
-                <i class="fa-solid fa-angle-down fa-2xl"></i>
+                <i class="fa-solid fa-angle-down fa-2xl" data-controller="search-result-card"></i>
               </div>
             </div>
             <div class="d-none result-card-expand" data-search-result-card-target="expand">
@@ -39,7 +45,7 @@
                   </div>
                     <div class="platform-buttons">
                       <% movie.platform_bookmarks.each do |bookmark|%>
-                        <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
+                        <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo mr-2'), bookmark.link, target: :_blank %>
                         <% end %>
                     </div>
                 </div>
