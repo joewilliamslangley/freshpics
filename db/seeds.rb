@@ -138,4 +138,4 @@ end
 
 # add_streaming_data(1, 50)
 
-add_imdb_data(10250, 32750, 32750)
+add_imdb_data(10250, 10500, 32750)
