@@ -118,7 +118,7 @@ def add_streaming_data(min, max)
       create_platform_bookmark(movie, platform, motn_data) if motn_data["streamingInfo"][platform]
     end
     puts "#{movie.title} saved!"
-    sleep 2
+    sleep 1
 
   end
 end
