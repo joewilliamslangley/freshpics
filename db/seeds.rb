@@ -47,6 +47,7 @@ def create_movies(min, max)
       star_list = result.stars.split(", ")
       director.push(star_list.shift)
     end
+    next if Movie.find_by(imdb_id: result.id)
 
     movie = Movie.new
     movie.imdb_id = result.id
@@ -79,7 +80,7 @@ def get_motn(movie_imdb_ref)
 
   response = http.request(request)
 
-  motn_data = JSON.parse(response.read_body)
+  JSON.parse(response.read_body)
 rescue JSON::ParserError
   "Error"
 end
@@ -105,24 +106,25 @@ def add_streaming_data(min, max)
   movies.each do |movie|
     motn_data = get_motn(movie.imdb_id)
 
-    unless motn_data == "Error"
-      movie.plot = motn_data["overview"]
-      movie.director = motn_data["significants"]
-      movie.stars = motn_data["cast"]
-      movie.youtube_code = motn_data["video"]
-      movie.background_image_url = motn_data["backdropURLs"]["original"]
-      movie.save!
-      platforms.each do |platform|
-        create_platform_bookmark(movie, platform, motn_data) if motn_data["streamingInfo"][platform]
-      end
-      puts "#{movie.title} saved!"
-      sleep 2
+    next if motn_data == "Error"
+
+    movie.plot = motn_data["overview"]
+    movie.director = motn_data["significants"]
+    movie.stars = motn_data["cast"]
+    movie.youtube_code = motn_data["video"]
+    movie.background_image_url = motn_data["backdropURLs"]["original"]
+    movie.save!
+    platforms.each do |platform|
+      create_platform_bookmark(movie, platform, motn_data) if motn_data["streamingInfo"][platform]
     end
+    puts "#{movie.title} saved!"
+    sleep 2
+
   end
 end
 
 
-def add_motn_data(min, max, last)
+def add_imdb_data(min, max, last)
   while min < last
     create_movies(min, max)
     sleep 10
@@ -131,10 +133,10 @@ def add_motn_data(min, max, last)
   end
 end
 
+# seed call to database
 
+# create_movies(10250, 10500)
 
-#seed call to database
+add_streaming_data(3847, 4500)
 
-create_movies(300, 350)
-
-add_streaming_data(1, 50)
+# add_imdb_data(10250, 10500, 32750)
