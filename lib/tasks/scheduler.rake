@@ -4,7 +4,7 @@ task :delete_bookmarks => :environment do
   RemovePlatformBookmarksJob.perform_now
 end
 # test
-task :add_motn_data, [:min, :max] => :environment do
+task :add_motn_data, [:min, :max] => :environment do |t, args|
   puts "arg1 was: '#{args[:min]}' of class #{args[:min].class}"
   puts "arg2 was: '#{args[:max]}' of class #{args[:max].class}"
 end
