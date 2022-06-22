@@ -19,15 +19,15 @@ def add_display_name_to(platform, display_name)
 end
 
 # Platform.delete_all
-create_platforms('netflix', 'Netflix')
-create_platforms('all4', 'All4')
-create_platforms('apple', 'Apple TV+')
-create_platforms('britbox', 'BritBox')
-create_platforms('disney', 'Disney+')
-create_platforms('iplayer', 'iPlayer')
-create_platforms('mubi', 'Mubi')
-create_platforms('now', 'NowTV')
-create_platforms('prime', 'Prime Video')
+# create_platforms('netflix', 'Netflix')
+# create_platforms('all4', 'All4')
+# create_platforms('apple', 'Apple TV+')
+# create_platforms('britbox', 'BritBox')
+# create_platforms('disney', 'Disney+')
+# create_platforms('iplayer', 'iPlayer')
+# create_platforms('mubi', 'Mubi')
+# create_platforms('now', 'NowTV')
+# create_platforms('prime', 'Prime Video')
 
 # # Seedings From IMDb-API (https://imdb-api.com/api)
 
@@ -47,6 +47,7 @@ def create_movies(min, max)
       star_list = result.stars.split(", ")
       director.push(star_list.shift)
     end
+    next if Movie.find_by(imdb_id: result.id)
 
     movie = Movie.new
     movie.imdb_id = result.id
@@ -79,7 +80,7 @@ def get_motn(movie_imdb_ref)
 
   response = http.request(request)
 
-  motn_data = JSON.parse(response.read_body)
+  JSON.parse(response.read_body)
 rescue JSON::ParserError
   "Error"
 end
@@ -122,7 +123,7 @@ def add_streaming_data(min, max)
 end
 
 
-def add_motn_data(min, max, last)
+def add_imdb_data(min, max, last)
   while min < last
     create_movies(min, max)
     sleep 10
@@ -131,10 +132,10 @@ def add_motn_data(min, max, last)
   end
 end
 
+# seed call to database
 
+# create_movies(10250, 10500)
 
-#seed call to database
+# add_streaming_data(1, 50)
 
-create_movies(300, 350)
-
-add_streaming_data(1, 50)
+add_imdb_data(10250, 32750)
