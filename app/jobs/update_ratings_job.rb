@@ -8,13 +8,13 @@ class UpdateRatingsJob < ApplicationJob
   queue_as :default
 
   def perform
-    movies = Movie.all.order(:id)
+    movies = Movie.first(20)
     movies.each do |movie|
       movie_data = get_omdb_ratings(movie.imdb_id)
       next if movie_data == "Error"
 
       movie.imdb_rating = (movie_data.imDbRating.to_f * 10).to_i if result.imDbRating != "N/A"
-      movie.metacritic_rating = movie_data.Metascore.to_i
+      movie.metacritic_rating = movie_data.Metascore.to_i if result.Metascore != "N/A"
       ratings.each do |rating|
         movie.rotten_tomatoes_rating = rating.Value.gsub(/[^0-9]/, '').to_i if rating.Source == "Rotten Tomatoes"
       end
