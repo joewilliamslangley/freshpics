@@ -24,6 +24,7 @@ class UpdateRatingsJob < ApplicationJob
         movie.english = false
       end
       movie.save!
+      puts "#{movie.title} has been updated to English: #{movie.english}, IMDB: #{movie.imdb_rating}, Metacritic: #{movie.metacritic_rating}, Rotten Tomatoes: #{movie.rotten_tomatoes_rating}"
     end
   end
 
