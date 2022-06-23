@@ -98,7 +98,7 @@
           <div class="question-block">
             <h5>Pick a minimum score for your film</h5>
             <div class="options slidecontainer" data-controller="range-slider-value">
-              <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "change->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
+              <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
               <p><span data-range-slider-value-target="valueOutput">50%</span></p>
 
               <!-- <%= form.collection_radio_buttons :score, [['60'], ['70'], ['80'], ['90']], :first, :first, include_hidden: false do |b| %>
@@ -137,7 +137,7 @@
           <div class="question-block">
             <h3>How much time do you have?</h3>
               <div class="options slidecontainer" data-controller="range-slider-value">
-                <%= form.range_field :time,  min: "90", max: "180", class: "slider", value: 180, step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
+                <%= form.range_field :time,  min: "90", max: "180", class: "slider", value: 180, step: 5, data: { action: "input->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
                 <p><span data-range-slider-value-target="valueOutput">No limit</span></p>
 
 
