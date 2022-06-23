@@ -1,7 +1,7 @@
 <div class="container mt-2">
   <div class="" data-controller="refresh" >
     <div class="row justify-content-center">
-      <button type="button" class="btn btn-white col-lg-2 col-sm-6 mb-2" data-bs-toggle="modal" data-bs-target="#advanced-filter-modal">
+      <button type="button" class="btn btn-white col-sm-6 col-lg-2 mb-2" data-bs-toggle="modal" data-bs-target="#advanced-filter-modal">
         Advanced Filters
       </button>
     </div>
@@ -133,22 +133,22 @@
         <p class="mb-0">Date Range</p>
         <div class="row mb-4">
           <div class="col-6">
-            <%= form.label :from %><br>
-            <%= form.select :from, ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"], prompt: 'Min Decade', class: 'form-select' %>
+            <%= form.label :decade_from, "From" %><br>
+            <%= form.select :decade_from, ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"], prompt: 'Min Decade', class: 'form-select' %>
           </div>
           <div class="col-6">
-            <%= form.label :to %><br>
-            <%= form.select :to, ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"], prompt: 'Max Decade', class: 'form-select' %>
+            <%= form.label :decade_to, "To" %><br>
+            <%= form.select :decade_to, ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"], prompt: 'Max Decade', class: 'form-select' %>
           </div>
         </div>
         <% if params[:english] == "1" %>
-          <%= form.check_box(:english, checked: true, class: "tag-selector" ) %>
+          <%= form.check_box(:english, checked: true, class: "modal-tag-selector" ) %>
         <% else %>
-          <%= form.check_box(:english, class: "tag-selector" ) %>
+          <%= form.check_box(:english, class: "modal-tag-selector" ) %>
         <% end %>
         <%= form.label(:english, "English Language Only") %>
       </div>
-      <div class="modal-footer ad-filt-footer">
+      <div class="d-flex modal-footer ad-filt-footer justify-content-center">
         <%= form.submit "Search", class: "btn btn-white", id: "btn-4" %>
         <% end %>
       </div>
