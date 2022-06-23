@@ -19,13 +19,26 @@
 
 
             <%# ADD TO WATCHLIST BUTTON %>
-                <div>
-                  <%= simple_form_for [@movie_bookmark] do |f| %>
-                  <%= f.hidden_field :movie, value: @movie.id %>
-                  <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                  <%= f.submit "Add to your Watchlist", class: 'btn btn-warning col-12' %>
+                <% if current_user %>
+                  <% unless current_user.movies.include? movie%>
+                      <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+                        <%= f.hidden_field :movie, value: movie.id %>
+                        <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
+                        <%= f.submit "Add to Watchlist", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
+                      <% end %>
+                      <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
+                    <% else %>
+                      <%= link_to "Remove From Watchlist", # X ICON => <i class="fa-light fa-circle-x"></i>
+                      # Must find the movie bookmark id - do this by getting this into the user conteoller and finding one with the movie_id that matches the
+                        { controller: "movie_bookmarks", action: "destroy", id: @movie_bookmarks.find_by(movie_id: movie.id).id },
+                          data: { confirm: 'Are you sure?' },
+                          method: :delete %>
                     <% end %>
-                </div>
+                    <% else %>
+                      <div class="col-12 expand-buttons">
+                        <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
+                      </div>
+                <% end %>
 
             <%# TABS %>
             <nav>
@@ -42,12 +55,12 @@
                 <p class="card-text"><%= @movie.plot %></p>
               </div>
               <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                      <p class=""><% @movie.genres.each do |genre| %>
-                        <button type="button" class="btn btn-outline-warning">
-                          <%= genre %>
-                          <% end %>
-                        </button>
-                      </p>
+                <p class=""><% @movie.genres.each do |genre| %>
+                  <button type="button" class="btn btn-outline-warning">
+                    <%= genre %>
+                    <% end %>
+                  </button>
+                </p>
               </div>
               <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
                 <div class="row d-flex justify-content-center">
