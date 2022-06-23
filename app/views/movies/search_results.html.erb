@@ -131,6 +131,17 @@
             <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
             <p><span data-range-slider-value-target="valueOutput"><%= params[:time] %> mins</span></p>
         </div>
+        <p class="mb-0">Date Range</p>
+        <div class="row mb-4">
+          <div class="col-6">
+            <%= form.label :from %><br>
+            <%= form.select :from, ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"], prompt: 'Min Decade' %>
+          </div>
+          <div class="col-6">
+            <%= form.label :to %><br>
+            <%= form.select :to, ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"], prompt: 'Max Decade' %>
+          </div>
+        </div>
         <% if params[:english] == "1" %>
           <%= form.check_box(:english, checked: true, class: "tag-selector" ) %>
         <% else %>
