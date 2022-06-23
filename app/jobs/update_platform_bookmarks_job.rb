@@ -34,6 +34,10 @@ class UpdatePlatformBookmarksJob < ApplicationJob
     json = JSON.parse(response.read_body)["results"]
 
     json.each do |motn_data|
+      next if (motn_data["originalTitle"] =~ /\w/).nil?
+
+      next if motn_data["imdbVoteCount"] < 1000
+
       movie = Movie.find_by(imdb_id: motn_data["imdbID"])
       if new_removed == "new"
         create_platform_bookmark(movie, platform, motn_data)
