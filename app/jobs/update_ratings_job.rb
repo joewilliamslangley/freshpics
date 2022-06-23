@@ -15,7 +15,7 @@ class UpdateRatingsJob < ApplicationJob
 
       movie.imdb_rating = (movie_data.imDbRating.to_f * 10).to_i if movie_data.imDbRating != "N/A"
       movie.metacritic_rating = movie_data.Metascore.to_i if movie_data.Metascore != "N/A"
-      ratings.each do |rating|
+      movie_data.Ratings.each do |rating|
         movie.rotten_tomatoes_rating = movie_data.Value.gsub(/[^0-9]/, '').to_i if movie_data.Source == "Rotten Tomatoes"
       end
       if movie_data.Language.split(", ")[0] == "English"
