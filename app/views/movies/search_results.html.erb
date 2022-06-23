@@ -121,12 +121,12 @@
         <%= form.hidden_field :review_site, value: params[:review_site] %>
         <%= form.hidden_field :score, value: params[:score] %>
         <%= form.hidden_field :time, value: params[:time] %>
-        <%= form.submit "Search", class: "btn btn-white", id: "btn-4" %>
-        <% end %>
+        <%= form.radio_button :english, true %>
+        <%= form.label :english, "English Language Films Only" %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <%= form.submit "Search", class: "btn btn-white", id: "btn-4" %>
+        <% end %>
       </div>
     </div>
   </div>
