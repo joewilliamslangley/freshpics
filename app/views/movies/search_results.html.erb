@@ -131,7 +131,11 @@
             <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
             <p><span data-range-slider-value-target="valueOutput"><%= params[:time] %> mins</span></p>
         </div>
-        <%= form.check_box(:english, class: "tag-selector") %>
+        <% if params[:english] == "1" %>
+          <%= form.check_box(:english, checked: true, class: "tag-selector" ) %>
+        <% else %>
+          <%= form.check_box(:english, class: "tag-selector" ) %>
+        <% end %>
         <%= form.label(:english, "English Language Only") %>
       </div>
       <div class="modal-footer ad-filt-footer">
