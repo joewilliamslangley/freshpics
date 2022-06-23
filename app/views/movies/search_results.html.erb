@@ -110,21 +110,31 @@
 <div class="modal fade" id="advanced-filter-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header ad-filt-head">
         <h5 class="modal-title" id="exampleModalLabel">Advanced Filters</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body ad-filt-body">
         <%= form_with url: movies_path, method: :get do |form| %>
         <%= form.hidden_field :keyword, value: params[:keyword] %>
         <%= form.hidden_field :platform_ids, value: params[:platform_ids] %>
         <%= form.hidden_field :review_site, value: params[:review_site] %>
-        <%= form.hidden_field :score, value: params[:score] %>
-        <%= form.hidden_field :time, value: params[:time] %>
-        <%= form.radio_button :english, true %>
-        <%= form.label :english, "English Language Films Only" %>
+        <span class="<%= 'd-none' if params[:review_site] == 'no_site' %>">
+          <p> <%= params[:review_site] %> Score</p>
+          <div class="options slidecontainer" data-controller="range-slider-value">
+            <%= form.range_field :score, min: "0", max: "100", class: "slider", value: params[:score], step: 5, data: { action: "change->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
+            <p><span data-range-slider-value-target="valueOutput"><%= params[:score] %>%</span></p>
+          </div>
+        </span>
+        <p>Time Limit</p>
+        <div class="options slidecontainer" data-controller="range-slider-value">
+            <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
+            <p><span data-range-slider-value-target="valueOutput"><%= params[:time] %> mins</span></p>
+        </div>
+        <%= form.check_box(:english, class: "tag-selector") %>
+        <%= form.label(:english, "English Language Only") %>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer ad-filt-footer">
         <%= form.submit "Search", class: "btn btn-white", id: "btn-4" %>
         <% end %>
       </div>
