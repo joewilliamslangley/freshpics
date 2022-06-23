@@ -1,12 +1,16 @@
-<div class="container mt-5">
+<div class="container mt-2">
   <div class="" data-controller="refresh" >
-
+    <div class="row justify-content-center">
+      <button type="button" class="btn btn-white col-lg-2 col-sm-6 mb-2" data-bs-toggle="modal" data-bs-target="#advanced-filter-modal">
+        Advanced Filters
+      </button>
+    </div>
     <div data-refresh-button-target="add" display="none">
       <%@movies.each_with_index do |movie, index|%>
         <div class="row d-flex justify-content-center" data-controller="search-result-card">
           <div class="result-card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%if movie.background_image_url %>'<%= image_path movie.background_image_url%>' <%else%> <%= 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'%><%end%>)">
             <div class="card-body" data-action="click->search-result-card#revealContent" type="button">
-              <h3 class="result-card-collapse"><%= link_to movie.title, movie_path(movie), class: "result-card-title" %></h3>
+              <h3 class="result-card-collapse"><%= movie.title %></h3>
               <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
 
                 <p> <% if movie.imdb_rating.present? %> <%#fixed syntax error %>
@@ -18,12 +22,14 @@
                     <% end %>
 
               </h6>
-              <div class="d-flex justify-content-center">
-                <i class="fa-solid fa-angle-down fa-2xl" data-controller="search-result-card"></i>
+              <div class="d-flex justify-content-center" >
+                <i class="fa-solid fa-angle-down fa-2xl"></i>
               </div>
             </div>
             <div class="d-none result-card-expand" data-search-result-card-target="expand">
-              <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
+              <% if movie.youtube_code %>
+                <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
+              <% end %>
                 <div class="expand-buttons">
                   <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
                     <% if current_user %>
@@ -60,8 +66,8 @@
               </nav>
               <div class="tab-content tabs-results" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home<%= index %>" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                  <p class="card-text"> Starring <%= movie.stars.join(", ") %></p>
-                  <p class="card-text">Directed by <%= movie.director.join %></p>
+                  <p class="card-text"> Starring: <%= movie.stars.join(", ") %></p>
+                  <p class="card-text">Directed by <%= movie.director.join(", ") %></p>
                 </div>
                 <div class="tab-pane fade" id="nav-profile<%= index %>" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
                   <div class="row d-flex justify-content-center">
@@ -97,4 +103,57 @@
   </div>
 
 
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="advanced-filter-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header ad-filt-head">
+        <h5 class="modal-title" id="exampleModalLabel">Advanced Filters</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body ad-filt-body">
+        <%= form_with url: movies_path, method: :get do |form| %>
+        <%= form.hidden_field :keyword, value: params[:keyword] %>
+        <%= form.hidden_field :platform_ids, value: params[:platform_ids] %>
+        <%= form.hidden_field :review_site, value: params[:review_site] %>
+        <p> Review Score</p>
+        <%= form.select :review_site, [['Select Review Site', 'no_site'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], class: 'form-select' %>
+        <div class="options slidecontainer" data-controller="range-slider-value">
+          <%= form.range_field :score, min: "0", max: "100", class: "slider", value: params[:score], step: 5, data: { action: "change->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
+          <p><span data-range-slider-value-target="valueOutput"><%= params[:score] %>%</span></p>
+        </div>
+        <p>Time Limit</p>
+        <div class="options slidecontainer" data-controller="range-slider-value">
+            <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
+            <p><span data-range-slider-value-target="valueOutput"><%= params[:time] %> mins</span></p>
+        </div>
+        <p class="mb-0">Date Range</p>
+        <div class="row mb-4">
+          <div class="col-6">
+            <%= form.label :decade_from, "From" %><br>
+            <%= form.select :decade_from, ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"], prompt: 'Min Decade', class: 'form-select' %>
+          </div>
+          <div class="col-6">
+            <%= form.label :decade_to, "To" %><br>
+            <%= form.select :decade_to, ["1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"], prompt: 'Max Decade', class: 'form-select' %>
+          </div>
+        </div>
+        <% if params[:english] == "1" %>
+          <%= form.check_box(:english, checked: true, class: "modal-tag-selector" ) %>
+        <% else %>
+          <%= form.check_box(:english, class: "modal-tag-selector" ) %>
+        <% end %>
+        <%= form.label(:english, "English Language Only") %>
+      </div>
+      <div class="d-flex modal-footer ad-filt-footer justify-content-center">
+        <%= form.submit "Search", class: "btn btn-white", id: "btn-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

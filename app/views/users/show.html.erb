@@ -54,4 +54,5 @@
                # Must find the movie bookmark id - do this by gettind this into the user conteoller and finding one with the movie_id that matches the
                 { controller: "movie_bookmarks", action: "destroy", id: @movie_bookmarks.find_by(movie_id: movie.id).id },
                   data: { confirm: 'Are you sure?' },
+
                   method: :delete %>
