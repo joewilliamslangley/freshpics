@@ -143,12 +143,17 @@
   z-index: -1;
 }
 
+.progress-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .progress-container {
   display: flex;
   justify-content: space-between;
   position: relative;
   margin-bottom: 30px;
-  max-width: 100%;
+  // max-width: 100%;
   width: 250px;
 }
 
