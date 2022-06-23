@@ -1,7 +1,7 @@
 <div class="container mt-2">
   <div class="" data-controller="refresh" >
     <div class="row justify-content-center">
-      <button type="button" class="btn btn-white col-lg-2 col-sm-6 mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class="btn btn-white col-lg-2 col-sm-6 mb-2" data-bs-toggle="modal" data-bs-target="#advanced-filter-modal">
         Advanced Filters
       </button>
     </div>
@@ -111,11 +111,18 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Advanced Filters</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <%= form_with url: movies_path, method: :get do |form| %>
+        <%= form.hidden_field :keyword, value: params[:keyword] %>
+        <%= form.hidden_field :platform_ids, value: params[:platform_ids] %>
+        <%= form.hidden_field :review_site, value: params[:review_site] %>
+        <%= form.hidden_field :score, value: params[:score] %>
+        <%= form.hidden_field :time, value: params[:time] %>
+        <%= form.submit "Search", class: "btn btn-white", id: "btn-4" %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
