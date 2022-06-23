@@ -11,7 +11,7 @@ task :update_bookmarks => :environment do
 end
 
 desc "This task adds language info and updates the ratings of all movies"
-task :update_bookmarks => :environment do
+task :update_ratings => :environment do
   puts "Running Updating Bookmarks Job."
   UpdateRatingsJob.perform_now
 end
