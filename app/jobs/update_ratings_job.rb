@@ -11,6 +11,8 @@ class UpdateRatingsJob < ApplicationJob
     movies = Movie.all.order(:id)
     movies.each do |movie|
       movie_data = get_omdb_ratings(movie.imdb_id)
+      next if movie_data == "Error"
+
       movie.imdb_rating = (movie_data.imDbRating.to_f * 10).to_i if result.imDbRating != "N/A"
       movie.metacritic_rating = movie_data.Metascore.to_i
       ratings.each do |rating|
@@ -31,5 +33,7 @@ class UpdateRatingsJob < ApplicationJob
     url = "https://www.omdbapi.com/?i=#{movie_id}&apikey=98973290"
     serialized = URI.open(url).read
     JSON.parse(serialized, object_class: OpenStruct)
+  rescue JSON::ParserError
+    "Error"
   end
 end
