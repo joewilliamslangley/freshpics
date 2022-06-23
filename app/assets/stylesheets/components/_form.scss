@@ -1,3 +1,8 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .form-container {
   display: flex;
   justify-content: center;
@@ -10,12 +15,20 @@
     text-align: center;
   }
 
-  .form-button {
-    display: flex;
-    justify-content: center;
-    margin: 10px 30px;
-    #btn-1 {
-      margin: 5px ;
+  .form-button-container {
+    position: fixed;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .form-button {
+      display: flex;
+      justify-content: center;
+      width: 400px;
+      // // margin: 10px 30px;
+      #btn-1 {
+        margin: 5px ;
+      }
     }
   }
 }
@@ -30,4 +43,37 @@
 
 .question-block {
   margin: 20px;
+
+}
+
+
+// FORM BUTTONS
+
+.tag-item {
+  display: inline-block;
+}
+
+// Hides the checkbox & repositions
+.tag-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+// Makes the label look like a button
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 50px;
+  padding: 0.1rem 0.5rem;
+  color: $yellow;
+  border: 1.5px solid $yellow;
+  margin: 0.4rem 0.6rem;
+  opacity: 0.5;
+}
+
+// Label/button when checked
+.tag-selector:checked + label {
+  opacity: 1;
+  color: $yellow;
+  border: 1.5px solid $yellow;
 }

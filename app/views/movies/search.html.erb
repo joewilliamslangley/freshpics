@@ -19,26 +19,27 @@
               </div>
             <% end %>
           </div>
+          <div class="form-button-container">
+            <div class="form-button">
+              <button id="btn-1"
+                      data-action="click->load-search-questions#nextQuestion"
+                      data-load-search-questions-target="button"
+                      class="btn btn-white">
+                OK
+              </button>
 
-          <div class="form-button">
-            <button id="btn-1"
-                    data-action="click->load-search-questions#nextQuestion"
-                    data-load-search-questions-target="button"
-                    class="btn btn-white">
-              OK
-            </button>
+          <!-- SKIP -->
+              <%= form.collection_radio_buttons :keyword, @skip, :last, :first, include_hidden: false do |b| %>
+                  <%= b.radio_button class: "genre-tag-selector" %>
+              <% end %>
 
-        <!-- SKIP -->
-            <%= form.collection_radio_buttons :keyword, @skip, :last, :first, include_hidden: false do |b| %>
-                <%= b.radio_button class: "genre-tag-selector" %>
-            <% end %>
-
-            <button id="btn-1"
-                    data-action="click->load-search-questions#nextQuestion"
-                    data-load-search-questions-target="button"
-                    class="btn btn-white">
-              Don't mind!
-            </button>
+              <button id="btn-1"
+                      data-action="click->load-search-questions#nextQuestion"
+                      data-load-search-questions-target="button"
+                      class="btn btn-white">
+                Don't mind!
+              </button>
+            </div>
           </div>
       </div>
 
@@ -62,7 +63,7 @@
           <% end %>
         </div>
 
-        <div class="form-button">
+        <div class="form-button-container">
           <button id="btn-2"
                   data-action="click->load-search-questions#nextQuestion"
                   data-load-search-questions-target="button"
@@ -98,7 +99,7 @@
           <div class="question-block">
             <h5>Pick a minimum score for your film</h5>
             <div class="options slidecontainer" data-controller="range-slider-value">
-              <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "change->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
+              <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
               <p><span data-range-slider-value-target="valueOutput">50%</span></p>
 
               <!-- <%= form.collection_radio_buttons :score, [['60'], ['70'], ['80'], ['90']], :first, :first, include_hidden: false do |b| %>
@@ -120,7 +121,7 @@
             <%= form.radio_button :score, "90" %>
             <%= form.label :'90', "90" %> -->
 
-          <div class="form-button">
+          <div class="form-button-container">
             <button id="btn-3"
                     data-action="click->load-search-questions#nextQuestion"
                     data-load-search-questions-target="button"
@@ -137,7 +138,7 @@
           <div class="question-block">
             <h3>How much time do you have?</h3>
               <div class="options slidecontainer" data-controller="range-slider-value">
-                <%= form.range_field :time,  min: "90", max: "180", class: "slider", value: 180, step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
+                <%= form.range_field :time,  min: "90", max: "180", class: "slider", value: 180, step: 5, data: { action: "input->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
                 <p><span data-range-slider-value-target="valueOutput">No limit</span></p>
 
 
@@ -151,7 +152,7 @@
 
             </div>
           </div>
-          <div class="form-button">
+          <div class="form-button-container">
             <%= form.submit "Search", class: "btn btn-white", id: "btn-4" %>
           </div>
         </div>
