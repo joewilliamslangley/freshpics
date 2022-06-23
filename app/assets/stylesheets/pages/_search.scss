@@ -1,31 +1,3 @@
-.form-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.form-container {
-  margin: 20px;
-  margin-top: 30px;
-  display: inline-block;
-
-  h3 {
-    margin-bottom: 20px;
-  }
-
-  .form-button {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.question {
-  margin: 20px;
-}
-
-.question-block {
-  margin: 20px;
-
-}
 
 
 .hidden {
@@ -85,40 +57,6 @@
 }
 }
 
-
-
-
-// GENERAL SEARCH BUTTONS
-
-.tag-item {
-  display: inline-block;
-}
-
-// Hides the checkbox & repositions
-.tag-selector {
-  position: absolute;
-  transform: scale(0);
-}
-
-// Makes the label look like a button
-.tag-selector + label {
-  cursor: pointer;
-  display: inline-block;
-  border-radius: 50px;
-  padding: 0.1rem 0.5rem;
-  color: $yellow;
-  border: 1.5px solid $yellow;
-  margin: 0.4rem 0.6rem;
-  opacity: 0.5;
-}
-
-// Label/button when checked
-.tag-selector:checked + label {
-  opacity: 1;
-  color: $yellow;
-  border: 1.5px solid $yellow;
-}
-
 .directional {
   cursor: pointer;
 }
@@ -133,62 +71,4 @@
   position: fixed; /* or absolute */
   top: 50%;
   right: 1%;
-}
-
-.progress-container::before {
-  content: "";
-  background: $dark-gray;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  height: 4px;
-  width: 100%;
-  z-index: -1;
-}
-
-.progress-wrapper {
-  // CENTRED FIXED DYNAMIC
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 135px;
-}
-
-.progress-container {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  // margin-bottom: 30px;
-  // max-width: 100%;
-  width: 180px;
-}
-
-.progress {
-  background: $yellow;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  height: 4px;
-  width: 0%;
-  z-index: -1;
-  transition: 0.4s ease;
-}
-
-.circle {
-  background: $dark-gray;
-  border-radius: 50%;
-  height: 17px;
-  width: 17px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid $dark-gray;
-  transition: .4s ease;
-}
-
-.circle.active {
-  border-color: $yellow;
-  background-color: $yellow;
 }

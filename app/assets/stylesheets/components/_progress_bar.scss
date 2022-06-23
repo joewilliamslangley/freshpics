@@ -1,0 +1,57 @@
+.progress-container::before {
+  content: "";
+  background: $dark-gray;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  z-index: -1;
+}
+
+.progress-wrapper {
+  // CENTRED FIXED DYNAMIC
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 135px;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  // margin-bottom: 30px;
+  // max-width: 100%;
+  width: 180px;
+}
+
+.progress {
+  background: $yellow;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 0%;
+  z-index: -1;
+  transition: 0.4s ease;
+}
+
+.circle {
+  background: $dark-gray;
+  border-radius: 50%;
+  height: 17px;
+  width: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid $dark-gray;
+  transition: .4s ease;
+}
+
+.circle.active {
+  border-color: $yellow;
+  background-color: $yellow;
+}
