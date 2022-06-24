@@ -8,7 +8,7 @@ class UpdateRatingsJob < ApplicationJob
   queue_as :default
 
   def perform
-    movies = Movie.first(20)
+    movies = Movie.all
     movies.each do |movie|
       movie_data = get_omdb_ratings(movie.imdb_id)
       next if movie_data == "Error"
@@ -24,7 +24,7 @@ class UpdateRatingsJob < ApplicationJob
         movie.english = false
       end
       movie.save!
-      puts "#{movie.title} has been updated to English: #{movie.english}, IMDB: #{movie.imdb_rating}, Metacritic: #{movie.metacritic_rating}, Rotten Tomatoes: #{movie.rotten_tomatoes_rating}"
+      puts "#{movie.id}: #{movie.title} has been updated to English: #{movie.english}, IMDB: #{movie.imdb_rating}, Metacritic: #{movie.metacritic_rating}, Rotten Tomatoes: #{movie.rotten_tomatoes_rating}"
     end
   end
 
