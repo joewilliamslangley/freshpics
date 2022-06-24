@@ -13,10 +13,14 @@ class UpdateRatingsJob < ApplicationJob
       movie_data = get_omdb_ratings(movie.imdb_id)
       next if movie_data == "Error"
 
+      next if movie_data.Response == "False"
+
       movie.imdb_rating = (movie_data.imdbRating.to_f * 10).to_i if movie_data.imDbRating != "N/A"
       movie.metacritic_rating = movie_data.Metascore.to_i if movie_data.Metascore != "N/A"
-      movie_data.Ratings.each do |rating|
-        movie.rotten_tomatoes_rating = rating.Value.gsub(/[^0-9]/, '').to_i if rating.Source == "Rotten Tomatoes"
+      unless movie_data.Ratings.nil?
+        movie_data.Ratings.each do |rating|
+          movie.rotten_tomatoes_rating = rating.Value.gsub(/[^0-9]/, '').to_i if rating.Source == "Rotten Tomatoes"
+        end
       end
       if movie_data.Language.split(", ")[0] == "English"
         movie.english = true
