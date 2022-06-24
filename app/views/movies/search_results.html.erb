@@ -67,7 +67,7 @@
                                 </div>
                           <% end %>
                         </div>
-                          <div class="platform-buttons ">
+                          <div class="platform-buttons">
                             <% movie.platform_bookmarks.each do |bookmark|%>
                               <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
                               <% end %>
