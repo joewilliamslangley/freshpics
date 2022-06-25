@@ -19,3 +19,18 @@
   margin-top: 20px;
   width: auto;
 }
+
+@media screen and ( max-height: 680px ) {
+  .platform-list {
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    max-height: 232px;
+    overflow-y: scroll;
+  }
+  .user-platform {
+    // margin: 0, 20px;
+    height: 70px;
+    width: auto;
+    padding: 8px;
+  }
+}

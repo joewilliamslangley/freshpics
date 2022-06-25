@@ -51,3 +51,11 @@
 #genres_biography + label {
   // color: #FD1015; to add background images if wanted...
 }
+
+
+@media screen and ( max-height: 680px ) {
+  .genre-list {
+    max-height: 259px;
+    overflow-y: scroll;
+  }
+}
