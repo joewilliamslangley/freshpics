@@ -52,10 +52,30 @@
   // color: #FD1015; to add background images if wanted...
 }
 
+@media screen and ( max-height: 592px ) {
+  .genre-list {
+    max-height: 150px;
+    overflow-y: scroll;
+  }
+}
+@media screen and ( max-height: 691px ) and (min-height: 592px) {
+  .genre-list {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+}
 
-@media screen and ( max-height: 680px ) {
+@media screen and ( max-height: 680px ) and (min-height: 691px){
   .genre-list {
     max-height: 259px;
+    overflow-y: scroll;
+  }
+}
+
+
+@media screen and ( max-height: 796px) and (min-height: 680px) {
+  .genre-list {
+    max-height: 300px;
     overflow-y: scroll;
   }
 }

@@ -20,11 +20,35 @@
   width: auto;
 }
 
-@media screen and ( max-height: 680px ) {
+
+@media screen and ( max-height: 671px ) and ( min-height: 576px ) {
+  .platform-list {
+    max-height: 220px;
+    overflow-y: scroll;
+  }
+  .user-platform {
+    height: 70px;
+    width: auto;
+    padding: 8px;
+  }
+}
+@media screen and ( max-height: 789px ) and ( min-height: 671px ) {
+  .platform-list {
+    max-height: 238px;
+    overflow-y: scroll;
+  }
+  .user-platform {
+    height: 70px;
+    width: auto;
+    padding: 8px;
+  }
+}
+
+@media screen and ( max-height: 789px ) {
   .platform-list {
     // display: grid;
     // grid-template-columns: 1fr 1fr;
-    max-height: 232px;
+    max-height: 252px;
     overflow-y: scroll;
   }
   .user-platform {
