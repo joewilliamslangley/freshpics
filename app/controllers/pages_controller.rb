@@ -11,7 +11,7 @@ class PagesController < ApplicationController
       5 => "xy5vehozh6dvo4kn2s2k",
       6 => "krdkhm3x5cqnisrdjlqe",
       7 => "ctbc6rucqsjgtqhghcsl",
-      8 => "ctbc6rucqsjgtqhghcsl",
+      8 => "qh1klgiobftktsqkbtem",
       9 => "sztkrp1ltrq0tmgncmyl",
       10 => "jgaaljnnceinlrnhx7uh",
       11 => "q4lamjvyjrwzwktzhv1z",
