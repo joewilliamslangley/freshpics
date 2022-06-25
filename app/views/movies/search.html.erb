@@ -163,7 +163,7 @@
       <% end %>
 
 
-  <!-- NAVIGATION -->
+  <!-- NAVIGATION  -->
 
       <div class="search-navigation">
         <span class="directional back hidden" data-action="click->load-search-questions#previousQuestion" data-load-search-questions-target="back">
@@ -173,6 +173,8 @@
           <i class="fas fa-chevron-right fa-lg"></i>
         </span>
       </div>
+
+  <!-- PROGRESS BAR -->
       <div class="progress-wrapper">
         <div class="progress-container">
           <div class="progress" id="progress" data-load-search-questions-target="progress"></div>
@@ -183,6 +185,7 @@
         </div>
       </div>
 
+  <%# <!-- DUPLICATED CODE? -->
     <div class="search-navigation">
       <span class="directional back hidden" data-action="click->load-search-questions#previousQuestion" data-load-search-questions-target="back">
         <i class="fas fa-chevron-left fa-lg"></i>
@@ -190,7 +193,7 @@
       <span class="directional forward" data-action="click->load-search-questions#nextQuestion" data-load-search-questions-target="forward">
         <i class="fas fa-chevron-right fa-lg"></i>
       </span>
-    </div>
+    </div> %>
 
     </div>
   </div>
