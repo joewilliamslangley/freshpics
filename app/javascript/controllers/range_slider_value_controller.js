@@ -5,7 +5,7 @@ import { Controller } from "@hotwired/stimulus"
 
 
 export default class extends Controller {
-  static targets = [ "valueOutput", "percentageScoreRange", "numericScoreRange" ]
+  static targets = [ "numericOutput", "percentageOutput","percentageScoreRange", "numericScoreRange" ]
 
   connect() {
     // console.log("The 'range slider value' controller is now loaded!")
@@ -13,11 +13,11 @@ export default class extends Controller {
 
   showScore(event) {
   if (event.currentTarget === this.percentageScoreRangeTarget) {
-      this.valueOutputTarget.innerHTML = `${this.percentageScoreRangeTarget.value}%`
+      this.percentageOutputTarget.innerHTML = `${this.percentageScoreRangeTarget.value}%`
   }
 
   if (event.currentTarget === this.numericScoreRangeTarget) {
-    this.valueOutputTarget.innerHTML = `${this.numericScoreRangeTarget.value}%`
+    this.numericOutputTarget.innerHTML = `${this.numericScoreRangeTarget.value}`
 }
 
     }
@@ -32,12 +32,6 @@ export default class extends Controller {
     // Update the current slider value (each time you drag the slider handle)
     // this.valueOutputTarget.innerHTML = this.scoreRangeTarget.value
 
-    // JAVASCRIPT CODE
-    // output.innerHTML = slider.value; // Display the default slider value
-
-    // // Update the current slider value (each time you drag the slider handle)
-    // slider.oninput = function() {
-    //   output.innerHTML = this.value;
     }
 
 }
