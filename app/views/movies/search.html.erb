@@ -77,7 +77,7 @@
 
   <!-- QUESTION THREE : CRITIC SCORE -->
 
-        <div id="question-3" class="question hidden" data-load-search-questions-target="question" data-controller="hide-score-slider">
+        <div id="question-3" class="question hidden" data-load-search-questions-target="question" data-controller="hide-score-slider range-slider-value">
           <div class="question-block" >
             <h3>Do you care what the <br> critcs say?</h3>
             <p> <em>If so select your site of choice! </em></p>
@@ -102,19 +102,19 @@
                 <%= form.label :no_site, "No Site" %> -->
 
 
-          <div class="question-block hidden" data-hide-score-slider-target="question">
+          <div class="question-block hidden" data-hide-score-slider-target="percentageQuestion">
             <h5>Pick a minimum score for your film</h5>
-            <div class="options slidecontainer" data-controller="range-slider-value">
-              <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
+            <div class="options slidecontainer">
+              <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "percentageScoreRange"}%>
               <p><span data-range-slider-value-target="valueOutput">50%</span></p>
+            </div>
+          </div>
 
-              <!-- <%= form.collection_radio_buttons :score, [['60'], ['70'], ['80'], ['90']], :first, :first, include_hidden: false do |b| %>
-                <div class="tag-item">
-                  <%= b.radio_button class: "tag-selector" %>
-                  <%= b.label  %>
-                </div>
-              <% end %> -->
-
+          <div class="question-block hidden" data-hide-score-slider-target="numericQuestion">
+            <h5>Pick a minimum score for your film</h5>
+            <div class="options slidecontainer">
+              <%= form.range_field :score,  min: "0", max: "10", class: "slider", value: 5, step: 1, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "numericScoreRange"}%>
+              <p><span data-range-slider-value-target="valueOutput">5</span></p>
             </div>
           </div>
 
