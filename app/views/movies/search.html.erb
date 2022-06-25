@@ -81,20 +81,23 @@
           <div class="question-block" data-controller="hide-score-slider">
             <h3>Do you care what the critcs say?</h3>
             <div class="options">
-              <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false, checked: ['No Site', 'no_site'] do |b| %>
+            <%= form.radio_button :review_site, "imdb", class: "tag-selector", data: { action: "input->hide-score-slider#hideSlider", hide_score_slider_target: "imdb" } %>
+              <%= form.label :imdb, "IMDb" %>
+              <%= form.radio_button :review_site, "metacritic", class: "tag-selector", data: { action: "input->hide-score-slider#hideSlider", hide_score_slider_target: "metacritic" } %>
+              <%= form.label :metacritic, "Metacritic" %>
+              <%= form.radio_button :review_site, "no_site", class: "tag-selector", data: { action: "input->hide-score-slider#hideSlider", hide_score_slider_target: "none" }, checked: true %>
+              <%= form.label :no_site, "No review site" %>
+
+            </div>
+          </div>
+
+
+              <!-- <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false, checked: ['No Site', 'no_site'] do |b| %>
                 <div class="tag-item">
                   <%= b.radio_button class: "tag-selector", data: { action: "input->hide-score-slider#hideSlider" } %>
                   <%= b.label  %>
                 </div>
-              <% end %>
-            </div>
-          </div>
-              <!-- <%= form.radio_button :review_site, "imdb" %>
-              <%= form.label :imdb, "IMDb" %>
-              <%= form.radio_button :review_site, "metacritic" %>
-              <%= form.label :metacritic, "Metacritic" %>
-              <%= form.radio_button :review_site, "no_site", checked: true %>
-              <%= form.label :no_site, "No review site" %> -->
+              <% end %> -->
 
 
           <div class="question-block" data-hide-score-slider-target="question">

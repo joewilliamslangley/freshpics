@@ -1,10 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
-// const noSite =
-//id = no_site
 
 export default class extends Controller {
-  static targets = [ "questionBlock" ]
+  static targets = [ "questionBlock", "imdb", "metacritic", "none" ]
 
   connect() {
     // console.log("The 'hide slider' controller is now loaded!")
