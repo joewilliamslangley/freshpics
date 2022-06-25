@@ -1,26 +1,25 @@
 import { Controller } from "@hotwired/stimulus"
 
-const slider = document.getElementById("scoreRange");
-const output = document.getElementById("value-output");
+// const slider = document.getElementById("scoreRange");
+// const output = document.getElementById("value-output");
 
 
 export default class extends Controller {
-  static targets = [ "valueOutput", "scoreRange" ]
+  static targets = [ "numericOutput", "percentageOutput","percentageScoreRange", "numericScoreRange" ]
 
   connect() {
     // console.log("The 'range slider value' controller is now loaded!")
   }
 
   showScore(event) {
-    // console.log(event)
-    this.valueOutputTarget.innerHTML = `${this.scoreRangeTarget.value}%`
+  if (event.currentTarget === this.percentageScoreRangeTarget) {
+      this.percentageOutputTarget.innerHTML = `${this.percentageScoreRangeTarget.value}%`
+  }
 
-    // JAVASCRIPT CODE
-    // output.innerHTML = slider.value; // Display the default slider value
+  if (event.currentTarget === this.numericScoreRangeTarget) {
+    this.numericOutputTarget.innerHTML = `${this.numericScoreRangeTarget.value}`
+}
 
-    // // Update the current slider value (each time you drag the slider handle)
-    // slider.oninput = function() {
-    //   output.innerHTML = this.value;
     }
 
   showTime(event) {
@@ -33,12 +32,6 @@ export default class extends Controller {
     // Update the current slider value (each time you drag the slider handle)
     // this.valueOutputTarget.innerHTML = this.scoreRangeTarget.value
 
-    // JAVASCRIPT CODE
-    // output.innerHTML = slider.value; // Display the default slider value
-
-    // // Update the current slider value (each time you drag the slider handle)
-    // slider.oninput = function() {
-    //   output.innerHTML = this.value;
     }
 
 }
