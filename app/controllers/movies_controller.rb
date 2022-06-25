@@ -60,6 +60,7 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @movie_bookmark = MovieBookmark.new
+    @user_bookmark = MovieBookmark.find_by(user_id: current_user.id, movie_id: @movie.id)
   end
 
   # def result
