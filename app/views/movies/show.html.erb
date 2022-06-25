@@ -20,6 +20,9 @@
                   <% if @movie.youtube_code %>
                     <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= @movie.youtube_code %>"></div>
                     <% end %>
+                  <div class="d-flex justify-content-center">
+                    <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: "50%" ) %>
+                  </div>
                     <div class="expand-buttons">
                       <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
                         <% if current_user %>
@@ -70,7 +73,7 @@
                         <div class="row d-flex justify-content-center">
                           <div class="col-12">
                             <p class=""><% @movie.genres.each do |genre| %>
-                              <button type="button" class="btn btn-outline-warning">
+                              <button type="button" class="genre-buttons-disabled">
                                 <%= genre %>
                                 <% end %>
                               </button>
