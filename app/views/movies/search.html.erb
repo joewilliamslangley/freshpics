@@ -11,14 +11,14 @@
 
         <!-- GENRE SELECTION -->
         <!-- Not check_boxes as isn't expecting an array (genre -> nil) -->
-          <div class="options genre-list">
-            <%= form.collection_radio_buttons :keyword, @genres, :last, :first, include_hidden: false do |b| %>
-              <div class="genre-tag-item">
-                <%= b.radio_button class: "genre-tag-selector" %>
-                <%= b.label %>
-              </div>
-            <% end %>
-          </div>
+        <div class="options genre-list">
+          <%= form.collection_radio_buttons :keyword, @genres, :last, :first, include_hidden: false do |b| %>
+            <div class="genre-tag-item">
+              <%= b.radio_button class: "genre-tag-selector" %>
+              <%= b.label %>
+            </div>
+          <% end %>
+        </div>
           <div class="form-button-container">
             <div class="form-button">
               <button id="btn-1"
@@ -41,23 +41,24 @@
               </button>
             </div>
           </div>
-      </div>
+        </div>
+
 
 
   <!-- QUESTION TWO : PLATFORMS -->
 
       <div id="question-2" class="question hidden" data-load-search-questions-target="question">
         <h3>What streaming services do you have access to?</h3>
-        <div class="options">
+        <div class="options platform-list">
           <%= form.collection_check_boxes :platform_ids, Platform.all, :id, :display_name, include_hidden: false do |b| %>
             <% if current_user %>
               <% if current_user.platforms.include? (b.object) %>
-                <%= b.label(class: "platform-flex-item", data: {controller: "user-platform"}) { b.check_box(checked: true, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
+                <%= b.label( data: {controller: "user-platform"}) { b.check_box(checked: true, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
               <% else %>
-                <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
+                <%= b.label(class: "user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
               <% end %>
             <% else %>
-              <%= b.label(class: "platform-flex-item user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
+              <%= b.label(class: "user-platform-unselected", data: {controller: "user-platform"}) { b.check_box(checked: false, class: "d-none") + image_tag(b.object.logo_path, class: "btn user-platform", data: {action: 'click->user-platform#change', target: "button"})} %>
             <% end %>
 
           <% end %>
@@ -77,12 +78,12 @@
   <!-- QUESTION THREE : CRITIC SCORE -->
 
         <div id="question-3" class="question hidden" data-load-search-questions-target="question">
-          <div class="question-block">
+          <div class="question-block" data-controller="hide-score-slider">
             <h3>Do you care what the critcs say?</h3>
             <div class="options">
               <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false, checked: ['No Site', 'no_site'] do |b| %>
                 <div class="tag-item">
-                  <%= b.radio_button class: "tag-selector" %>
+                  <%= b.radio_button class: "tag-selector", data: { action: "input->hide-score-slider#hideSlider" } %>
                   <%= b.label  %>
                 </div>
               <% end %>
@@ -96,7 +97,7 @@
               <%= form.label :no_site, "No review site" %> -->
 
 
-          <div class="question-block">
+          <div class="question-block" data-hide-score-slider-target="question">
             <h5>Pick a minimum score for your film</h5>
             <div class="options slidecontainer" data-controller="range-slider-value">
               <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
@@ -161,6 +162,8 @@
       <% end %>
 
 
+  <!-- NAVIGATION  -->
+
       <div class="search-navigation">
         <span class="directional back hidden" data-action="click->load-search-questions#previousQuestion" data-load-search-questions-target="back">
           <i class="fas fa-chevron-left fa-lg"></i>
@@ -169,6 +172,8 @@
           <i class="fas fa-chevron-right fa-lg"></i>
         </span>
       </div>
+
+  <!-- PROGRESS BAR -->
       <div class="progress-wrapper">
         <div class="progress-container">
           <div class="progress" id="progress" data-load-search-questions-target="progress"></div>
@@ -179,6 +184,7 @@
         </div>
       </div>
 
+  <%# <!-- DUPLICATED CODE? -->
     <div class="search-navigation">
       <span class="directional back hidden" data-action="click->load-search-questions#previousQuestion" data-load-search-questions-target="back">
         <i class="fas fa-chevron-left fa-lg"></i>
@@ -186,7 +192,7 @@
       <span class="directional forward" data-action="click->load-search-questions#nextQuestion" data-load-search-questions-target="forward">
         <i class="fas fa-chevron-right fa-lg"></i>
       </span>
-    </div>
+    </div> %>
 
     </div>
   </div>
