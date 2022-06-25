@@ -5,7 +5,7 @@ import { Controller } from "@hotwired/stimulus"
 
 
 export default class extends Controller {
-  static targets = [ "numericOutput", "percentageOutput","percentageScoreRange", "numericScoreRange" ]
+  static targets = [ "valueOutput", "scoreRange", "numericOutput", "percentageOutput","percentageScoreRange", "numericScoreRange" ]
 
   connect() {
     // console.log("The 'range slider value' controller is now loaded!")
