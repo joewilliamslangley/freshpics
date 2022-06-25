@@ -4,13 +4,14 @@
       <div class="d-flex col-12 col-lg-6 flex-column">
         <h1 class="home-title <%="home-title-#{@number}"%>">Find Your Perfect Film in Two Minutes</h1>
         <h3 class="home-subtitle <%="home-subtitle-#{@number}"%>">Don't waste time endlessly scrolling.<h3>
-        <p class="home-text <%="home-text-#{@number}"%>">Freshpics can give you refined movie recommendations - just tell us what streaming services you have and what you're in the mood for!</p>
+        <div class="row justify-content-center">
+            <%= link_to "Find a movie", search_path, class: "btn btn-white home-btn home-btn-#{@number}" %>
+        </div>
+        <p class="home-text <%="home-text-#{@number}"%>">Tell us what streaming services you have and what you're in the mood for!</p>
 
       </div>
     </div>
-    <div class="row justify-content-center">
-        <%= link_to "Find a movie", search_path, class: "btn btn-white home-btn home-btn-#{@number}" %>
-    </div>
+
   </div>
 </div>
 
