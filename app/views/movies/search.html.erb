@@ -79,11 +79,12 @@
 
         <div id="question-3" class="question hidden" data-load-search-questions-target="question" data-controller="hide-score-slider">
           <div class="question-block" >
-            <h3>Do you care what the critcs say?</h3>
+            <h3>Do you care what the <br> critcs say?</h3>
+            <p> <em>If so select your site of choice! </em></p>
             <div class="options">
-              <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false, checked: ['No Site', 'no_site'] do |b| %>
+              <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false, checked: ['No Site', 'no_site'] do |b| %>
                 <div class="tag-item">
-                  <%= b.radio_button class: "tag-selector", data: { action: "input->hide-score-slider#toggleSlider" } %>
+                  <%= b.radio_button class: "critic-tag-selector", data: { action: "input->hide-score-slider#toggleSlider" } %>
                   <%= b.label  %>
                 </div>
               <% end %>

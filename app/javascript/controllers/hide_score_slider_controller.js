@@ -9,7 +9,7 @@ export default class extends Controller {
   }
 
   toggleSlider(event) {
-    if (event.currentTarget.value === "metacritic" || event.currentTarget.value === "imdb") {
+    if (event.currentTarget.value === "metacritic" || event.currentTarget.value === "imdb" || event.currentTarget.value === "rotten_tomatoes") {
       this.questionTarget.classList.remove("hidden");
       // console.log(this.questionTarget)
     }
