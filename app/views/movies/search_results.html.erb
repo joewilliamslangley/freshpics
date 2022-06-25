@@ -23,7 +23,7 @@
 
               </h6>
               <div class="d-flex justify-content-center" >
-                <i class="fa-solid fa-angle-down fa-2xl"></i>
+                <i class="fa-solid fa-angle-down fa-2xl arrow-down"></i>
               </div>
             </div>
             <!-- Expanded Card Modal -->
@@ -67,9 +67,9 @@
                                 </div>
                           <% end %>
                         </div>
-                          <div class="platform-buttons">
+                          <div>
                             <% movie.platform_bookmarks.each do |bookmark|%>
-                              <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo mr-2'), bookmark.link, target: :_blank %>
+                              <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
                               <% end %>
                           </div>
                       </div>
