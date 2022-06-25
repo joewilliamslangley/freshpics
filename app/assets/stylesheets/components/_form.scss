@@ -1,3 +1,5 @@
+// OVERALL FORM SPACING
+
 .form-wrapper {
   display: flex;
   justify-content: center;
@@ -14,24 +16,9 @@
     margin-bottom: 10px;
     text-align: center;
   }
-
-  .form-button-container {
-    position: fixed;
-    bottom: 200px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    .form-button {
-      display: flex;
-      justify-content: center;
-      width: 400px;
-      // // margin: 10px 30px;
-      #btn-1 {
-        margin: 5px ;
-      }
-    }
-  }
 }
+
+// QUESTION & OPTIONS SPACING
 
 .options {
   text-align: center;
@@ -47,7 +34,32 @@
 }
 
 
-// FORM BUTTONS
+// FORM BUTTON SPACING
+
+.form-bottom {
+
+}
+
+.form-button-container {
+  position: fixed;
+  bottom: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .form-button {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    // // margin: 10px 30px;
+    #btn-1 {
+      margin: 5px ;
+    }
+  }
+}
+
+
+
+// FORM BUTTON STYLING
 
 .tag-item {
   display: inline-block;
