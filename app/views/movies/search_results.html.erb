@@ -47,15 +47,15 @@
                       <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
                     <% end %>
                       <div class="expand-buttons">
-                        <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
+                        <div class="d-flex justify-content-center" data-controller="change-watchlist-button">
                           <% if current_user %>
                             <% unless current_user.movies.include? movie%>
                                 <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
                                   <%= f.hidden_field :movie, value: movie.id %>
                                   <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                                  <%= f.submit "Add to Watchlist", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
+                                  <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
                                 <% end %>
-                                <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
+                                <button type="button" class="btn btn-success d-none" style="height:50px" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
                               <% else %>
                                 <div class="col-12 d-flex justify-content-center">
                                   <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
@@ -82,7 +82,7 @@
                     </nav>
                     <div class="tab-content tabs-results" id="nav-tabContent">
                       <div class="tab-pane fade show active" id="nav-home<%= index %>" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                        <p class="card-text"> Starring: <%= movie.stars.join(", ") %></p>
+                        <p class="card-text"> Starring <%= movie.stars.join(", ") %></p>
                         <p class="card-text">Directed by <%= movie.director.join(", ") %></p>
                       </div>
                       <div class="tab-pane fade" id="nav-profile<%= index %>" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
@@ -96,7 +96,7 @@
                         <div class="row d-flex justify-content-center">
                           <div class="col-12">
                             <p class=""><% movie.genres.each do |genre| %>
-                              <button type="button" class="btn btn-outline-warning">
+                              <button type="button" class="genre-buttons-disabled">
                                 <%= genre %>
                                 <% end %>
                               </button>

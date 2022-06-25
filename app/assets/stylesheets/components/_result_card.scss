@@ -159,8 +159,21 @@
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
+  width: 100%;
 }
 
 .arrow-down {
   opacity: 0.5;
+}
+
+.genre-buttons-disabled {
+  padding: 0.1rem 0.5rem;
+  background-color: transparent;
+  color: $yellow;
+  border: 1.5px solid $yellow;
+  margin: 0.4rem 0.6em;
+  text-align: center;
+  line-height: 2.2;
+  opacity: 0.5;
+  border: 1.5px solid $yellow;
 }
