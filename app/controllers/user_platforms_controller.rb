@@ -5,6 +5,7 @@ class UserPlatformsController < ApplicationController
   end
 
   def set_user_platforms
+    # raise
     selection = params[:platform_ids]
     UserPlatform.where(user: current_user).delete_all
 
