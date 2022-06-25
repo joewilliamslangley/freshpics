@@ -4,6 +4,10 @@ let num = 0;
 export default class extends Controller {
   static targets = ["button", "question", "back", "forward", "circle", "progress"];
 
+ connect() {
+   num = 0;
+  }
+
   handleLoading(event, addNum) {
     event.preventDefault();
     this.questionTargets[num].classList.add("hidden");
@@ -13,6 +17,7 @@ export default class extends Controller {
   }
 
   nextQuestion(event) {
+    console.log(num)
     this.handleLoading(event, 1)
 
     if (num == 1) this.backTarget.classList.remove("hidden");
