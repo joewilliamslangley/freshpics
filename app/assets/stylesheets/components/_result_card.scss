@@ -180,3 +180,15 @@
   border: 1.5px solid $yellow;
   pointer-events: none;
 }
+
+.dislike {
+  font-size: 1.3rem;
+  opacity: 0.8;
+  cursor: pointer;
+  padding: 0;
+}
+
+.disliked-card {
+  opacity: 0.5;
+  pointer-events: none;
+}
