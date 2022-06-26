@@ -37,6 +37,7 @@ class MoviesController < ApplicationController
     @movies = @movies.where('genres && ?', "{#{params[:keyword]}}") if params[:keyword] != ""
     @movies = @movies.where('metacritic_rating >= ?', params[:score]) if params[:review_site] == "metacritic" && params[:score]
     @movies = @movies.where('imdb_rating >= ?', params[:score]) if params[:review_site] == "imdb" && params[:score]
+    @movies = @movies.where('rotten_tomatoes_rating >= ?', params[:score]) if params[:review_site] == "rotten_tomatoes" && params[:score]
     @movies = @movies.where('runtime <= ?', params[:time]) if params[:time] != "180"
     @movies = @movies.where('year >= ?', params[:decade_from]) if params[:decade_from] && params[:decade_from] != ""
     @movies = @movies.where('year <= ?', params[:decade_to]) if params[:decade_to] && params[:decade_to] != ""
