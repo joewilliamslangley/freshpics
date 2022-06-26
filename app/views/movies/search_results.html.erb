@@ -55,8 +55,8 @@
                     <% if movie.youtube_code %>
                       <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
                     <% end %>
-                      <div class="expand-buttons">
-                        <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
+                                     <div class="expand-buttons">
+                        <div class="d-flex justify-content-center" data-controller="change-watchlist-button">
                           <% if current_user %>
                             <% unless current_user.movies.include? movie%>
                                 <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
@@ -65,21 +65,18 @@
                                   <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
                                 <% end %>
                                 <button type="button" class="btn btn-success d-none" style="height:50px" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
-                            <% else %>
-                                <%= link_to 'Remove From Watchlist', # X ICON => <i class="fa-light fa-circle-x"></i>
-                                # Must find the movie bookmark id - do this by getting this into the user conteoller and finding one with the movie_id that matches the
-                                  { controller: "movie_bookmarks", action: "destroy", id: @movie_bookmarks.find_by(movie_id: movie.id, user_id: current_user.id).id },
-                                    data: { confirm: 'Are you sure?' }, class: "btn btn-danger",
-                                    method: :delete, remote: true %>
-                            <% end %>
-                         <% else %>
-                           <div class="col-12 expand-buttons">
-                             <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
-                           </div>
+                              <% else %>
+                                <div class="col-12 d-flex justify-content-center">
+                                  <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
+                                </div>
+                              <% end %>
+                              <% else %>
+                                <div class="col-12 expand-buttons">
+                                  <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
+                                </div>
                           <% end %>
-
                         </div>
-                          <div class="row">
+                          <div>
                             <% movie.platform_bookmarks.each do |bookmark|%>
                               <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
                               <% end %>
