@@ -7,6 +7,7 @@
     <div class="row d-none d-lg-block d-md-block">
       <div class="d-flex justify-content-between">
         <p>Watchlist</p>
+        <p><%= link_to "Disliked Movies", movie_bookmarks_path, class: "link-orange" %></p>
         <p><%= link_to 'Update User Platforms', user_platforms_path, class: "link-orange" %></p>
         <p><%= link_to "Edit Profile", edit_user_registration_path(current_user), class: "link-orange" %></p>
         <p><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "link-orange" %></p>
@@ -40,24 +41,10 @@
       </div>
     </nav>
 
-    <div class="row justify-content-center">
-      <div class="col text-center">
-        <div class="collapse multi-collapse" id="multiCollapseUserOptions">
-          <div class="d-flex justify-content-between d-lg-block d-md-block">
-            <ul class="list-group">
-              <li class="list-group-item active" aria-current="true">Watchlist</li>
-              <li class="list-group-item"><%= link_to 'Update User Platforms', user_platforms_path, class: "link-orange" %></li>
-              <li class="list-group-item"><%= link_to "Edit Profile", edit_user_registration_path(current_user), class: "link-orange" %></li>
-              <li class="list-group-item"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "link-orange" %></li>
-            </ul>
-          </div>
-          </div>
-        </div>
-      </div>
-
   <% else %>
     <div class="row">
-    <h1><%= "#{@user.freshpics_handle.capitalize}'s Watchlist"%></h1>
+      <h1><%= "#{@user.freshpics_handle.capitalize}'s Watchlist"%></h1>
+    </div>
   <% end %>
 
 

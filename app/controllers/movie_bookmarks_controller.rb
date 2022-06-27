@@ -1,6 +1,7 @@
 class MovieBookmarksController < ApplicationController
   def index
-    @dislike_list = @user.movie_bookmarks.where(bookmark_type: "dislike")
+    dislikes = current_user.movie_bookmarks.where(bookmark_type: "dislike")
+    @dislike_list = dislikes.includes(:movie).order('movies.title')
   end
 
   def new
