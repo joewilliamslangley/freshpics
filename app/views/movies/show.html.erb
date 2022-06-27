@@ -6,7 +6,7 @@
             <h3 class="card-title back-button"><%= @movie.title %>
               <%= link_to "Back to your Results", movies_path(@user), class: "btn btn-outline-warning"%>
             </h3>
-            <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
+            <h6 class="card-subtitle mb-2 result-card-collapse"><%= @movie.genres[0] %> / <%= @movie.year %> <% unless @movie.runtime == 0 %> / <%= @movie.runtime %> mins <% end %>
           </div>
 
       <%# MOVIE POSTER %>
