@@ -29,7 +29,7 @@
                     <% end %>
                     <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
                   <% else %>
-                    <%= link_to "Remove From Watchlist", movie_bookmark_path(@user_bookmark), class: "btn btn-danger",
+                    <%= link_to "#{'Remove From Watchlist' if @bookmark_type == 'watchlist'} #{'Remove Dislike' if @bookmark_type == 'dislike'}", movie_bookmark_path(@user_bookmark), class: "btn btn-danger",
                           method: :delete %>
                   <% end %>
               </div>
