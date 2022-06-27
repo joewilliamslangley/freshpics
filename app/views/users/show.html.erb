@@ -14,15 +14,17 @@
     </div>
 
     <nav class="navbar navbar-expand-lg d-lg-none d-md-none ">
-      <div class="container-fluid ps-0 pe-0" type="button" data-bs-toggle="collapse" data-bs-target="#userNav" aria-controls="userNav" aria-expanded="false" aria-label="Toggle navigation">
-        <a class="navbar-brand link-orange" href="#">Watchlist</a>
-        <button class="navbar-toggler pe-0">
-          <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
-        </button>
+      <div class="container-fluid ps-0 pe-0">
+        <div class="d-flex container-fluid justify-content-between ps-0 pe-0 mb-2"type="button" data-bs-toggle="collapse" data-bs-target="#userNav" aria-controls="userNav" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand link-orange" href="#">Watchlist</a>
+          <button class="navbar-toggler pe-0">
+            <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+          </button>
+        </div>
         <div class="collapse navbar-collapse" id="userNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "link-orange link-orange-small" %>
+              <%= link_to "Disliked Movies", movie_bookmarks_path, class: "link-orange link-orange-small" %>
             </li>
             <li class="nav-item">
               <%= link_to 'Update User Platforms', user_platforms_path, class: "link-orange link-orange-small" %>
