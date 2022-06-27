@@ -31,7 +31,7 @@ class MoviesController < ApplicationController
 
   def search_results
     # raise
-    @movie_bookmarks = current_user.movie_bookmarks
+    # @movie_bookmarks = current_user.movie_bookmarks
     @movie_bookmark = MovieBookmark.new
 
     @movies = Movie.includes(:platform_bookmarks)
