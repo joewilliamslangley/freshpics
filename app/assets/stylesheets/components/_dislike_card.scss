@@ -1,15 +1,26 @@
 .dislike-card {
   display: flex;
   justify-content: flex-start;
+  color: $off-white;
+  background-color: $dark-gray;
+  padding: 0;
+  margin-left: 12px;
+  margin-right: 20px;
 
-  &:hover {
+  .dislike-info {
+    align-self: center;
+  }
+
+  a {
     color: $off-white;
+    text-decoration: none;
   }
-
-  .dislike-img {
-    height: 72px;
-    border-radius: 10px;
-    margin-right: 15px;
+  a:hover {
+    color: $orange;
   }
+}
 
+.dislike-img {
+  height: 124px;
+  margin-right: 15px;
 }
