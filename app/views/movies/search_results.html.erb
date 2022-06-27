@@ -59,7 +59,7 @@
                         <div class="d-flex justify-content-center" data-controller="change-watchlist-button">
                           <% if current_user %>
                             <% unless current_user.movies.include? movie%>
-                                <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+                                <%= form_for [@movie, @movie_bookmark], remote: true do |f| %>
                                   <%= f.hidden_field :movie, value: movie.id %>
                                   <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
                                   <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
