@@ -162,8 +162,8 @@
         <p> Review Score</p>
         <%= form.select :review_site, [['Select Review Site', 'no_site'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], class: 'form-select' %>
         <div class="options slidecontainer" data-controller="range-slider-value">
-          <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "percentageScoreRange"}%>
-          <p><span data-range-slider-value-target="percentageOutput">50%</span></p>
+          <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: params[:score], step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "percentageScoreRange"}%>
+          <p><span data-range-slider-value-target="percentageOutput"><%=params[:score]%></span></p>
         </div>
         <p>Time Limit</p>
         <div class="options slidecontainer" data-controller="range-slider-value">
