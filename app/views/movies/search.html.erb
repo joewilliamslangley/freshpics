@@ -84,7 +84,7 @@
             <div class="options">
               <%= form.collection_radio_buttons :review_site, [['IMDb', 'imdb'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['Metacritic', 'metacritic'], ['No Site', 'no_site']], :last, :first, include_hidden: false, checked: ['No Site', 'no_site'] do |b| %>
                 <div class="tag-item">
-                  <%= b.radio_button class: "critic-tag-selector", data: { action: "input->hide-score-slider#toggleSlider" } %>
+                  <%= b.radio_button class: "critic-tag-selector", data: { action: "input->hide-score-slider#toggleSlider", target: "range-slider-value.platform"} %>
                   <%= b.label  %>
                 </div>
               <% end %>
@@ -114,14 +114,14 @@
                 </div>
 
 
-              <!-- NUMERIC (IMDB) -->
+              <!-- NUMERIC (IMDB)
                 <div class="question-block hidden" data-hide-score-slider-target="numericQuestion">
                   <h5>Pick a minimum score for your film</h5>
                   <div class="options slidecontainer">
                     <%= form.range_field :score,  min: "0", max: "10", class: "slider", value: 5, step: 1, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "numericScoreRange"}%>
                     <p><span data-range-slider-value-target="numericOutput">5</span></p>
                   </div>
-                </div>
+                </div>-->
 
             <!-- <%= form.radio_button :score, "60" %>
             <%= form.label :'60', "60" %>
