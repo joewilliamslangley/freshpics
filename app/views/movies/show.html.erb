@@ -11,15 +11,18 @@
             <h3 class="result-card-collapse"></h3>
             <h6 class="card-subtitle mb-2 result-card-collapse"><%= @movie.genres[0] %> / <%= @movie.year %> <% unless @movie.runtime == 0 %> / <%= @movie.runtime %> mins <% end %>
               <p> <% if @movie.imdb_rating.present? %> <%#fixed syntax error %>
-
-                <%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{@movie.imdb_id}", target: :_blank %> <%= @movie.imdb_rating.to_f / 10 %>
-                <% end %>
+                    <%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{@movie.imdb_id}", target: :_blank %> <%= @movie.imdb_rating.to_f / 10 %>
+                  <% end %>
                   <% if @movie.metacritic_rating.present? %>
-                    <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{@movie.imdb_id}/criticreviews", target: :_blank %> <%= @movie.metacritic_rating %></p>
-                    <% end %></h6>
+                    <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{@movie.imdb_id}/criticreviews", target: :_blank %> <%= @movie.metacritic_rating %>
+                  <% end %>
+                  <% if movie.rotten_tomatoes_rating.present? %>
+                    <%= link_to image_tag('rotten_tomatoes.png', alt: "Rotten Tomatoes logo", width: 24), "https://www.rottentomatoes.com/m/#{movie.title.gsub(" ", "_")}", target: :_blank %> <%= movie.rotten_tomatoes_rating %>
+                  <% end %></p>
+                  </h6>
                   <% if @movie.youtube_code %>
                     <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= @movie.youtube_code %>"></div>
-                    <% end %>
+                  <% end %>
                   <div class="d-flex justify-content-center">
                     <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: "50%" ) %>
                   </div>
