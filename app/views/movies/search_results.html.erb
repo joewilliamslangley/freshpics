@@ -11,15 +11,15 @@
           <div class="result-card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%if movie.background_image_url %>'<%= image_path movie.background_image_url%>' <%else%> <%= 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'%><%end%>)">
             <div class="card-body" data-bs-toggle="modal" data-bs-target="#modal<%=movie.id%>" type="button">
               <h3 class="result-card-collapse"><%= movie.title %></h3>
-              <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> <% unless movie.runtime == 0 %> / <%= movie.runtime %> mins <% end %>
+              <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
 
                 <p> <% if movie.imdb_rating.present? %> <%#fixed syntax error %>
+
                     <%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %>
                     <% end %>
                     <% if movie.metacritic_rating.present? %>
                     <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}/criticreviews", target: :_blank %> <%= movie.metacritic_rating %></p>
                     <% end %>
-                </p>
 
               </h6>
               <div class="d-flex justify-content-center" >
@@ -46,33 +46,35 @@
                     <% if movie.youtube_code %>
                       <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
                     <% end %>
-                      <div class="expand-buttons">
-                        <div class="d-flex justify-content-center" data-controller="change-watchlist-button">
-                          <% if current_user %>
-                            <% unless current_user.movies.include? movie%>
-                                <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
-                                  <%= f.hidden_field :movie, value: movie.id %>
-                                  <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                                  <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
-                                <% end %>
-                                <button type="button" class="btn btn-success d-none" style="height:50px" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
-                              <% else %>
-                                <div class="col-12 d-flex justify-content-center">
-                                  <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
-                                </div>
+                    <div class="d-flex justify-content-between row" data-controller="change-watchlist-button">
+                      <div class="col-6">
+                        <% if current_user %>
+                          <% unless current_user.movies.include? movie%>
+                              <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+                                <%= f.hidden_field :movie, value: movie.id %>
+                                <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
+                                <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
                               <% end %>
-                              <% else %>
-                                <div class="col-12 expand-buttons">
-                                  <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
-                                </div>
-                          <% end %>
-                        </div>
-                          <div>
-                            <% movie.platform_bookmarks.each do |bookmark|%>
-                              <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
-                              <% end %>
-                          </div>
+                              <button type="button" class="btn btn-success d-none" style="height:50px" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
+                            <% else %>
+                              <div class="col-12 d-flex justify-content-center">
+                                <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
+                              </div>
+                            <% end %>
+                            <% else %>
+                              <div class="col-12 expand-buttons">
+                                <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
+                              </div>
+                        <% end %>
                       </div>
+                      <div class="<%= movie.platform_bookmarks.count > 1 ? 'col-sm-12 col-md-6' : 'col-6' %> platform-section">
+                        <% movie.platform_bookmarks.each do |bookmark|%>
+                          <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
+                          <% end %>
+                      </div>
+                    </div>
+
+
                     <nav>
                       <div class="nav nav-tabs tabs-underlined" id="nav-tab-<%= index %>" role="tablist">
                         <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home<%= index %>" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Cast & Crew</button>
@@ -205,12 +207,11 @@
         <%= form.hidden_field :keyword, value: params[:keyword] %>
         <%= form.hidden_field :platform_ids, value: params[:platform_ids] %>
         <%= form.hidden_field :review_site, value: params[:review_site] %>
-        <!-- Modal -->
         <p> Review Score</p>
-        <%= form.select :review_site, [['Select Review Site', 'no_site'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], class: 'form-select' %>
+        <%= form.select :review_site, [['Select Review Site', 'no_site'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], class: 'form-select' %>
         <div class="options slidecontainer" data-controller="range-slider-value">
-          <%= form.range_field :score, min: "0", max: "100", class: "slider", value: params[:score], step: 5, data: { action: "change->range-slider-value#showScore", range_slider_value_target: "scoreRange"}%>
-          <p><span data-range-slider-value-target="valueOutput"><%= params[:score] %>%</span></p>
+          <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "percentageScoreRange"}%>
+          <p><span data-range-slider-value-target="percentageOutput">50%</span></p>
         </div>
         <p>Time Limit</p>
         <div class="options slidecontainer" data-controller="range-slider-value">
