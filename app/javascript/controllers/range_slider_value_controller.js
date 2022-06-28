@@ -5,26 +5,25 @@ import { Controller } from "@hotwired/stimulus"
 
 
 export default class extends Controller {
-  static targets = [ "valueOutput", "scoreRange", "numericOutput", "percentageOutput","percentageScoreRange", "numericScoreRange" ]
+  static targets = [ "platform", "valueOutput", "scoreRange", "numericOutput", "percentageOutput","percentageScoreRange", "numericScoreRange" ]
 
   connect() {
     // console.log("The 'range slider value' controller is now loaded!")
   }
 
   showScore(event) {
-  if (event.currentTarget === this.percentageScoreRangeTarget) {
+    let platform = document.querySelector('input[class="critic-tag-selector"]:checked').value;
+  if (platform === "rotten_tomatoes" || platform === "metacritic")  {
       this.percentageOutputTarget.innerHTML = `${this.percentageScoreRangeTarget.value}%`
   }
-
-  if (event.currentTarget === this.numericScoreRangeTarget) {
-    this.numericOutputTarget.innerHTML = `${this.numericScoreRangeTarget.value}`
+  if (platform === "imdb") {
+    this.percentageOutputTarget.innerHTML = `${this.percentageScoreRangeTarget.value / 10}`
 }
 
     }
 
   showTime(event) {
-    // console.log(event)
-    if (this.scoreRangeTarget.value > 179) {
+      if (this.scoreRangeTarget.value > 179) {
       this.valueOutputTarget.innerHTML = "No limit";
     } else {
       this.valueOutputTarget.innerHTML = `${this.scoreRangeTarget.value} mins`
