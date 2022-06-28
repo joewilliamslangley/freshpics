@@ -46,33 +46,35 @@
                     <% if movie.youtube_code %>
                       <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
                     <% end %>
-                      <div class="expand-buttons">
-                        <div class="d-flex justify-content-center" data-controller="change-watchlist-button">
-                          <% if current_user %>
-                            <% unless current_user.movies.include? movie%>
-                                <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
-                                  <%= f.hidden_field :movie, value: movie.id %>
-                                  <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                                  <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
-                                <% end %>
-                                <button type="button" class="btn btn-success d-none" style="height:50px" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
-                              <% else %>
-                                <div class="col-12 d-flex justify-content-center">
-                                  <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
-                                </div>
+                    <div class="d-flex justify-content-between row" data-controller="change-watchlist-button">
+                      <div class="col-6">
+                        <% if current_user %>
+                          <% unless current_user.movies.include? movie%>
+                              <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+                                <%= f.hidden_field :movie, value: movie.id %>
+                                <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
+                                <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
                               <% end %>
-                              <% else %>
-                                <div class="col-12 expand-buttons">
-                                  <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
-                                </div>
-                          <% end %>
-                        </div>
-                          <div>
-                            <% movie.platform_bookmarks.each do |bookmark|%>
-                              <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
-                              <% end %>
-                          </div>
+                              <button type="button" class="btn btn-success d-none" style="height:50px" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
+                            <% else %>
+                              <div class="col-12 d-flex justify-content-center">
+                                <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
+                              </div>
+                            <% end %>
+                            <% else %>
+                              <div class="col-12 expand-buttons">
+                                <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
+                              </div>
+                        <% end %>
                       </div>
+                      <div class="<%= movie.platform_bookmarks.count > 1 ? 'col-sm-12 col-md-6' : 'col-6' %> platform-section">
+                        <% movie.platform_bookmarks.each do |bookmark|%>
+                          <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
+                          <% end %>
+                      </div>
+                    </div>
+
+
                     <nav>
                       <div class="nav nav-tabs tabs-underlined" id="nav-tab-<%= index %>" role="tablist">
                         <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home<%= index %>" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Cast & Crew</button>
