@@ -1,0 +1,21 @@
+#userNav li a {
+  display: block;
+}
+
+.user-nav-item {
+  margin-bottom: 10px;
+}
+
+.link-orange-navbar {
+  color: $orange;
+  text-decoration: none;
+}
+
+.link-orange-navbar:hover {
+  color: $bold-orange;
+  text-decoration: underline;
+}
+
+.navbar-toggler-icon{
+  color: orange;
+}

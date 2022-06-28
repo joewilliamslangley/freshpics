@@ -9,7 +9,16 @@
       <%@movies.each_with_index do |movie, index|%>
         <div class="row d-flex justify-content-center" data-controller="search-result-card">
           <div class="result-card col-lg-6 col-md-7 col-sm-10" data-search-result-card-target="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%if movie.background_image_url %>'<%= image_path movie.background_image_url%>' <%else%> <%= 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'%><%end%>)">
-            <div class="card-body" data-bs-toggle="modal" data-bs-target="#modal<%=movie.id%>" type="button">
+            <div class="d-flex flex-row-reverse">
+              <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
+                                    <%= f.hidden_field :movie, value: movie.id %>
+                                    <%= f.hidden_field :bookmark_type, value: 'dislike' %>
+                                    <%= button_tag type: 'submit', class: "btn dislike", data: { action: 'click->search-result-card#dislike' } do %>
+                                        <i class="fa-solid fa-thumbs-down"></i>
+                                    <% end %>
+                                  <% end %>
+            </div>
+            <div class="card-body pt-0" data-bs-toggle="modal" data-bs-target="#modal<%=movie.id%>" type="button">
               <h3 class="result-card-collapse"><%= movie.title %></h3>
               <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
 
@@ -52,6 +61,7 @@
                     <% if movie.youtube_code %>
                       <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
                     <% end %>
+
                     <div class="d-flex justify-content-between row" data-controller="change-watchlist-button">
                       <div class="col-6">
                         <% if current_user %>
@@ -76,6 +86,7 @@
                       <div class="<%= movie.platform_bookmarks.count > 1 ? 'col-sm-12 col-md-6' : 'col-6' %> platform-section">
                         <% movie.platform_bookmarks.each do |bookmark|%>
                           <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
+
                           <% end %>
                       </div>
                     </div>

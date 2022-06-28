@@ -11,4 +11,9 @@ export default class extends Controller {
     this.expandTarget.classList.toggle("d-none")
     this.cardTarget.classList.toggle("result-card single")
   }
+
+  dislike(event) {
+    this.cardTarget.classList.add("disliked-card")
+    // console.log("clicked")
+  }
 }
