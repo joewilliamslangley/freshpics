@@ -42,7 +42,7 @@ class MoviesController < ApplicationController
     @movies = @movies.where('runtime <= ?', params[:time]) if params[:time] != "180"
     @movies = @movies.where('year >= ?', params[:decade_from]) if params[:decade_from] && params[:decade_from] != "No Minimum"
     @movies = @movies.where('year <= ?', params[:decade_to]) if params[:decade_to] && params[:decade_to] != "No Maximum"
-    # @movies = @movies.where(english: true) if params[:english] == 1
+    @movies = @movies.where(english: true) if params[:english] == "1"
     if params[:platform_ids]
       params[:platform_ids] = params[:platform_ids].split if params[:platform_ids].kind_of?(String)
       # raise
