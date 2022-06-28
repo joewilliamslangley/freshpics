@@ -9,6 +9,17 @@ export default class extends Controller {
 
   connect() {
     // console.log("The 'range slider value' controller is now loaded!")
+    if (document.querySelectorAll('#review_site')[1]) {
+      let input = document.querySelectorAll('#review_site')[1];
+      let platform = input.options[input.selectedIndex].value;
+      if (platform === "rotten_tomatoes" || platform === "metacritic")  {
+            this.percentageOutputTarget.innerHTML = `${this.percentageScoreRangeTarget.value}%`
+        }
+        if (platform === "imdb") {
+          this.percentageOutputTarget.innerHTML = `${this.percentageScoreRangeTarget.value / 10}`
+      }
+    }
+
   }
 
   showScore(event) {
@@ -25,7 +36,7 @@ export default class extends Controller {
     showScoreFilter(event) {
       let input = document.querySelectorAll('#review_site')[1];
       let platform = input.options[input.selectedIndex].value;
-      console.log(platform)
+
     if (platform === "rotten_tomatoes" || platform === "metacritic")  {
         this.percentageOutputTarget.innerHTML = `${this.percentageScoreRangeTarget.value}%`
     }

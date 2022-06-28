@@ -161,10 +161,10 @@
         <%= form.hidden_field :review_site, value: params[:review_site] %>
         <p> Review Score</p>
         <div data-controller="range-slider-value">
-          <%= form.select :review_site, [['Select Review Site', 'no_site'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], value: params[:review_site],class: 'form-select', data: {range_slider_value_target: "site"} %>
+          <%= form.select :review_site, [['Select Review Site', 'no_site'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], selected: params[:review_site], class: 'form-select', data: {range_slider_value_target: "site"} %>
           <div class="options slidecontainer" >
             <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: params[:score], step: 5, data: { action: "input->range-slider-value#showScoreFilter", range_slider_value_target: "percentageScoreRange"}%>
-            <p><span data-range-slider-value-target="percentageOutput"><%=params[:score]%></span></p>
+            <p><span data-range-slider-value-target="percentageOutput" class="score"><%=params[:score]%></span></p>
           </div>
         </div>
 
