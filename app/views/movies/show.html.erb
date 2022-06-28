@@ -17,8 +17,8 @@
                   <% if @movie.metacritic_rating.present? %>
                     <%= link_to image_tag('metacritic.png', alt: "Metacritic logo", width: 24), "https://www.imdb.com/title/#{@movie.imdb_id}/criticreviews", target: :_blank %> <%= @movie.metacritic_rating %>
                   <% end %>
-                  <% if movie.rotten_tomatoes_rating.present? %>
-                    <%= link_to image_tag('rotten_tomatoes.png', alt: "Rotten Tomatoes logo", width: 24), "https://www.rottentomatoes.com/m/#{movie.title.gsub(" ", "_")}", target: :_blank %> <%= movie.rotten_tomatoes_rating %>
+                  <% if @movie.rotten_tomatoes_rating.present? %>
+                    <%= link_to image_tag('rotten_tomatoes.png', alt: "Rotten Tomatoes logo", width: 24), "https://www.rottentomatoes.com/m/#{@movie.title.gsub(" ", "_")}", target: :_blank %> <%= @movie.rotten_tomatoes_rating %>
                   <% end %></p>
                   </h6>
                   <% if @movie.youtube_code %>
