@@ -170,7 +170,7 @@
 
         <p>Time Limit</p>
         <div class="options slidecontainer" data-controller="range-slider-value">
-            <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
+            <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "input->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
             <p><span data-range-slider-value-target="valueOutput"><%= params[:time] %> mins</span></p>
         </div>
         <p class="mb-0">Date Range</p>
