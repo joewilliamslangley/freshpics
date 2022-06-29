@@ -21,17 +21,17 @@
             <div class="card-body pt-0" data-bs-toggle="modal" data-bs-target="#modal<%=movie.id%>" type="button">
               <h3 class="result-card-collapse"><%= movie.title %></h3>
               <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
-
-                <p> <% if movie.imdb_rating.present? %> <%#fixed syntax error %>
-                      <%= image_tag 'imdb.png', alt: "IMDb logo", width: 24 %> <%= movie.imdb_rating.to_f / 10 %>
+                <p>
+                    <% if movie.imdb_rating.present? %> <%#fixed syntax error %>
+                      <%= image_tag 'imdb.png', alt: "IMDb logo", width: 24, class: "review-icon" %> <%= movie.imdb_rating.to_f / 10 %>
                     <% end %>
                     <% if movie.metacritic_rating.present? %>
-                      <%= image_tag "metacritic.png", alt: "Metacritic logo", width: 24 %> <%= movie.metacritic_rating %>
+                      <%= image_tag "metacritic.png", alt: "Metacritic logo", width: 24, class: "review-icon" %> <%= movie.metacritic_rating %>
                     <% end %>
                     <% if movie.rotten_tomatoes_rating.present? %>
-                      <%= image_tag 'rotten_tomatoes.png', alt: "Rotten Tomatoes logo", width: 24 %> <%= movie.rotten_tomatoes_rating %>
+                      <%= image_tag 'rotten_tomatoes.png', alt: "Rotten Tomatoes logo", width: 24, class: "review-icon" %> <%= movie.rotten_tomatoes_rating %>
                     <% end %>
-
+                </p>
               </h6>
               <div class="d-flex justify-content-center" >
                 <i class="fa-solid fa-angle-down fa-2xl arrow-down"></i>
