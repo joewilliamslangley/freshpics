@@ -4,7 +4,6 @@
   <%# BASIC CARD HEADER %>
           <div>
             <h3 class="card-title back-button"><%= @movie.title %></h3>
-            <h6 class="card-subtitle mb-2"> <%= @movie.year %> / <%= @movie.runtime %> mins</h6>
           </div>
 
 
@@ -27,7 +26,7 @@
                   <div class="d-flex justify-content-center">
                     <%= image_tag(@movie.poster_url, alt: "(#{@movie.title} cover art", width: "50%" ) %>
                   </div>
-                    <div class="expand-buttons">
+                    <div class="expand-buttons mb-3">
 
                       <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
                         <% if current_user %>
@@ -40,7 +39,7 @@
                               <button type="button" class="btn btn-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
                             <% else %>
                               <div class="col-12 d-flex justify-content-center">
-                                <%= link_to "#{'Remove From Watchlist' if @bookmark_type == 'watchlist'} #{'Remove Dislike' if @bookmark_type == 'dislike'}", movie_bookmark_path(@user_bookmark), class: "btn btn-danger",
+                                <%= link_to "#{'Remove From Watchlist' if @bookmark_type == 'watchlist'} #{'Remove Dislike' if @bookmark_type == 'dislike'}", movie_bookmark_path(@user_bookmark), class: "btn btn-white-danger",
                                 method: :delete %>
                               </div>
                             <% end %>
