@@ -26,7 +26,10 @@ class MovieBookmarksController < ApplicationController
     @movie = @movie_bookmark.movie
     @user = current_user
     @movie_bookmark.destroy
-    redirect_to user_path(@user)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private
