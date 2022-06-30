@@ -22,6 +22,7 @@ class UpdateRatingsJob < ApplicationJob
           movie.rotten_tomatoes_rating = rating.Value.gsub(/[^0-9]/, '').to_i if rating.Source == "Rotten Tomatoes"
         end
       end
+      movie.runtime = movie_data.Runtime if movie.runtime.nil? && movie_data.Runtime != "N/A"
       if movie_data.Language.split(", ")[0] == "English"
         movie.english = true
       else
