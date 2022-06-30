@@ -8,7 +8,7 @@ class UpdateRatingsJob < ApplicationJob
   queue_as :default
 
   def perform
-    movies = Movie.all
+    movies = Movie.all.order(:id)
     movies.each do |movie|
       movie_data = get_omdb_ratings(movie.imdb_id)
       next if movie_data == "Error"
