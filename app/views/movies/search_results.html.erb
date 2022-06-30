@@ -62,7 +62,7 @@
                       <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
                     <% end %>
 
-                    <div class="d-flex justify-content-between row" data-controller="change-watchlist-button">
+                    <div class="d-flex justify-content-between row mb-1 mt-1" data-controller="change-watchlist-button">
                       <div class="<%= current_user ? 'col-6' : 'col-sm-12 col-md-6' %>">
                         <% if current_user %>
                           <% unless current_user.movies.include? movie%>
