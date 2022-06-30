@@ -8,7 +8,7 @@ class UpdateRatingsJob < ApplicationJob
   queue_as :default
 
   def perform
-    movies = Movie.all
+    movies = Movie.where("id >= ?", 11139).order(:id)
     movies.each do |movie|
       movie_data = get_omdb_ratings(movie.imdb_id)
       next if movie_data == "Error"
@@ -22,6 +22,7 @@ class UpdateRatingsJob < ApplicationJob
           movie.rotten_tomatoes_rating = rating.Value.gsub(/[^0-9]/, '').to_i if rating.Source == "Rotten Tomatoes"
         end
       end
+      movie.runtime = movie_data.Runtime.gsub(/[^0-9]/, '').to_i if movie.runtime.nil? && movie_data.Runtime != "N/A"
       if movie_data.Language.split(", ")[0] == "English"
         movie.english = true
       else
