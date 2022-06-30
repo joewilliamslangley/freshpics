@@ -63,7 +63,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @movie_bookmark = MovieBookmark.new
     @user_bookmark = MovieBookmark.find_by(user_id: current_user.id, movie_id: @movie.id)
-    @bookmark_type = @user_bookmark.bookmark_type
+    @bookmark_type = @user_bookmark.bookmark_type if @user_bookmark
   end
 
   # def result
