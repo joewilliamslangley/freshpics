@@ -46,3 +46,14 @@
   color: $bold-orange;
   border-bottom: 2px solid $bold-orange;
 }
+
+.btn-white-success {
+  color: $off-white;
+  border: 1.5px solid $off-white;
+  padding: 7px 25px;
+  border-radius: 50px;
+  font-weight: lighter;
+  transition: opacity 0.3s ease;
+  background-color: #2B9B63;
+  margin: auto;
+}
