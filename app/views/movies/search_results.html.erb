@@ -160,14 +160,17 @@
         <%= form.hidden_field :platform_ids, value: params[:platform_ids] %>
         <%= form.hidden_field :review_site, value: params[:review_site] %>
         <p> Review Score</p>
-        <%= form.select :review_site, [['Select Review Site', 'no_site'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], class: 'form-select' %>
-        <div class="options slidecontainer" data-controller="range-slider-value">
-          <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "percentageScoreRange"}%>
-          <p><span data-range-slider-value-target="percentageOutput">50%</span></p>
+        <div data-controller="range-slider-value">
+          <%= form.select :review_site, [['Select Review Site', 'no_site'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], selected: params[:review_site], class: 'form-select', data: {range_slider_value_target: "site"} %>
+          <div class="options slidecontainer" >
+            <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: params[:score], step: 5, data: { action: "input->range-slider-value#showScoreFilter", range_slider_value_target: "percentageScoreRange"}%>
+            <p><span data-range-slider-value-target="percentageOutput" class="score"><%=params[:score]%></span></p>
+          </div>
         </div>
+
         <p>Time Limit</p>
         <div class="options slidecontainer" data-controller="range-slider-value">
-            <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
+            <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "input->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
             <p><span data-range-slider-value-target="valueOutput"><%= params[:time] %> mins</span></p>
         </div>
         <p class="mb-0">Date Range</p>
