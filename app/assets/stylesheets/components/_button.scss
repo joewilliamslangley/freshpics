@@ -21,6 +21,21 @@
   transition: opacity 0.3s ease;
 }
 
+.btn-white-danger {
+  color: $off-white;
+  border: 1.5px solid $off-white;
+  padding: 7px 25px;
+  border-radius: 50px;
+  font-weight: lighter;
+  transition: opacity 0.3s ease;
+  background-color: rgba(222, 89, 45, 0.7);
+  margin: auto;
+}
+
+.btn-white-danger:hover {
+  background-color: rgba(222, 89, 45, 1);
+}
+
 .link-orange {
   color: $orange;
   border-bottom: 2px solid $orange;
@@ -30,4 +45,15 @@
 .link-orange:hover {
   color: $bold-orange;
   border-bottom: 2px solid $bold-orange;
+}
+
+.btn-white-success {
+  color: $off-white;
+  border: 1.5px solid $off-white;
+  padding: 7px 25px;
+  border-radius: 50px;
+  font-weight: lighter;
+  transition: opacity 0.3s ease;
+  background-color: #2B9B63;
+  margin: auto;
 }

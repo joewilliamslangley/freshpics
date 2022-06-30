@@ -15,7 +15,10 @@ class MovieBookmarksController < ApplicationController
     @movie_bookmark.user = current_user
     @movie_bookmark.movie = @movie
     if @movie_bookmark.save
-      # redirect_to user_path(current_user)
+      respond_to do |format|
+        format.html { redirect_to movie_path(@movie, anchor: 'buttons-section') }
+        format.js
+      end
     else
       flash[:alert] = "Error"
     end
@@ -26,7 +29,10 @@ class MovieBookmarksController < ApplicationController
     @movie = @movie_bookmark.movie
     @user = current_user
     @movie_bookmark.destroy
-    redirect_to user_path(@user)
+    respond_to do |format|
+      format.html { redirect_to movie_path(@movie, anchor: 'buttons-section') }
+      format.js
+    end
   end
 
   private

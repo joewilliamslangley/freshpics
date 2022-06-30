@@ -132,9 +132,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   display: none;
-  padding-bottom: 1.5em;
+}
+
+.card-subtitle {
+  padding-bottom: 2em;
 }
 
 .result-card-expand {
@@ -196,4 +199,12 @@
 
 .platform-section {
   text-align: end;
+}
+
+.review-icon {
+  opacity: 0.8;
+}
+
+.result-nav {
+  min-height: 210px;
 }
