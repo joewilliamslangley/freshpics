@@ -20,7 +20,12 @@
             </div>
             <div class="card-body pt-0" data-bs-toggle="modal" data-bs-target="#modal<%=movie.id%>" type="button">
               <h3 class="result-card-collapse"><%= movie.title %></h3>
-              <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
+              <h6 class="card-subtitle mb-2 result-card-collapse">
+                <% if movie.runtime == 0 %>
+                  <%= movie.genres[0] %> / <%= movie.year %>
+                <% else %>
+                  <%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
+                  <% end %>
                 <p>
                     <% if movie.imdb_rating.present? %> <%#fixed syntax error %>
                       <%= image_tag 'imdb.png', alt: "IMDb logo", width: 24, class: "review-icon" %> <%= movie.imdb_rating.to_f / 10 %>
@@ -46,7 +51,12 @@
                   </div>
                   <div class="card-body modal-body result-modal-body" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%if movie.background_image_url %>'<%= image_path movie.background_image_url%>' <%else%> <%= 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'%><%end%>)">
                     <h3 class="result-card-collapse" id="modal<%movie.id%>Label"><%= movie.title %></h3>
-                    <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
+                    <h6 class="card-subtitle mb-2 result-card-collapse">
+                      <% if movie.runtime == 0 %>
+                        <%= movie.genres[0] %> / <%= movie.year %>
+                          <% else %>
+                        <%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
+                      <% end %>
                     <p> <% if movie.imdb_rating.present? %> <%#fixed syntax error %>
 
                     <%= link_to image_tag('imdb.png', alt: "IMDb logo", width: 24), "https://www.imdb.com/title/#{movie.imdb_id}", target: :_blank %> <%= movie.imdb_rating.to_f / 10 %>
