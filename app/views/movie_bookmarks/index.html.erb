@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row user-title">
     <h1><%= "#{current_user.freshpics_handle.capitalize}'s Profile"%></h1>
   </div>
   <div class="row d-none d-lg-block d-md-block">
@@ -41,7 +41,7 @@
   <div class="watchlist-cards">
         <% @dislike_list.each do |bookmark| %>
           <% movie = bookmark.movie %>
-          <div class="row justify-content-center">
+          <div class="row justify-content-center" id="deleteMovieBookmark<%= bookmark.id %>">
             <div class="watchlist-card col-lg-8 col-md-10 col-sm-12">
               <div class="card-image">
                 <% if movie.background_image_url == nil %> <%='https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'%>

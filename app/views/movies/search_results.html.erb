@@ -21,17 +21,17 @@
             <div class="card-body pt-0" data-bs-toggle="modal" data-bs-target="#modal<%=movie.id%>" type="button">
               <h3 class="result-card-collapse"><%= movie.title %></h3>
               <h6 class="card-subtitle mb-2 result-card-collapse"><%= movie.genres[0] %> / <%= movie.year %> / <%= movie.runtime %> mins
-
-                <p> <% if movie.imdb_rating.present? %> <%#fixed syntax error %>
-                      <%= image_tag 'imdb.png', alt: "IMDb logo", width: 24 %> <%= movie.imdb_rating.to_f / 10 %>
+                <p>
+                    <% if movie.imdb_rating.present? %> <%#fixed syntax error %>
+                      <%= image_tag 'imdb.png', alt: "IMDb logo", width: 24, class: "review-icon" %> <%= movie.imdb_rating.to_f / 10 %>
                     <% end %>
                     <% if movie.metacritic_rating.present? %>
-                      <%= image_tag "metacritic.png", alt: "Metacritic logo", width: 24 %> <%= movie.metacritic_rating %>
+                      <%= image_tag "metacritic.png", alt: "Metacritic logo", width: 24, class: "review-icon" %> <%= movie.metacritic_rating %>
                     <% end %>
                     <% if movie.rotten_tomatoes_rating.present? %>
-                      <%= image_tag 'rotten_tomatoes.png', alt: "Rotten Tomatoes logo", width: 24 %> <%= movie.rotten_tomatoes_rating %>
+                      <%= image_tag 'rotten_tomatoes.png', alt: "Rotten Tomatoes logo", width: 24, class: "review-icon" %> <%= movie.rotten_tomatoes_rating %>
                     <% end %>
-
+                </p>
               </h6>
               <div class="d-flex justify-content-center" >
                 <i class="fa-solid fa-angle-down fa-2xl arrow-down"></i>
@@ -62,28 +62,28 @@
                       <div class="col-12 youtube-insert" data-refresh-target="youtube" data-youtube-code="<%= movie.youtube_code %>"></div>
                     <% end %>
 
-                    <div class="d-flex justify-content-between row" data-controller="change-watchlist-button">
-                      <div class="col-6">
+                    <div class="d-flex justify-content-between row mb-1 mt-1" data-controller="change-watchlist-button">
+                      <div class="<%= current_user ? 'col-6' : 'col-sm-12 col-md-6' %>">
                         <% if current_user %>
                           <% unless current_user.movies.include? movie%>
                               <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
                                 <%= f.hidden_field :movie, value: movie.id %>
                                 <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                                <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-warning', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
+                                <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-white', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
                               <% end %>
-                              <button type="button" class="btn btn-success d-none" style="height:50px" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
+                              <button type="button" class="btn btn-white-success d-none" style="height:50px" disabled data-change-watchlist-button-target="added">Added to Watchlist</button>
                             <% else %>
                               <div class="col-12 d-flex justify-content-center">
-                                <button type="button" class="btn btn-success" disabled>Added to Watchlist</button>
+                                <button type="button" class="btn btn-white-success" disabled>Added to Watchlist</button>
                               </div>
                             <% end %>
                             <% else %>
-                              <div class="col-12 expand-buttons">
+                              <div class="expand-buttons">
                                 <%= link_to "Sign In to Add to Watchlist", new_user_session_path, class: "btn btn-secondary" %>
                               </div>
                         <% end %>
                       </div>
-                      <div class="<%= movie.platform_bookmarks.count > 1 ? 'col-sm-12 col-md-6' : 'col-6' %> platform-section">
+                      <div class="<%= movie.platform_bookmarks.count > 1 ? 'col-sm-12 col-md-6' : 'col-5' %> <%= current_user ? '' : 'col-12' %> platform-section">
                         <% movie.platform_bookmarks.each do |bookmark|%>
                           <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
 
@@ -91,39 +91,41 @@
                       </div>
                     </div>
 
-
-                    <nav>
-                      <div class="nav nav-tabs tabs-underlined" id="nav-tab-<%= index %>" role="tablist">
-                        <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home<%= index %>" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Cast & Crew</button>
-                        <button class="nav-link tab-underlined" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile<%= index %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Synopsis</button>
-                        <button class="nav-link tab-underlined" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact<%= index %>" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Genres</button>
-                      </div>
-                    </nav>
-                    <div class="tab-content tabs-results" id="nav-tabContent">
-                      <div class="tab-pane fade show active" id="nav-home<%= index %>" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                        <p class="card-text"> Starring <%= movie.stars.join(", ") %></p>
-                        <p class="card-text">Directed by <%= movie.director.join(", ") %></p>
-                      </div>
-                      <div class="tab-pane fade" id="nav-profile<%= index %>" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                        <div class="row d-flex justify-content-center">
-                          <div class="col-12">
-                            <p class="card-text"><%= movie.plot %></p>
+                    <div class="result-nav">
+                      <nav>
+                        <div class="nav nav-tabs tabs-underlined" id="nav-tab-<%= index %>" role="tablist">
+                          <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home<%= index %>" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Cast & Crew</button>
+                          <button class="nav-link tab-underlined" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile<%= index %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Synopsis</button>
+                          <button class="nav-link tab-underlined" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact<%= index %>" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Genres</button>
+                        </div>
+                      </nav>
+                      <div class="tab-content tabs-results" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home<%= index %>" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                          <p class="card-text"> Starring <%= movie.stars.join(", ") %></p>
+                          <p class="card-text">Directed by <%= movie.director.join(", ") %></p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile<%= index %>" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                          <div class="row d-flex justify-content-center">
+                            <div class="col-12">
+                              <p class="card-text"><%= movie.plot %></p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="tab-pane fade" id="nav-contact<%= index %>" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-                        <div class="row d-flex justify-content-center">
-                          <div class="col-12">
-                            <p class=""><% movie.genres.each do |genre| %>
-                              <button type="button" class="genre-buttons-disabled">
-                                <%= genre %>
-                                <% end %>
-                              </button>
-                            </p>
+                        <div class="tab-pane fade" id="nav-contact<%= index %>" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                          <div class="row d-flex justify-content-center">
+                            <div class="col-12">
+                              <p class=""><% movie.genres.each do |genre| %>
+                                <button type="button" class="genre-buttons-disabled">
+                                  <%= genre %>
+                                  <% end %>
+                                </button>
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -132,13 +134,26 @@
         </div>
       <%end%>
     </div>
-    <div class="d-flex justify-content-center">
-      <div class="">
-        <div data-action="click->refresh#next" class="refresh-button d-flex justify-content-center align-items-center"><i class="fas fa-sync-alt"></i></i></div>
+
+    <% if @movies.count.zero? %>
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-6 col-sm-12 text-center">
+          <%= image_tag "https://i.kym-cdn.com/photos/images/newsfeed/001/042/619/4ea.jpg", alt: "Le Wagon", width: 350, class: "mb-5" %>
+          <h2>Uh-oh - No Matches</h2>
+          <h4>It looks like there were no results for your search - try expanding the parameters in the Advanced Filters or <%= link_to 'search again', search_path, class: "link-orange" %>.</h4>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <div class="d-flex justify-content-center">
+        <div class="">
+          <div data-action="click->refresh#next" class="refresh-button d-flex justify-content-center align-items-center"><i class="fas fa-sync-alt"></i></i></div>
+        </div>
+      </div>
+    <% end %>
+
 
   </div>
+
 
 
 </div>
@@ -160,14 +175,17 @@
         <%= form.hidden_field :platform_ids, value: params[:platform_ids] %>
         <%= form.hidden_field :review_site, value: params[:review_site] %>
         <p> Review Score</p>
-        <%= form.select :review_site, [['Select Review Site', 'no_site'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], class: 'form-select' %>
-        <div class="options slidecontainer" data-controller="range-slider-value">
-          <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: 50, step: 5, data: { action: "input->range-slider-value#showScore", range_slider_value_target: "percentageScoreRange"}%>
-          <p><span data-range-slider-value-target="percentageOutput">50%</span></p>
+        <div data-controller="range-slider-value">
+          <%= form.select :review_site, [['Select Review Site', 'no_site'], ['Rotten Tomatoes', 'rotten_tomatoes'], ['IMDb', 'imdb'], ['Metacritic', 'metacritic']], selected: params[:review_site], class: 'form-select', data: {range_slider_value_target: "site"} %>
+          <div class="options slidecontainer" >
+            <%= form.range_field :score,  min: "0", max: "100", class: "slider", value: params[:score], step: 5, data: { action: "input->range-slider-value#showScoreFilter", range_slider_value_target: "percentageScoreRange"}%>
+            <p><span data-range-slider-value-target="percentageOutput" class="score"><%=params[:score]%></span></p>
+          </div>
         </div>
+
         <p>Time Limit</p>
         <div class="options slidecontainer" data-controller="range-slider-value">
-            <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "change->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
+            <%= form.range_field :time, min: "90", max: "180", class: "slider", value: params[:time], step: 5, data: { action: "input->range-slider-value#showTime", range_slider_value_target: "scoreRange"}%>
             <p><span data-range-slider-value-target="valueOutput"><%= params[:time] %> mins</span></p>
         </div>
         <p class="mb-0">Date Range</p>
@@ -195,6 +213,8 @@
     </div>
   </div>
 </div>
+
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
