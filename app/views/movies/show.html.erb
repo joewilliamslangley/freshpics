@@ -36,7 +36,7 @@
                               <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
                               <%= f.submit "Add to Watchlist", class: 'btn btn-white', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
                             <% end %>
-                              <span type="button" class="btn btn-white-success d-none" disabled data-change-watchlist-button-target="added">Added to Watchlist</span>
+                              <span type="button" class="btn btn-white-success d-none disabled" disabled data-change-watchlist-button-target="added">Added to Watchlist</span>
                             <% else %>
                               <div class="col-12 d-flex justify-content-center">
                                 <%= link_to "#{'Remove From Watchlist' if @bookmark_type == 'watchlist'} #{'Remove Dislike' if @bookmark_type == 'dislike'}", movie_bookmark_path(@user_bookmark), class: "btn btn-white-danger",
