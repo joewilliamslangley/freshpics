@@ -28,7 +28,7 @@
                   </div>
                     <div class="expand-buttons mb-3">
 
-                      <div class="row d-flex justify-content-center" data-controller="change-watchlist-button">
+                      <div class="row d-flex justify-content-center" data-controller="change-watchlist-button" id="buttons-section">
                         <% if current_user %>
                           <% unless current_user.movies.include? @movie%>
                             <%= simple_form_for [@movie_bookmark] do |f| %>
