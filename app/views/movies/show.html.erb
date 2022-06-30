@@ -58,38 +58,41 @@
                       </div>
 
             <%# TABS %>
-            <nav>
-              <div class="nav nav-tabs tabs-underlined" id="nav-tab" role="tablist">
-                <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Movie Details</button>
-                <button class="nav-link tab-underlined" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Genres</button>
-                <button class="nav-link tab-underlined" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Platforms</button>
-              </div>
-            </nav>
-            <div class="tab-content tabs-results" id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
-                <p class="card-text">Directed by <%= @movie.director.join %></p>
-                <p class="card-text"><%= @movie.plot %></p>
-              </div>
-              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                <p class=""><% @movie.genres.each do |genre| %>
-                  <button type="button" class="btn btn-outline-warning">
-                    <%= genre %>
-                    <% end %>
-                  </button>
-                </p>
-              </div>
-              <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-                <div class="row d-flex justify-content-center">
-                  <div class="col-12">
-                    <h4>Stream Now On</h4>
-                    <% @movie.platform_bookmarks.each do |bookmark|%>
-                        <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
-                        <% end %>
+            <div class="nav-section">
+              <nav>
+                <div class="nav nav-tabs tabs-underlined" id="nav-tab-content" role="tablist">
+                  <button class="nav-link active tab-underlined" id="nav-overview-tab" data-bs-toggle="tab" data-bs-target="#nav-overview" type="button" role="tab" aria-controls="nav-overview" aria-selected="true">Cast & Crew</button>
+                  <button class="nav-link tab-underlined" id="nav-synopsis-tab" data-bs-toggle="tab" data-bs-target="#nav-synopsis" type="button" role="tab" aria-controls="nav-synopsis" aria-selected="false">Synopsis</button>
+                  <button class="nav-link tab-underlined" id="nav-genres-tab" data-bs-toggle="tab" data-bs-target="#nav-genres" type="button" role="tab" aria-controls="nav-genres" aria-selected="false">Genres</button>
+                </div>
+              </nav>
+              <div class="tab-content tabs-results" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab" tabindex="0">
+                  <p class="card-text"> Starring <%= @movie.stars.join(", ") %></p>
+                  <p class="card-text">Directed by <%= @movie.director.join(", ") %></p>
+                </div>
+                <div class="tab-pane fade" id="nav-synopsis" role="tabpanel" aria-labelledby="nav-synopsis-tab" tabindex="0">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                      <p class="card-text"><%= @movie.plot %></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-genres" role="tabpanel" aria-labelledby="nav-genres-tab" tabindex="0">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                      <p class=""><% @movie.genres.each do |genre| %>
+                        <button type="button" class="genre-buttons-disabled">
+                          <%= genre %>
+                          <% end %>
+                        </button>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
     </div>
   </div>
 </div>
