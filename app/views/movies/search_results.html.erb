@@ -91,39 +91,41 @@
                       </div>
                     </div>
 
-
-                    <nav>
-                      <div class="nav nav-tabs tabs-underlined" id="nav-tab-<%= index %>" role="tablist">
-                        <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home<%= index %>" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Cast & Crew</button>
-                        <button class="nav-link tab-underlined" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile<%= index %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Synopsis</button>
-                        <button class="nav-link tab-underlined" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact<%= index %>" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Genres</button>
-                      </div>
-                    </nav>
-                    <div class="tab-content tabs-results" id="nav-tabContent">
-                      <div class="tab-pane fade show active" id="nav-home<%= index %>" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                        <p class="card-text"> Starring <%= movie.stars.join(", ") %></p>
-                        <p class="card-text">Directed by <%= movie.director.join(", ") %></p>
-                      </div>
-                      <div class="tab-pane fade" id="nav-profile<%= index %>" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                        <div class="row d-flex justify-content-center">
-                          <div class="col-12">
-                            <p class="card-text"><%= movie.plot %></p>
+                    <div class="result-nav">
+                      <nav>
+                        <div class="nav nav-tabs tabs-underlined" id="nav-tab-<%= index %>" role="tablist">
+                          <button class="nav-link active tab-underlined" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home<%= index %>" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Cast & Crew</button>
+                          <button class="nav-link tab-underlined" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile<%= index %>" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Synopsis</button>
+                          <button class="nav-link tab-underlined" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact<%= index %>" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Genres</button>
+                        </div>
+                      </nav>
+                      <div class="tab-content tabs-results" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home<%= index %>" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                          <p class="card-text"> Starring <%= movie.stars.join(", ") %></p>
+                          <p class="card-text">Directed by <%= movie.director.join(", ") %></p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile<%= index %>" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                          <div class="row d-flex justify-content-center">
+                            <div class="col-12">
+                              <p class="card-text"><%= movie.plot %></p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="tab-pane fade" id="nav-contact<%= index %>" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-                        <div class="row d-flex justify-content-center">
-                          <div class="col-12">
-                            <p class=""><% movie.genres.each do |genre| %>
-                              <button type="button" class="genre-buttons-disabled">
-                                <%= genre %>
-                                <% end %>
-                              </button>
-                            </p>
+                        <div class="tab-pane fade" id="nav-contact<%= index %>" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                          <div class="row d-flex justify-content-center">
+                            <div class="col-12">
+                              <p class=""><% movie.genres.each do |genre| %>
+                                <button type="button" class="genre-buttons-disabled">
+                                  <%= genre %>
+                                  <% end %>
+                                </button>
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
