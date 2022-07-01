@@ -79,12 +79,12 @@
                               <%= simple_form_for [@movie, @movie_bookmark], remote: true do |f| %>
                                 <%= f.hidden_field :movie, value: movie.id %>
                                 <%= f.hidden_field :bookmark_type, value: 'watchlist' %>
-                                <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-white', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
+                                <%= f.submit "Add to Watchlist", style: "height:50px", class: 'btn btn-white result-watchlist', data: { action: 'click->change-watchlist-button#change', target: 'change-watchlist-button.watchlist' }%>
                               <% end %>
-                              <button type="button" class="btn btn-white-success d-none" style="height:50px" disabled data-change-watchlist-button-target="added">Added!</button>
+                              <button type="button" class="btn btn-white-success d-none result-watchlist" style="height:50px" disabled data-change-watchlist-button-target="added">Added!</button>
                             <% else %>
                               <div class="col-12 d-flex justify-content-center">
-                                <button type="button" class="btn btn-white-success" disabled>Added to Watchlist</button>
+                                <button type="button" class="btn btn-white-success result-watchlist" disabled>Added to Watchlist</button>
                               </div>
                             <% end %>
                             <% else %>
@@ -93,7 +93,7 @@
                               </div>
                         <% end %>
                       </div>
-                      <div class="<%= movie.platform_bookmarks.count > 1 ? 'col-sm-12 col-md-6' : 'col-5' %> <%= current_user ? '' : 'col-12' %> platform-section">
+                      <div class="<%= movie.platform_bookmarks.count > 1 ? 'col-sm-12 col-md-6 mt-2' : 'col-5' %> <%= current_user ? '' : 'col-12' %> platform-section">
                         <% movie.platform_bookmarks.each do |bookmark|%>
                           <%= link_to image_tag(bookmark.platform.logo_path, alt: "#{bookmark.platform.name} logo", width: 100, class: 'streaming-logo'), bookmark.link, target: :_blank %>
 
