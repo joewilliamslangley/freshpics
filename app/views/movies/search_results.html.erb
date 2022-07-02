@@ -52,7 +52,7 @@
                   <div class="modal-header ad-filt-head">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="card-body modal-body result-modal-body" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%if movie.background_image_url %>'<%= image_path movie.background_image_url%>' <%else%> <%= 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'%><%end%>)">
+                  <div class="card-body modal-body result-modal-body ps-3 pe-3" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%if movie.background_image_url %>'<%= image_path movie.background_image_url%>' <%else%> <%= 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80'%><%end%>)">
                     <h3 class="result-card-collapse" id="modal<%movie.id%>Label"><%= movie.title %></h3>
                     <h6 class="card-subtitle mb-2 result-card-collapse">
                       <% if movie.runtime == 0 %>
